@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Droguerie Product Details Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f48c25",
+              "background-light": "#f8f7f5",
+              "background-dark": "#221910",
+              "navy-accent": "#1e293b",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20 gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-2 flex-shrink-0">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl">handyman</span>
+</div>
+<h1 class="text-2xl font-black tracking-tight text-navy-accent dark:text-white">Droguerie</h1>
+</div>
+<!-- Search Bar -->
+<div class="flex-1 max-w-lg hidden md:block">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2 border-none bg-slate-100 dark:bg-slate-800 rounded-lg focus:ring-2 focus:ring-primary focus:bg-white dark:focus:bg-slate-700 transition-all text-sm" placeholder="Search tools, hardware, supplies..." type="text"/>
+</div>
+</div>
+<!-- Nav Links & Cart -->
+<nav class="flex items-center gap-8">
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold text-primary" href="#">Products</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Blog</a>
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-navy-accent dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-0 right-0 h-4 w-4 bg-primary text-white text-[10px] font-bold flex items-center justify-center rounded-full">3</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border-2 border-white dark:border-slate-800">
+<img alt="User" data-alt="User profile avatar portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEgCdUeIi-GPb8ffxHkWmdhy7t4P4Q0STI_mW6cBvgwX8tBBD-F3Uiu5J_Q_uyc7N8jKRXIk9HtyBfWJE69pRWrEuEQht9R2KAhfuzSVXOKcURUsfP0Rfgx4h3Z66K3-Sdv-hBEUArETQ4-OcXJ_SbC8FbcrMdNkKyGN6qNCRCNAOumnIsPUeiIRc0ILjLDyO1sgAjG-2JctTp-WW03vCI-tJ2Mckoa4D41mmRZudjYOV8iPz7gFS3GzJCeSk68AYcQCT1W287iuY"/>
+</div>
+</div>
+</nav>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-sm text-slate-500 mb-8">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Power Tools</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-navy-accent dark:text-slate-300 font-medium">Cordless Drills</span>
+</nav>
+<!-- Product Main Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+<!-- Left: Gallery -->
+<div class="space-y-4">
+<div class="aspect-square bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 flex items-center justify-center p-8 group">
+<img alt="Product Image" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" data-alt="Professional cordless drill with battery pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiE3i46Eqf8R2WeVxJ9ZLbiFSlepkgaHoKGzFza8ObaQRQTr4wZGwBsZ5jeRM2jo9s3xJ1zUdO-OjQh7-9UChC4t2J7W2ApPkq3LjC4FhW13M6y7K40E8gUE8Pjjwwi08lt0N2f1zwG1bLbHbQRrgMK0idHCvwePUFeMB1i7iYdQv9wVnkUsnQDu_9m-Oj-tFEVaitMD37Yx_aEe3yDzNx32bWY0fE2GOal9lJdHAQXhGApV3b9bktCMFjMnv322J187ClAWeSkLQ"/>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<button class="aspect-square rounded-lg border-2 border-primary overflow-hidden bg-white dark:bg-slate-800">
+<img alt="Thumbnail 1" class="w-full h-full object-cover" data-alt="Front view of cordless drill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0bA9cth73AarguGIVrDGElh-8u-B0FY0YNma_hBQON9Qi5DAL4G8e2Cu9MjrqCQVt0IKO6886S3KyS891EDPCWcReh1hdwfBhoRBAV5YKSqsfvi70_7Lui44vNodCT2fjcMQYcKy_P-rAk4UFHVrMdL4Ed0wzF-YkbgtUFDg1zSoGvl6csn4vOtbHdRDklaQKQ51D2zAcYlkSBOQAhjA89JtRe_JcVCyUK5UYOc9F4bwadO2jLCU--aQmKgFqhCliQCimFflaKWc"/>
+</button>
+<button class="aspect-square rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 hover:border-primary transition-colors">
+<img alt="Thumbnail 2" class="w-full h-full object-cover" data-alt="Side view of drill components" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBeO1T3cjRAX_y85UFWXj8Lj1JYkpVEd7m5M-XaE8_41TiGrUkKIjfhURbFU8AsdQR5rDcMfYceWWXdbbudCB8cTuiRUAmLUpJsleRNC7Pz3GqZ_jD9UbuITaTrCRZkegcBd63m1HWg1PtLOl-dXmaluacUVnMLlep587_mqhTpN7M4MlbH6jKJHp4CsByOYH5leXP27grf8RGOpvcnyOfAeOzsjqacdOniq9Ym54Pyi_WjH0WdJwI5UTR8N4YaU8QdmOghiwEmmA"/>
+</button>
+<button class="aspect-square rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 hover:border-primary transition-colors">
+<img alt="Thumbnail 3" class="w-full h-full object-cover" data-alt="Close up of drill bit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfjJbP2fYJBU2s7-gddwlgRQY5xfVNCYRonpil6Vn_iWhkiFc0kKcpQ0qanezN7cQkbdFYc6nkF84GkKiM2veIE-klBPT0tYq6owLuGbAZOj54c_rlaHlueJ2SUpp49yzmnm397n076eHmjgxZs6ie88mUa8DBD1_EwDzIgldjQmsbjAKSZOLTkgaCfZHXrcochB42H-OZ_EazYvjbbgVaxQz8fRzt0Z9rhTwacH0lHZwfzF2hcDWgH1ABZEDG9slkS5lcZfdWMSI"/>
+</button>
+<button class="aspect-square rounded-lg border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-800 hover:border-primary transition-colors">
+<img alt="Thumbnail 4" class="w-full h-full object-cover" data-alt="Drill in hard carrying case" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6HOPCFpjYBizAC582MsUrXY3Ji9hO-WNhM3UNsGh0K76osvmVB71wziptsvCySjAIVi-3XpWR0Vj9N4RNpJ_A4EQLgPqCuKji1wHRi6uDrkRkysgB67ek3wPl0cV2CXJZGKi6vYKWo5kXzVIli3pM8KhSfM5dbgUYdpFu9D-eKGQC9UP55t8BRylw4bRkky0eUCyyY7jTK6eqmL7tUhlS4IE9Xt71oCPX-2lDevihtYh8TrjFth-W7I8CTxLMYoQnRPyHGfSwlOc"/>
+</button>
+</div>
+</div>
+<!-- Right: Details -->
+<div class="flex flex-col">
+<div class="mb-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span>
+                        IN STOCK
+                    </span>
+</div>
+<h2 class="text-4xl font-black text-navy-accent dark:text-white mb-2 leading-tight">ProSeries 18V Brushless Compact Drill</h2>
+<div class="flex items-center gap-4 mb-6">
+<div class="flex text-primary">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<span class="text-sm text-slate-500">(128 reviews)</span>
+</div>
+<div class="mb-8">
+<p class="text-3xl font-black text-navy-accent dark:text-white">$249.99</p>
+<p class="text-slate-500 mt-4 leading-relaxed">
+                        Engineered for heavy-duty professional performance, the ProSeries Brushless Drill delivers 20% more power and runs 50% longer per charge. Compact design fits into tight spaces with ease.
+                    </p>
+</div>
+<div class="space-y-6">
+<div class="flex flex-col gap-2">
+<span class="text-sm font-bold text-navy-accent dark:text-slate-300">Quantity</span>
+<div class="flex items-center border border-slate-200 dark:border-slate-700 rounded-lg w-fit bg-white dark:bg-slate-800">
+<button class="p-3 hover:text-primary transition-colors"><span class="material-symbols-outlined">remove</span></button>
+<span class="px-6 font-bold">1</span>
+<button class="p-3 hover:text-primary transition-colors"><span class="material-symbols-outlined">add</span></button>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/20 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">shopping_bag</span>
+                            ADD TO CART
+                        </button>
+<button class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-6 border-t border-slate-200 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+<div class="text-xs">
+<p class="font-bold">Free Delivery</p>
+<p class="text-slate-500">Orders over $50</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+<div class="text-xs">
+<p class="font-bold">3-Year Warranty</p>
+<p class="text-slate-500">Full manufacturer coverage</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Tabs -->
+<div class="mb-20">
+<div class="border-b border-slate-200 dark:border-slate-700 flex gap-8">
+<button class="pb-4 text-sm font-bold border-b-2 border-primary text-navy-accent dark:text-white">Description</button>
+<button class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-navy-accent dark:hover:text-slate-300">Specifications</button>
+<button class="pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-navy-accent dark:hover:text-slate-300">Reviews (128)</button>
+</div>
+<div class="py-8 prose prose-slate dark:prose-invert max-w-none">
+<p class="text-slate-600 dark:text-slate-400">
+                    The ProSeries 18V Brushless Compact Drill is the ultimate companion for contractors and DIY enthusiasts alike. Featuring a state-of-the-art brushless motor, it provides maximum efficiency and durability. The ergonomic handle is rubberized for superior grip and comfort during extended use.
+                </p>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 mt-6 text-slate-600 dark:text-slate-400">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> 2-Speed transmission (0-550 &amp; 0-2,000 RPM)</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Built-in LED with 20-second trigger release delay</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Metal 1/2" ratcheting chuck for superior bit gripping strength</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Lightweight at only 3.4 lbs with battery</li>
+</ul>
+</div>
+</div>
+<!-- Related Products -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-black text-navy-accent dark:text-white">Related Products</h3>
+<a class="text-primary font-bold text-sm hover:underline" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Related Card 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:shadow-xl transition-all group">
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-900 mb-4 overflow-hidden">
+<img alt="Battery" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Replacement 18V lithium-ion battery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoRUF-EhRdkrqpvfAyivKh8b6OzPpd1ugtf-qk0efwl_bu7BMnudvZAGJCR32brQvqn3DuWq2GdRDck8H10uwevm877Vo041qpwp0d5av5eokK9ZlF9mdhU625yb13ac7K2u5hRVm_oVU4L5GrnaY2AzMe44iLa7cdyZBjdmCzJf8eRATdS4R68Ri2WPIK1bpm5cglx5Fxkcu7QetT4OEcnl33O-j3SrgAxc98eAhs7iLIMdEhLZOrYugVbB_NuJu5-DG4S0f4mbQ"/>
+</div>
+<h4 class="font-bold text-navy-accent dark:text-white mb-1">18V Lithium-Ion Battery</h4>
+<p class="text-primary font-black mb-4">$89.00</p>
+<button class="w-full bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white text-navy-accent dark:text-slate-200 py-2 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                        Quick Add
+                    </button>
+</div>
+<!-- Related Card 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:shadow-xl transition-all group">
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-900 mb-4 overflow-hidden">
+<img alt="Bit Set" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Heavy duty drill bit set in box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDT-nNAOz4Urbe0dmOC2YdeRAkgbApoB2NXtG4jfnfXJRnYUEU8n_q6fxi51Z2iR4nJDgTRy-omkbyMRCNsmoN8NmPrn48_Ur5zM8innQqsHsskCHoE0C-4hc59ZB3L9GiC899ll9mmA721QM7CZ9o1nq1xuI1t68j4xWUcIl_wIbR0M3omLxf4fol55get4PAVCGgphF8rUOxDyhQ-tkAAQi_hFT-vR_jkuRH6AYegZhQY3X6A8Nu3rUi9THmqeGitIGfwUg_nir0"/>
+</div>
+<h4 class="font-bold text-navy-accent dark:text-white mb-1">Titanium Bit Set (45-pc)</h4>
+<p class="text-primary font-black mb-4">$45.50</p>
+<button class="w-full bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white text-navy-accent dark:text-slate-200 py-2 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                        Quick Add
+                    </button>
+</div>
+<!-- Related Card 3 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:shadow-xl transition-all group">
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-900 mb-4 overflow-hidden">
+<img alt="Impact Driver" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="High performance impact driver" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8cxxGI7_Sswhzgbg7ZbE7kg3hlHONt88hmN-LJI9Y-qdxMgFIsXDDqDItOCP-D-JUdUjBXU9TAbyrn0bw-VlVqyAtvpB1HsXmGLp_gfOFxFA013v0yk0uRs_Tg6Vnmi5chbygMNa3KttPw5o4yA27nHc-cE2iqEJCLzwb3ptpSsU9G9q8wC5LjBh046UhoO-5rnpgVYwCT5GFqfsMHN7Kj0iQVKILAjXkysjkQNzEFnH3C2F5MPNkZLk3ZL-b6Q6GCy9FYMieg50"/>
+</div>
+<h4 class="font-bold text-navy-accent dark:text-white mb-1">Brushless Impact Driver</h4>
+<p class="text-primary font-black mb-4">$199.99</p>
+<button class="w-full bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white text-navy-accent dark:text-slate-200 py-2 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                        Quick Add
+                    </button>
+</div>
+<!-- Related Card 4 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-4 hover:shadow-xl transition-all group">
+<div class="aspect-square rounded-lg bg-slate-100 dark:bg-slate-900 mb-4 overflow-hidden">
+<img alt="Case" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="Hard shell protective carry case" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTaxwyvm3ITHCsiUl1Tf8AMcBp-X9w04lfMMFRuS9UmZZzCa77R_gGWOZcsdy-ktApIspMIFSTzR9PyjiRLvBSwIuKsFDS00GSNRkzfia2J_uynE3cMGih_ETN0BL3uP19AjRiRir5uCz44wGBJHu1nSt101Jbnnoec-joy3bvguAjY9ghEvjV_oNeoqYIcW-QK1-4kG0yayr_USjAm_0feBAqMaCnp8rEDogwVIwuJ8DSjdRgafYHfyKvIFnMVMdIlZgG7gGLNWw"/>
+</div>
+<h4 class="font-bold text-navy-accent dark:text-white mb-1">Pro Hard-Shell Case</h4>
+<p class="text-primary font-black mb-4">$35.00</p>
+<button class="w-full bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white text-navy-accent dark:text-slate-200 py-2 rounded-lg font-bold text-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base">add_shopping_cart</span>
+                        Quick Add
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-navy-accent text-white mt-20 pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary text-3xl">handyman</span>
+<h2 class="text-xl font-black">Droguerie</h2>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">
+                        Your one-stop shop for premium hardware, power tools, and household essentials. Quality guaranteed since 1995.
+                    </p>
+</div>
+<div>
+<h5 class="font-bold mb-6">Shop</h5>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Power Tools</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Hand Tools</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cleaning Supplies</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Garden &amp; Outdoor</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Support</h5>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Shipping Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns &amp; Refunds</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Warranty Info</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Newsletter</h5>
+<p class="text-slate-400 text-sm mb-4">Get the latest deals and tool tips.</p>
+<div class="flex gap-2">
+<input class="bg-slate-800 border-none rounded-lg text-sm flex-1 focus:ring-1 focus:ring-primary" placeholder="Email address" type="email"/>
+<button class="bg-primary px-4 py-2 rounded-lg font-bold text-sm">Join</button>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-800 pt-8 flex flex-col md:row items-center justify-between gap-4 text-slate-500 text-xs">
+<p>© 2024 Droguerie E-commerce. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

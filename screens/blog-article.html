@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&amp;family=Lora:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee8c2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221910",
+                        "navy-custom": "#181411",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"],
+                        "serif": ["Lora", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .prose-custom p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-navy-custom dark:text-slate-100">
+<div class="relative flex h-auto min-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-navy-custom dark:text-primary">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-navy-custom dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Droguerie</h2>
+</div>
+<nav class="hidden md:flex items-center gap-9">
+<a class="text-navy-custom dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-navy-custom dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Cleaning</a>
+<a class="text-navy-custom dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">DIY</a>
+<a class="text-navy-custom dark:text-slate-300 text-sm font-medium hover:text-primary transition-colors" href="#">Garden</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">Blog</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-4">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-slate-400 flex border-none bg-background-light dark:bg-white/10 items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 rounded-lg text-navy-custom dark:text-slate-100 focus:outline-0 focus:ring-0 border-none bg-background-light dark:bg-white/10 h-full placeholder:text-slate-400 px-4 rounded-l-none pl-2 text-sm font-normal" placeholder="Search articles..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex min-w-[40px] cursor-pointer items-center justify-center rounded-lg h-10 px-3 bg-primary text-white text-sm font-bold">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-10 px-4 bg-background-light dark:bg-white/10 text-navy-custom dark:text-slate-100 text-sm font-bold">
+                            Log In
+                        </button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<div class="w-full h-[500px] bg-center bg-no-repeat bg-cover relative" data-alt="A clean, organized minimalist laundry room with glass jars and wooden shelves." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAekKN91Sgvetmjl45fpqesG1uN92w0HgJdCzS99pCBa4s-7buuNg12bfo93hvjdpwY86nsiBRee2YB6K5JszpP397UmaBSQqqiwCk8Ox52_iTR4UIFIsnnooO_EvhlXjs3FTgQzBFnMbjYhuO-YUcS66fZpTCucJ229a9kbQghX1PbWa77QVeoT1sD6jFQtYtBAT98XVdIY_HQ_3diHn6TB-iKiixvX1ojsC25ceQcK8Uu1PC8tGw3fVwOI-jtiDC5YER2lGoCp4A");'>
+<div class="absolute inset-0 bg-navy-custom/30"></div>
+</div>
+<!-- Main Content Container -->
+<main class="flex-1 max-w-[800px] mx-auto w-full px-6 py-12">
+<!-- Article Header -->
+<div class="mb-12">
+<nav class="flex text-sm text-slate-500 mb-6 gap-2">
+<a class="hover:text-primary" href="#">Home</a>
+<span>/</span>
+<a class="hover:text-primary" href="#">Blog</a>
+<span>/</span>
+<span class="text-navy-custom dark:text-slate-300">DIY Organization</span>
+</nav>
+<h1 class="text-4xl md:text-5xl font-black text-navy-custom dark:text-slate-100 leading-tight mb-8">
+                        10 Essential Tips for Sustainable Home Organization
+                    </h1>
+<div class="flex items-center justify-between border-y border-primary/10 py-6">
+<div class="flex items-center gap-4">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-12 w-12 border-2 border-primary/20" data-alt="Professional portrait of Sarah Miller, the author." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCIJ4INDmXUIXeyhZPF1CKjFDzAYZrDRu9HLWEPXA_Eh7RPNl1drKq0xN3hvrnZ4WcKPy5K7owZfR5Jy2TrsZfHo3xkQENi9p1soYSHd9NJF476YoxwVEjCur4hVEc112k9pe-0o1X8vxykWRgSHTF6wM4yItKbZ9nSlmP1w-6T8Xi-HDfIgMfR7aJEMT-7qCNjBBro8O-oUAUteZYoCgE1wltZ0ljzUSzl8JJnIrU3jqnq71sGNCJyOxTMyiDiQ7sXEjCh_7BwVFA");'></div>
+<div class="flex flex-col">
+<p class="text-navy-custom dark:text-slate-100 text-base font-bold">Sarah Miller</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Eco-Living Consultant • 5 min read</p>
+</div>
+</div>
+<div class="text-slate-500 text-sm">
+                            Published Oct 24, 2023
+                        </div>
+</div>
+</div>
+<!-- Article Body -->
+<article class="prose-custom font-serif text-lg text-navy-custom/90 dark:text-slate-300">
+<p class="text-xl font-medium font-display text-primary italic mb-8">
+                        "Sustainable organization isn't just about labels and bins; it's about choosing products that respect our planet while simplifying our daily routines."
+                    </p>
+<p>
+                        In today's fast-paced world, finding peace at home starts with organization. Using sustainable materials from your local droguerie not only helps the environment but creates a timeless aesthetic that plastic bins simply cannot match.
+                    </p>
+<h2 class="font-display font-bold text-2xl text-navy-custom dark:text-slate-100 mt-10 mb-4">1. Embrace Glass Over Plastic</h2>
+<p>
+                        Glass jars are the backbone of any eco-friendly pantry. They are infinitely recyclable, non-porous, and allow you to see exactly what you have on hand. Visit our shop to find apothecary-style jars that bring a vintage charm to your kitchen shelves.
+                    </p>
+<div class="my-10">
+<figure class="rounded-xl overflow-hidden shadow-lg">
+<img alt="Collection of labeled glass jars with dry goods" class="w-full" data-alt="A row of neatly labeled glass jars containing various grains and pastas." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTzwYxs1n3TzzlyspZGrV7jIG3NHBg8RzTJyjhdRO5ugoV9qaP560G1_Eqc2H4-J4ipqhCKK7lZgZzm4g2M2vrPHuWwGGoutk8_WV6GbWdZ_lCkB5Ll6QbivpEB-cWC3p6ZmPJx9Gm-VEOvVJgn9crb06wpGH_AHWskFthynL4tl0awFJm7Fwk4hJnPPvgYcQBWzkukImuispGywquKqqZZrxvMIGWGVKCfdNtMgWqqQXEw9Y5nLYtfYfDcRGPr3ANVTjwTGZaJyM"/>
+<figcaption class="bg-primary/5 p-4 text-sm font-display italic text-slate-600 dark:text-slate-400 text-center">
+                                Clear glass storage helps reduce food waste by making inventory visible.
+                            </figcaption>
+</figure>
+</div>
+<h2 class="font-display font-bold text-2xl text-navy-custom dark:text-slate-100 mt-10 mb-4">2. The Magic of Bamboo Brushes</h2>
+<p>
+                        Cleaning tools are often overlooked in home organization. Replacing synthetic sponges with bamboo dish brushes and natural fiber scrubbers makes your cleaning station look organized and professional.
+                    </p>
+<p>
+                        When everything has a dedicated place, the mental load of maintaining a household significantly decreases. Start by decluttering one room at a time, focusing on high-traffic areas like the laundry room or the entryway.
+                    </p>
+</article>
+<!-- Share Section -->
+<div class="mt-16 pt-8 border-t border-primary/10 flex flex-col items-center gap-6">
+<p class="font-display font-bold text-navy-custom dark:text-slate-100 uppercase tracking-widest text-xs">Share this guide</p>
+<div class="flex gap-4">
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-navy-custom text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-[#1877F2] text-white hover:opacity-90 transition-opacity">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-[#1DA1F2] text-white hover:opacity-90 transition-opacity">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-[#E60023] text-white hover:opacity-90 transition-opacity">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.966 1.406-5.966s-.359-.72-.359-1.781c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"></path></svg>
+</button>
+</div>
+</div>
+<!-- Related Articles Section -->
+<section class="mt-24">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-bold text-navy-custom dark:text-slate-100">Related Articles</h3>
+<a class="text-primary font-bold text-sm hover:underline" href="#">View all posts</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="w-full aspect-[4/3] bg-center bg-cover rounded-lg overflow-hidden" data-alt="Traditional broom and cleaning tools in a corner." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDeaNEd9S-iK43fArnMgSIaIS7fnUMxKjgY6pEnXe8-87IJUug9EgEPUH8gFdNci7fDYsG1dSMt9nA5KxXU017ztR877u1DUqqDV-pBGe6GCoZuimilbiwaMvD_ssr7lA6Ij500J3Rf9Efr_8A0_RE50jnuLrbMeiq7do7W4mZTcJiYDihEfVIFvhhqsU7HyyDCVpKuw0gFQvfSXRI2ecPSwpHmlHUeCNWBC-quAySucUTRgiAKDDVnCRJ_n3-ata8CrWvNA8yb-_o");'>
+<div class="w-full h-full bg-navy-custom/0 group-hover:bg-navy-custom/10 transition-colors"></div>
+</div>
+<p class="text-xs font-bold text-primary uppercase">Cleaning</p>
+<h4 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Natural Cleaning Solutions for Your Kitchen</h4>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="w-full aspect-[4/3] bg-center bg-cover rounded-lg overflow-hidden" data-alt="Small potted plants on a window sill." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDkjAbXq7Ml5R-YdJFrZkjt_ZldRPdzkGivccuOOLqn_riXOJOb4uff-WPQQ0lzTpxQNY9UF_0Td-EPEt1054NWS5IzLAgOZfvyDaWN0RVDMCzNvzu4M3YoijH9PXX3K6PVuQvCMse2nl5u6yUPVxJk09QFaosm6XH2CzHKB4O2Kn3xZCBxUpGbgk-wEoE3AKL8QPXLunDrtmDgf7jXdlbPCTs6L0_EDVHP0BzYRbmEBBCxEQSqD2kXz40pYOwoqgqmXn2p4L7mWM0");'>
+<div class="w-full h-full bg-navy-custom/0 group-hover:bg-navy-custom/10 transition-colors"></div>
+</div>
+<p class="text-xs font-bold text-primary uppercase">Garden</p>
+<h4 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Starting Your Indoor Herb Garden This Spring</h4>
+</div>
+<!-- Card 3 -->
+<div class="flex flex-col gap-3 group cursor-pointer">
+<div class="w-full aspect-[4/3] bg-center bg-cover rounded-lg overflow-hidden" data-alt="Handmade wooden soap dish and bar soap." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAfBoitx0OVzdL7kORJN840MWBd0M-aFJ8_LSj1-hdU-asdIyvf-Mp7PSPuG2W5DbKMnVZ6QpY1MUi6W9w4PhblYTBKk2wyZhX6SBWFaBcP8HDam84WHdb3MVzndD84RLudzvwaIEG3QVF9TvPLOkcXpClOnq-5yFXM5Edf_m2U4x9PkPziNfwygxeoCeVIpySkA7mvCmj1Frndyg-mcGEPSsvL8EXJ372hSAsJR3BMQW5Wr-n_ctFeZOMtnyx6yBxdHUGbwjdBKIA");'>
+<div class="w-full h-full bg-navy-custom/0 group-hover:bg-navy-custom/10 transition-colors"></div>
+</div>
+<p class="text-xs font-bold text-primary uppercase">Lifestyle</p>
+<h4 class="text-lg font-bold leading-tight group-hover:text-primary transition-colors">Reducing Plastic Waste in the Bathroom</h4>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-background-dark border-t border-primary/10 mt-20 py-12 px-10">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 text-navy-custom dark:text-primary mb-6">
+<div class="size-6">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M36.7273 44C33.9891 44 31.6043 39.8386 30.3636 33.69C29.123 39.8386 26.7382 44 24 44C21.2618 44 18.877 39.8386 17.6364 33.69C16.3957 39.8386 14.0109 44 11.2727 44C7.25611 44 4 35.0457 4 24C4 12.9543 7.25611 4 11.2727 4C14.0109 4 16.3957 8.16144 17.6364 14.31C18.877 8.16144 21.2618 4 24 4C26.7382 4 29.123 8.16144 30.3636 14.31C31.6043 8.16144 33.9891 4 36.7273 4C40.7439 4 44 12.9543 44 24C44 35.0457 40.7439 44 36.7273 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-navy-custom dark:text-slate-100 text-lg font-bold">Droguerie</h2>
+</div>
+<p class="text-sm text-slate-500 leading-relaxed">Providing high-quality, sustainable solutions for your home and garden since 1924.</p>
+</div>
+<div>
+<h5 class="font-bold mb-6">Shop</h5>
+<ul class="text-sm text-slate-500 space-y-4">
+<li><a class="hover:text-primary" href="#">Best Sellers</a></li>
+<li><a class="hover:text-primary" href="#">Eco-Cleaning</a></li>
+<li><a class="hover:text-primary" href="#">DIY Kits</a></li>
+<li><a class="hover:text-primary" href="#">Garden Tools</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Support</h5>
+<ul class="text-sm text-slate-500 space-y-4">
+<li><a class="hover:text-primary" href="#">Shipping Policy</a></li>
+<li><a class="hover:text-primary" href="#">Refund Policy</a></li>
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6">Join Our Newsletter</h5>
+<p class="text-xs text-slate-500 mb-4">Get the latest eco-friendly tips and product updates.</p>
+<div class="flex gap-2">
+<input class="bg-background-light dark:bg-white/5 border-none rounded-lg text-sm px-4 py-2 flex-1" placeholder="Your email" type="email"/>
+<button class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-bold">Join</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto pt-12 mt-12 border-t border-primary/5 text-center text-xs text-slate-400">
+                    © 2023 Droguerie. All rights reserved.
+                </div>
+</footer>
+</div>
+</div>
+</body></html>

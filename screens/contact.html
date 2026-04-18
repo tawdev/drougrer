@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Droguerie Contact Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee8c2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221910",
+                        "navy-custom": "#1a2a44",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/95 backdrop-blur-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between gap-4">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+<h2 class="text-navy-custom dark:text-white text-xl font-bold tracking-tight">Droguerie</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium" href="#">Shop</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-medium" href="#">Products</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary pb-1" href="#">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 flex-1 max-w-md mx-4">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full h-10 pl-10 pr-4 rounded-lg border-none bg-slate-100 dark:bg-slate-800 focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Search supplies..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-navy-custom dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="hidden sm:flex px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-colors">
+                            Login
+                        </button>
+<button class="p-2 text-navy-custom dark:text-slate-100 sm:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+<div class="mb-12">
+<nav aria-label="Breadcrumb" class="flex text-sm text-slate-500 mb-4">
+<ol class="flex items-center space-x-2">
+<li><a class="hover:text-primary" href="#">Home</a></li>
+<li class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-slate-900 dark:text-slate-100">Contact Us</span>
+</li>
+</ol>
+</nav>
+<h1 class="text-4xl font-extrabold text-navy-custom dark:text-white tracking-tight">Get in touch</h1>
+<p class="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-2xl">Have a question about our products or need professional advice for your DIY project? Our experts are here to help.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<section class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-8">
+<h3 class="text-xl font-bold text-navy-custom dark:text-white mb-6">Send us a message</h3>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Full Name</label>
+<input class="w-full h-12 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Jane Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+<input class="w-full h-12 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="jane@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Subject</label>
+<select class="w-full h-12 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary transition-all">
+<option>Product Inquiry</option>
+<option>Order Status</option>
+<option>Professional Advice</option>
+<option>Feedback</option>
+<option>Other</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Your Message</label>
+<textarea class="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none" placeholder="How can we help you today?" rows="6"></textarea>
+</div>
+<button class="w-full py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">send</span>
+                                Send Message
+                            </button>
+</form>
+</section>
+<section class="space-y-12">
+<div>
+<h3 class="text-xl font-bold text-navy-custom dark:text-white mb-8">Contact Information</h3>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="flex-shrink-0 size-12 bg-navy-custom dark:bg-primary/20 rounded-xl flex items-center justify-center text-white dark:text-primary">
+<span class="material-symbols-outlined">call</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Call Us</p>
+<p class="text-lg font-semibold text-navy-custom dark:text-white">+1 (555) 123-4567</p>
+<p class="text-sm text-slate-500">Mon-Fri 8am to 6pm</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 size-12 bg-navy-custom dark:bg-primary/20 rounded-xl flex items-center justify-center text-white dark:text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Email Us</p>
+<p class="text-lg font-semibold text-navy-custom dark:text-white">support@droguerie-store.com</p>
+<p class="text-sm text-slate-500">We respond within 24 hours</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="flex-shrink-0 size-12 bg-navy-custom dark:bg-primary/20 rounded-xl flex items-center justify-center text-white dark:text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Visit Us</p>
+<p class="text-lg font-semibold text-navy-custom dark:text-white">123 Artisan Way, Craft District</p>
+<p class="text-sm text-slate-500">Lyon, 69001 France</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 dark:bg-primary/5 p-6 rounded-xl border border-primary/20">
+<h4 class="font-bold text-navy-custom dark:text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+                                Professional Support
+                            </h4>
+<p class="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                                Our in-store experts have over 20 years of combined experience in hardware, painting, and plumbing. Don't hesitate to ask for detailed technical advice.
+                            </p>
+</div>
+</section>
+</div>
+<div class="mt-16 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 relative h-[450px] w-full">
+<div class="absolute inset-0 bg-slate-200 dark:bg-slate-800 flex items-center justify-center overflow-hidden">
+<div class="w-full h-full bg-[url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?q=80&amp;w=2000&amp;auto=format&amp;fit=crop')] bg-cover bg-center grayscale opacity-40 dark:opacity-20" data-alt="Stylized city map with modern architecture" data-location="Lyon, France" style=""></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-light dark:from-background-dark via-transparent to-transparent"></div>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="relative">
+<div class="absolute -inset-4 bg-primary/30 rounded-full blur-xl"></div>
+<div class="relative bg-primary text-white p-3 rounded-full shadow-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-4xl">location_on</span>
+</div>
+</div>
+<div class="mt-4 bg-white dark:bg-slate-900 px-4 py-2 rounded-lg shadow-lg border border-slate-100 dark:border-slate-800 text-center">
+<p class="font-bold text-navy-custom dark:text-white">Droguerie Lyon Central</p>
+<p class="text-xs text-slate-500">Open until 7:00 PM</p>
+</div>
+</div>
+<div class="absolute bottom-6 right-6">
+<div class="bg-white dark:bg-slate-900 rounded-lg shadow-md p-1 flex flex-col border border-slate-100 dark:border-slate-800">
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">add</span>
+</button>
+<div class="h-px bg-slate-100 dark:bg-slate-800 w-full mx-auto"></div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-navy-custom text-white py-12">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+<h2 class="text-white text-xl font-bold tracking-tight">Droguerie</h2>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">Your trusted source for hardware, painting supplies, and household maintenance since 1985.</p>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary">Quick Links</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li><a class="hover:text-white transition-colors" href="#">About Our History</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Catalog Download</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Bulk Order Inquiry</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Shipping Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary">Categories</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li><a class="hover:text-white transition-colors" href="#">Professional Painting</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Hardware &amp; Tools</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Electrical Supplies</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Eco-Cleaning Products</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-primary">Newsletter</h4>
+<p class="text-sm text-slate-400 mb-4">Join 5,000+ DIY enthusiasts for tips and deals.</p>
+<div class="flex gap-2">
+<input class="bg-slate-800 border-none rounded-lg h-10 px-4 text-sm w-full focus:ring-1 focus:ring-primary" placeholder="Your email" type="email"/>
+<button class="bg-primary px-4 rounded-lg hover:bg-primary/90 transition-colors">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+<p>© 2024 Droguerie &amp; Co. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+<a class="hover:text-white" href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

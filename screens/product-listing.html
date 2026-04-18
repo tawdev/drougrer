@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Droguerie Online - Product Listing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#13ec5b",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 w-full border-b border-primary/10 bg-white/80 backdrop-blur-md dark:bg-background-dark/80">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="flex h-16 items-center justify-between gap-8">
+<!-- Logo -->
+<div class="flex shrink-0 items-center gap-2">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-slate-900">
+<span class="material-symbols-outlined text-2xl font-bold">medical_services</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Droguerie <span class="text-primary">Online</span></h1>
+</div>
+<!-- Main Navigation -->
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Cleaning</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Personal Care</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Health</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Beauty</a>
+<a class="text-sm font-medium text-primary font-bold" href="#">Promotions</a>
+</nav>
+<!-- Search & Actions -->
+<div class="flex flex-1 items-center justify-end gap-4">
+<div class="relative hidden md:block w-full max-w-xs">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+</div>
+<input class="block w-full rounded-lg border-0 bg-slate-100 py-1.5 pl-10 text-sm ring-1 ring-inset ring-slate-200 focus:ring-2 focus:ring-primary dark:bg-slate-800 dark:ring-slate-700" placeholder="Search products..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="relative flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-slate-900 hover:bg-primary/90">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">3</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Breadcrumbs & Title Area -->
+<main class="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+<div class="mb-8">
+<nav class="mb-4 flex items-center gap-2 text-sm text-slate-500">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary" href="#">Household Goods</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="font-medium text-slate-900 dark:text-slate-100">All Products</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tight">Our Products</h2>
+<p class="mt-1 text-slate-600 dark:text-slate-400">Discover quality essentials for your home and health.</p>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-medium text-slate-500">248 items found</span>
+<select class="rounded-lg border-slate-200 bg-white text-sm focus:border-primary focus:ring-primary dark:bg-slate-800 dark:border-slate-700">
+<option>Sort by: Newest</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Popularity</option>
+</select>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row gap-8">
+<!-- Sidebar Filters -->
+<aside class="w-full lg:w-64 shrink-0 space-y-8">
+<!-- Categories -->
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-4">Categories</h3>
+<div class="space-y-2">
+<a class="flex items-center gap-3 rounded-lg bg-primary/10 px-3 py-2 text-sm font-medium text-slate-900 dark:text-slate-100" href="#">
+<span class="material-symbols-outlined text-primary">grid_view</span>
+                                All Categories
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">cleaning_services</span>
+                                Cleaning Supplies
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">soap</span>
+                                Personal Care
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">health_and_safety</span>
+                                Health &amp; Wellness
+                            </a>
+<a class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined">cottage</span>
+                                Household Essentials
+                            </a>
+</div>
+</div>
+<!-- Price Range -->
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-4">Price Range</h3>
+<div class="px-2">
+<div class="relative h-1 w-full rounded-full bg-slate-200 dark:bg-slate-700">
+<div class="absolute inset-y-0 left-0 w-2/3 rounded-full bg-primary"></div>
+<div class="absolute -top-1.5 left-0 h-4 w-4 cursor-pointer rounded-full border-2 border-primary bg-white shadow-sm"></div>
+<div class="absolute -top-1.5 left-[66%] h-4 w-4 cursor-pointer rounded-full border-2 border-primary bg-white shadow-sm"></div>
+</div>
+<div class="mt-4 flex items-center justify-between text-xs font-bold text-slate-600 dark:text-slate-400">
+<span>$0</span>
+<span>$200+</span>
+</div>
+</div>
+</div>
+<!-- Availability -->
+<div>
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-slate-100 mb-4">Availability</h3>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900">In Stock</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900">On Sale</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900">Eco-Friendly</span>
+</label>
+</div>
+</div>
+<!-- Promo Card -->
+<div class="rounded-xl bg-slate-900 p-6 text-white overflow-hidden relative group">
+<div class="relative z-10">
+<span class="inline-block rounded-full bg-primary px-2 py-0.5 text-[10px] font-bold uppercase text-slate-900">New Deal</span>
+<h4 class="mt-2 text-lg font-bold">20% OFF Organic Brands</h4>
+<p class="mt-1 text-xs text-slate-400">Limited time offer on health supplements.</p>
+<button class="mt-4 text-sm font-bold text-primary hover:underline">Shop Now →</button>
+</div>
+<div class="absolute -bottom-4 -right-4 h-24 w-24 rounded-full bg-primary/20 blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-1">
+<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+<!-- Product Item 1 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Eco-friendly all purpose cleaner spray bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8ASA5jZmdzaqmuDPAqIjG4viKhQQLRP4V0QdZW_uJ-nOiMOpIXhrCJwN3n7d3qfi-N_kkHNt1BmWO0AizzMJVgo9ab3bm0czJHg7FB2xkXdPEIWdQSyjmD97adzRArM2lggzO0IsB7zG3c8fHv2ONW0DS82Sg7GfmjyfFDYVsw_-HEUrz5N6FE88zKAYnX5OYybUnJ-GxnU1Sok6akVx-y75-0bxqdFu_tT6kTJqLLD_ON9ub_2RHxyMDDTc2i0hHYVbFpikVxVk"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<div class="absolute bottom-2 left-2">
+<span class="rounded bg-primary/90 px-1.5 py-0.5 text-[10px] font-bold text-slate-900 uppercase">Top Rated</span>
+</div>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Cleaning</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Eco-Clean Multi-Purpose Surface Spray (500ml)</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$12.50</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 2 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Set of natural bamboo toothbrushes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq3SbJjUn3mBt0nPyog1JCUJ3ciG1db0szWh1oCC30tea6CSgY54RRCuP48kWNAabn-Evs_Ypgu3mIqPhgmbkvS5JAKuUSN9POefyuLdOLczg4wIf0o9BMobcXyTltd4XwU_JWYbceCvIWYgtk0NtAzAwlG5ZN0g4TW3Sv0HsGML24DOooYZx79r7E2AvPr-AS1bGlCK_mBe5QMOhuJqIr3yi7z-BFRQsw8aAB1pGttOhnYo7ZWZm4WcYwQiHS6nPtEbakqVpyTiA"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<div class="absolute bottom-2 left-2">
+<span class="rounded bg-slate-900/90 px-1.5 py-0.5 text-[10px] font-bold text-white uppercase">New</span>
+</div>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Personal Care</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Natural Bamboo Soft Toothbrush - 4 Pack</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$8.99</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 3 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Bottles of premium vitamins and supplements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX8B4gZurm8D4l6V-_ykOfRJJj06MJZ1Dj1M3EC-6mbPrc7gLPZbqXXg9waNp98B5zUNutS887a3GnClWWGCOnm2L_dVXHmfvjBN0oB1dv3eGavgzU-HddWgSVtIGupfseAyFMKapYGpgzTFKo4douR17lhp7Bps5NuT0cPRc-FX8bpnZE7RsMjqfGrCchzZUCwLNtBbwlu8tRA4xxBrh0j5W-VpXLPPCJc6CBkAShq1kT6UiQa8TVm8pen1kNBiXiPcmPP4hmwuo"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+<div class="absolute bottom-2 left-2">
+<span class="rounded bg-red-500/90 px-1.5 py-0.5 text-[10px] font-bold text-white uppercase">Sale</span>
+</div>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Health</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Vitality Plus Daily Multivitamin (60 Capsules)</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<div>
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$24.99</span>
+<span class="ml-1 text-xs text-slate-400 line-through">$32.00</span>
+</div>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 4 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Artisanal hand soaps with natural ingredients" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBUh0MxUsl4XoQy17AZOrEotLV3fE_szJV0uoLN56Kjv69ocnsynuV4cimPgoJst_SijuOrMRtlhUXDIRYXePoQ9nQzWifDNqcKGsLfnXXZ__odIsmDZdUK8QLPp0iBXeDndubw7Ln5Z_yS21ibtWoWkY_3m48o5arahV3v-bKtrH636W0Ko-rt0bnjifXRnbJ2vtk_9VUt0KHlvVJ9U6xIe6E0PD1buHdfDPhKrLTrB15qJzz2nfPITnX6Lu5rnPdIi4B1wp8PWo"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Beauty</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Lavendar &amp; Oat Organic Hand Soap Bar</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$6.50</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 5 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Cotton bath towels neatly stacked" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIxtuxJSxwqZ-HmK4TYzCRRg0QtHdmomIdnybhxMuwlx3GEzJqJMRRpfGntMjS9rdQRZjWLrWkJnbNXuDHldhOoYimgWWvg-UJ6gBnd9Nv5qXSx9lb71rFBmYopJcyj8eXqsZp5grqSDp-opQmrReMD5lOSW_JkaNP7i5C2vvPq2FSCmmS_WKBrU4T68uyN-ilYxY79ebKRKoGFizu8GrKpkd6Ml9kgMjEoWs2QfX6TQlVon8IN-vZNUd1_TS6s6V_XZkI_e5euAM"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Household</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Premium Cotton Bath Towel - Charcoal Gray</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$18.00</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 6 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Moisturizing skin care cream in a jar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyJn6AapOd_ICuDj7i6MIntvD89e16EME5IjDq6KioGoFVJPeO1EPVMxSewI3Sprm2Jsl7kgKWwJmx5r4T7pvTUXgcWOmb4TAyMXw9Nja7V9YKN7ZWnVRCEIgnmlDk1tMD16iMDS-h7fg7PpukBQy_iZ1fmzlTMqt2cspNGRzgmXpewfOqA9oYWgpEpQFfOS3jWbKcEE4zROw9FYyX6I7I7i2n0pNdj74hyifqslq4LjoNoPvIM-dePmLHAAn_ve7Kprp_wOASFrE"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Beauty</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Hydra-Rich Face Moisturizer with Hyaluronic Acid</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$22.95</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 7 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Large laundry detergent bottle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe_3xgUEIbJHpwgzrRGk96EFspKC7g1okcs56thjddKGKFmDjBYm9nB1Eq1cscmKtIDMNJoDuh5TlopKIoQSVPTpIsI84dmdyOFUH0yAVNyvjSsDIMArI55kW0YYZ9K_zc-Hk3Xe5ghpJiDB_RA9H5Vb5juxeYOnRgKVO4dkmns4IC6W7wwU5NgSaPiN3sQ7G_tFnjrHxqz7d13K1Il147SWANPjl8W_o6WryPMZpa3SSWUasPxy8x1EEL3bz5ZgYHrKG7s5i_hHk"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Cleaning</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Ultra-Concentrated Liquid Laundry Detergent (3L)</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$19.50</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Product Item 8 -->
+<div class="group flex flex-col rounded-xl bg-white p-3 shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-lg dark:bg-slate-800 dark:ring-slate-700">
+<div class="relative aspect-square overflow-hidden rounded-lg bg-slate-100">
+<img class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" data-alt="Yoga mat and accessories" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgll8mO1PYuNOBq0BLNEkaX3HRDnXURnuDNyUHh6kSY1xyqJjyU8ekkvUzVHyD4upVY0U0sD-OP98_KVuLzcyu0PrtHKEiYjBhqkDyV9vaBXfvWZ-S1z1-iRQC3zb0vJpjCfaxzTRRL9GICRGSn_HQssilDpks33honjRkk6iChWy1O_FgovEUqTECJbwqJ6BFo5osNzJGDmZaVuMa3vN4xBhfUJqXGzk5JCTZVIXYB6I_D0cM5c9eSP8Wt33Ch_zboiPksa-ag-8"/>
+<button class="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/80 text-slate-900 opacity-0 transition-opacity group-hover:opacity-100 backdrop-blur-sm">
+<span class="material-symbols-outlined text-lg">favorite</span>
+</button>
+</div>
+<div class="mt-4 flex flex-1 flex-col">
+<p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Health</p>
+<h3 class="mt-1 text-sm font-semibold text-slate-900 dark:text-slate-100 line-clamp-2">Premium Eco-Friendly Yoga Mat - Ocean Blue</h3>
+<div class="mt-auto pt-4">
+<div class="flex items-center justify-between">
+<span class="text-lg font-black text-slate-900 dark:text-slate-100">$45.00</span>
+<button class="flex h-9 w-9 items-center justify-center rounded-lg bg-slate-100 text-slate-900 transition-colors hover:bg-primary dark:bg-slate-700 dark:text-white dark:hover:bg-primary dark:hover:text-slate-900">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex items-center justify-center border-t border-slate-200 pt-8 dark:border-slate-700">
+<nav class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white hover:bg-primary/10 transition-colors dark:bg-slate-800 dark:border-slate-700">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary font-bold text-slate-900">1</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-transparent bg-white hover:bg-slate-100 transition-colors dark:bg-slate-800 dark:hover:bg-slate-700">2</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-transparent bg-white hover:bg-slate-100 transition-colors dark:bg-slate-800 dark:hover:bg-slate-700">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-transparent bg-white hover:bg-slate-100 transition-colors dark:bg-slate-800 dark:hover:bg-slate-700">12</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-200 bg-white hover:bg-primary/10 transition-colors dark:bg-slate-800 dark:border-slate-700">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-slate-200 bg-white py-12 dark:bg-background-dark dark:border-slate-800">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5">
+<div class="col-span-2">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-slate-900">
+<span class="material-symbols-outlined text-xl font-bold">medical_services</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100">Droguerie <span class="text-primary">Online</span></h2>
+</div>
+<p class="mt-4 text-sm text-slate-500 max-w-xs leading-relaxed">Your one-stop shop for high-quality household essentials, health products, and personal care. Committed to your well-being and a cleaner home.</p>
+<div class="mt-6 flex gap-4">
+<a class="text-slate-400 hover:text-primary" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+<a class="text-slate-400 hover:text-primary" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-slate-400 hover:text-primary" href="#"><span class="material-symbols-outlined">chat</span></a>
+</div>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase text-slate-900 dark:text-slate-100">Shop</h4>
+<ul class="mt-4 space-y-2 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary" href="#">Best Sellers</a></li>
+<li><a class="hover:text-primary" href="#">Promotions</a></li>
+<li><a class="hover:text-primary" href="#">Eco-Friendly</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-sm font-bold uppercase text-slate-900 dark:text-slate-100">Support</h4>
+<ul class="mt-4 space-y-2 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">Shipping Policy</a></li>
+<li><a class="hover:text-primary" href="#">Returns</a></li>
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary" href="#">FAQs</a></li>
+</ul>
+</div>
+<div class="hidden lg:block">
+<h4 class="text-sm font-bold uppercase text-slate-900 dark:text-slate-100">Legal</h4>
+<ul class="mt-4 space-y-2 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-12 border-t border-slate-100 pt-8 dark:border-slate-800">
+<p class="text-center text-xs text-slate-400">© 2024 Droguerie Online Inc. All rights reserved. Professional household care delivered to your door.</p>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

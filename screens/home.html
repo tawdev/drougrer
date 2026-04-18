@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#114D24", // Deep forest green
+                        "secondary": "#F3F4F6", // Soft light gray
+                        "accent": "#EA580C", // Vibrant burnt orange
+                        "background-light": "#FAFAFA",
+                        "background-dark": "#0B160C",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<!-- Header / TopNavBar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Left: Logo -->
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">hardware</span>
+</div>
+<span class="text-2xl font-extrabold tracking-tight text-primary">Droguerie</span>
+</div>
+<!-- Center: Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold hover:text-accent transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold hover:text-accent transition-colors" href="#">Products</a>
+<a class="text-sm font-semibold hover:text-accent transition-colors" href="#">Blog</a>
+<a class="text-sm font-semibold hover:text-accent transition-colors" href="#">About</a>
+<a class="text-sm font-semibold hover:text-accent transition-colors" href="#">Contact</a>
+</nav>
+<!-- Right: Search & Cart -->
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="block w-64 pl-10 pr-3 py-2 border-none bg-secondary dark:bg-slate-800 rounded-xl text-sm focus:ring-2 focus:ring-primary" placeholder="Search essentials..." type="text"/>
+</div>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-secondary dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-0 right-0 h-4 w-4 bg-accent text-white text-[10px] flex items-center justify-center rounded-full">3</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden border-2 border-primary/10">
+<img alt="Profile" data-alt="User profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0JmB94pmK_GO6XKlteLWDk0gs6vXUia8JxZwN0KnZdW-oonxwdjzCZtaSYt98yqcTvS4WXK899-rvipZiaat86RN74MpQ9EZdcHlnDnDYdH684ek2fzEvreeM38Zf-vHhFIpChegBa_vgc7YwbjNuHkGR8HS1lh22UyN2UXs3qNoJbHSws5fEHVKJZFb3jAOnr0rJ_7NAzoW_GsECmcHwFIKmkuAPsfXf2O1pvhlEvsKE2nBsEYpCxJw4N7SJySunDeL6HYxOfOw"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-16">
+<!-- Hero Section -->
+<section class="relative h-[500px] w-full rounded-xl overflow-hidden shadow-2xl">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="High resolution modern home improvement tools and essentials layout" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCsmD-pmyx3el5kE553-Qf7yQIU0qtlBHFpqKiUrXs6kDPaON2tC9aeR9VdlPoB2fW_rg27sxSPUhS3-JB_jnHM7og3r47Z3QoLZI4OMCQDR4yZ45QH8FjxvRdc_jdf3hKl6cUnG0v118TGaITE6zSF5fd9OEg5gXbobaGTzHO3j9-LPWbaSC4Xe4xj1I7E1YJJDrMY4ILYG6Quk-V-sr-CAAQVsxuERFsiaj2WTa9nPFf8eaL4mttX2-ZgETvvJAd53p5qdCsV7lw');">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
+</div>
+<div class="relative h-full flex flex-col justify-center px-12 sm:px-20 max-w-2xl">
+<span class="text-accent font-bold tracking-widest uppercase text-sm mb-4">Quality Guaranteed</span>
+<h1 class="text-5xl md:text-6xl font-black text-white leading-tight mb-6">
+                    Elevate Your <br/> Modern Home
+                </h1>
+<p class="text-white/90 text-lg mb-8 max-w-md">
+                    Professional hardware and premium essentials curated for the discerning homeowner. Discover tools that last a lifetime.
+                </p>
+<div class="flex gap-4">
+<button class="bg-accent hover:bg-accent/90 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg transition-transform active:scale-95">
+                        Shop Now
+                    </button>
+<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/20 transition-all">
+                        View Catalog
+                    </button>
+</div>
+</div>
+</section>
+<!-- Categories Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Shop by Category</h2>
+<a class="text-primary font-semibold flex items-center gap-1 hover:underline" href="#">
+                    View all <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="group cursor-pointer bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-all text-center">
+<div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">cleaning_services</span>
+</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Cleaning</h3>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-all text-center">
+<div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">construction</span>
+</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Tools</h3>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-all text-center">
+<div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">format_paint</span>
+</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Paint</h3>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-all text-center">
+<div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">bolt</span>
+</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Electricity</h3>
+</div>
+<div class="group cursor-pointer bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-md transition-all text-center">
+<div class="w-16 h-16 mx-auto mb-4 bg-primary/10 rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-3xl">plumbing</span>
+</div>
+<h3 class="font-bold text-slate-800 dark:text-slate-200">Plumbing</h3>
+</div>
+</div>
+</section>
+<!-- Featured Products -->
+<section>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8">Featured Products</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Professional grade power drill with battery pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7zkNihLqjrZHt5Z4luQRon-uCHmPzYxA0nJ1p1F2-bmnXMqMfrpVbKJbAANhCkZGSmuwHsSm6wupWOSdl138LxYn0TQC1_xh6aeGcgbXTigO5U4iwnmsszmJ6t-WbXNb0iSBmsvCQRE8mpmmsoFaVZiPEaQgDhw4zKvLKe1xBvgXIThpmIV-JVdDMQ_fV3Xri_Cui933MBKyqlKlwFqs3OXF09BWRSUu36dlWGI7KKx5CDfTlHh-3wUNGJGiolAGt0j8QvEKmcQM"/>
+<span class="absolute top-3 left-3 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Best Seller</span>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 text-xs mb-1">Heavy Duty Tools</p>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 mb-2 truncate">Professional Power Drill V2</h3>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-accent text-sm fill-[1]">star</span>
+<span class="text-xs font-bold">4.9</span>
+<span class="text-xs text-slate-400">(128 reviews)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xl font-black text-slate-900 dark:text-white">$129.99</span>
+<button class="bg-accent hover:bg-accent/90 text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Set of architectural paint brushes and rollers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjhkNazcIsXJpmxbTtcZrRR9wzDyDHPL6LOgUiemxfRELy8Sfhr7U_FaJxe8sTwLUzpNESNxseRFfEsKZFByO3HLJuHCsxkEuOC_Qze8LA7ufmf1I24sxuSq9yCkKVu5jNQUtAgUjWh48jZlyxOqEv0mSe4Dmo2iqj_HsHXn1p4UrJREbSdkek4Q-dHlK4qNSJtu-SlBDooZ-6qyBYa0fG_OUn6ptsaybsrH-gj_Nb0OAvix8VrSXpTGFKwNF025Xjbq2HADpQg1Q"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 text-xs mb-1">Painting &amp; Finishes</p>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 mb-2 truncate">Deluxe Paint Kit Pro</h3>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-accent text-sm fill-[1]">star</span>
+<span class="text-xs font-bold">4.7</span>
+<span class="text-xs text-slate-400">(85 reviews)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xl font-black text-slate-900 dark:text-white">$45.00</span>
+<button class="bg-accent hover:bg-accent/90 text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Modern high-efficiency LED light bulb pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK_Ao_r3ac6O-Yv4PskiFFIsDo6Lgc8MD3x2URlpD4neQ_q6-0DWcwK4KfcpKXVle21E9ybhk9CD_XnXExoSYCk7MF3Kvb0OBM6rnmH6rxPzf5ouzxuTfG5cSI29xdXDZ9A0-hbxD03tUhzBPfKpdzGoD1ZI5laooujyGpAv0_8ZsWS89Y8JPqM2mOr9XxIRwqyT5BqysYN43oYsU_lGVklGhtElCmxLj-77sneq1btQFdwCz49VzO9sekMkpBYqoufgkv8_j2Pu4"/>
+<span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Sale</span>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 text-xs mb-1">Electrical Supplies</p>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 mb-2 truncate">Smart LED Bulb Pack (4)</h3>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-accent text-sm fill-[1]">star</span>
+<span class="text-xs font-bold">4.8</span>
+<span class="text-xs text-slate-400">(210 reviews)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xl font-black text-slate-900 dark:text-white">$32.50</span>
+<button class="bg-accent hover:bg-accent/90 text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group bg-white dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 shadow-sm hover:shadow-xl transition-all overflow-hidden flex flex-col">
+<div class="relative aspect-square overflow-hidden bg-slate-100">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Steel wrench set on a workshop table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTtv1viWoYIHkB8wRUaUHFnAz5b8VOvLOX9AZHZX_fvQDZlufjIyoCunHcrWQ5r7-gWnHM8lgfEEdlMxctjx1DCpq45aS7neyXWQ36iam4uZ-3_letxQoswUS_E38nhiK3LFxAvocivQtzdjNjSsd0W0VjvDObA0Slv45aQCy78eHZ5zhaIRMH612P3mW0vWJYgOkLYNKe92EhGmhKUKetzKRWiVO9znQT74AlvcIzn-vdkBT4TWP2fUFQBLKuJ2NecxNb426oHlU"/>
+</div>
+<div class="p-6 flex flex-col flex-1">
+<p class="text-slate-500 text-xs mb-1">Hand Tools</p>
+<h3 class="font-bold text-slate-800 dark:text-slate-200 mb-2 truncate">Carbon Steel Wrench Set</h3>
+<div class="flex items-center gap-1 mb-4">
+<span class="material-symbols-outlined text-accent text-sm fill-[1]">star</span>
+<span class="text-xs font-bold">5.0</span>
+<span class="text-xs text-slate-400">(42 reviews)</span>
+</div>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-xl font-black text-slate-900 dark:text-white">$89.00</span>
+<button class="bg-accent hover:bg-accent/90 text-white p-2 rounded-lg transition-colors">
+<span class="material-symbols-outlined">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Promotional Banner -->
+<section class="bg-primary rounded-xl p-10 md:p-16 relative overflow-hidden">
+<div class="absolute right-0 bottom-0 top-0 w-1/2 opacity-20 pointer-events-none">
+<svg class="h-full w-full" fill="none" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<path d="M400 0L0 400H400V0Z" fill="white"></path>
+</svg>
+</div>
+<div class="relative z-10 max-w-xl">
+<h2 class="text-white text-3xl md:text-4xl font-black mb-4">Winter Workshop Sale</h2>
+<p class="text-white/80 text-lg mb-8">Up to 40% off on all heating solutions and winter insulation. Limited time offer only!</p>
+<button class="bg-white text-primary hover:bg-slate-100 px-8 py-3 rounded-xl font-bold transition-all shadow-lg">
+                    Browse Sale
+                </button>
+</div>
+</section>
+<!-- Blog Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Tips &amp; Guides</h2>
+<a class="text-primary font-semibold flex items-center gap-1 hover:underline" href="#">
+                    Read more <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<article class="group cursor-pointer">
+<div class="rounded-xl overflow-hidden mb-4 aspect-[16/9]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Tidy and organized garage tool wall" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNRYdP5Hf3c85-Rybnmdi2700EBazup5WEEWKw0SvxMSHUONF3MSQ3bMhed_MNr6Tp078pjRxiZtcNoHZpUz99GVf69vk3xEF24YaxxOQvyR844MimLJGCZ6YUb9UnwlTOuRY-fFmRn59x646t0fjf6aQsepdcK2mPRvdLIG5XzZTSdKxDbsCDDsLTnxrxPtX77FQM3U_Y_T7dg-Kl5T-PQVan0r2oKTHpmugh-XYP6vzvFwZYQQQOG9oeVJJGBYVC7XWMdB9x2W0"/>
+</div>
+<span class="text-accent text-xs font-bold uppercase tracking-widest">Organization</span>
+<h3 class="text-xl font-bold mt-2 text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">How to Organize Your Garage Like a Pro</h3>
+<p class="mt-2 text-slate-500 dark:text-slate-400 line-clamp-2">Transform your cluttered space into a functional workshop with these simple storage hacks.</p>
+</article>
+<article class="group cursor-pointer">
+<div class="rounded-xl overflow-hidden mb-4 aspect-[16/9]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Hands painting a room with modern earth tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaVGflk5p-FBAj6wKgClBBrLJl1ahggGJ2lkglSUsNx0rO80raHcQnqTAC7jySECzDwf5VUHJpj94rFxutO6eifvY2HfZQVjGOMqAvu-o3Aeu8OCjsWLVrVyOYOWR4iSZsoQu86ukYmdGcn1_VfIk5s1K3S3GJFMQKvmtx69gjoI785L5Pgx4c9f0XHaMBX7Pdw3S-ygwNIMV-gzSwqFS1nvuS4HAovX1zjrmkvi4muD3UprL4NRHzcnGptcRv82yGy4V4OIfqJ0c"/>
+</div>
+<span class="text-accent text-xs font-bold uppercase tracking-widest">DIY Projects</span>
+<h3 class="text-xl font-bold mt-2 text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">Choosing the Perfect Paint Finish</h3>
+<p class="mt-2 text-slate-500 dark:text-slate-400 line-clamp-2">Glossy, satin, or matte? We break down which finish works best for every room in your house.</p>
+</article>
+<article class="group cursor-pointer">
+<div class="rounded-xl overflow-hidden mb-4 aspect-[16/9]">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Homeowner checking solar panel electrical box" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj5D4nXD6S9h2n6Rvnl0ckD8St8QjdiBcwPoMpH2uM0NiSf480b_ZRFw0f0XczdbTXOxpuCgupMjgLbTD7xjN8Qcc5Jg-Du2mxefsjl6w2O-ruCX19iItkbasTL_cXWkY5Z6VUdLufZukYbR0CAyFSjIvoZAYT-nTikBJNt3JP8lkcJAJ_kfv04LfvZUYk9_kt9lJImehgn9u3C4FMLobXkVni-BQvigjMQuQX4V6vhDb5RHoWdznl6mAWdKfCxIkcynqbm2OLyaY"/>
+</div>
+<span class="text-accent text-xs font-bold uppercase tracking-widest">Maintenance</span>
+<h3 class="text-xl font-bold mt-2 text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">5 Energy Saving Tips for Homeowners</h3>
+<p class="mt-2 text-slate-500 dark:text-slate-400 line-clamp-2">Quick electrical adjustments that can significantly reduce your monthly energy bill.</p>
+</article>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-300 py-16 mt-20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+<div class="space-y-6">
+<div class="flex items-center gap-2 text-white">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">hardware</span>
+</div>
+<span class="text-xl font-bold tracking-tight">Droguerie</span>
+</div>
+<p class="text-sm leading-relaxed">Your one-stop shop for premium hardware, cleaning supplies, and professional tools for modern living.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg>
+</a>
+<a class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</a>
+<a class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Quick Links</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Catalog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Special Offers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Gift Cards</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Support</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Warranty</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Contact Us</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+                            123 Maker Street, Industrial Hub
+                        </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+                            +1 (555) 000-1234
+                        </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+                            hello@droguerie.com
+                        </li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-800 text-center text-xs">
+<p>© 2024 Droguerie Home Essentials. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>

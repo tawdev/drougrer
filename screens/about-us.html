@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#ee8c2b",
+              "navy-deep": "#1e293b",
+              "background-light": "#f8f7f6",
+              "background-dark": "#221910",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+<h2 class="text-navy-deep dark:text-white text-xl font-extrabold tracking-tight">Droguerie</h2>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Shop</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary" href="#">About Us</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary transition-colors text-sm font-medium" href="#">Contact</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-sm">search</span>
+</span>
+<input class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary w-48 lg:w-64" placeholder="Search essentials..." type="text"/>
+</div>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[500px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-navy-deep/60 z-10"></div>
+<img alt="Hardware Store Interior" class="absolute inset-0 w-full h-full object-cover" data-alt="Beautifully organized hardware and household goods store interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfHhkcGZaJYgDeZYWWkQsn6Ll177WHbTBu313qC9G-HMtfHGSJT6yRpdS3H0Vvu03AqoUPBj7G3p_W70YHjbAP2WD8dHyaB2vDnSR1YjpFz53z53DRzvX-cSgsHY3OYCKTDZ6z_2hzwqdVNdW-_6loWZ56q0IT1znCiIoElvunnLjZU9KJHHZFekQI6dZ1bfqnTC2nOxkOocoOyI56UnbphUXgp_EzCzfDiveLJy_VPwcPRnheJIZdmlJbrhNi-Ub1YKP5O69ahXY"/>
+<div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+<h1 class="text-white text-5xl md:text-7xl font-black mb-6 tracking-tight">Our Story</h1>
+<p class="text-white/90 text-lg md:text-2xl font-light leading-relaxed max-w-2xl mx-auto">
+                    Crafting better homes and stronger communities since 1995 through quality hardware and expert care.
+                </p>
+</div>
+</section>
+<!-- Company Story Section -->
+<section class="py-20 bg-white dark:bg-background-dark/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1">
+<h2 class="text-navy-deep dark:text-white text-3xl md:text-4xl font-bold mb-6">From a Humble Workbench</h2>
+<div class="space-y-4 text-slate-600 dark:text-slate-300 text-lg leading-relaxed">
+<p>Founded nearly three decades ago, Droguerie began as a small corner shop dedicated to helping neighbors fix what was broken and build what was imagined. What started with a single shelf of hand tools has grown into a cornerstone of the community.</p>
+<p>Our philosophy is simple: provide the highest quality products alongside the kind of expert advice you can only get from someone who's spent a lifetime on the job. We believe that every home improvement project, no matter how small, deserves the best materials.</p>
+<p>Today, we continue that legacy, blending traditional service with modern convenience to ensure you have everything you need to create a space you love.</p>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<div class="rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500">
+<img alt="The Workbench Origins" class="w-full h-[450px] object-cover" data-alt="Vintage hardware tools neatly arranged on a workbench" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiQpKn1AerDq5gSL7_LLckNaDnlB4jFd3kREiZx1zQX2h5FBVMQSaY7_pq5aBcS5gcGshJyA4SIX_ZOAbvd6sCApgyxZlGFcbRsz5SlAOQgQbsm0rlOfA8m6LpaQV207ZeO-wlo4gCDS0Y3Y7-XecsB06H1jWXDEjIvGsj8cHc_KvChm0iWLd6hy4I9V3eflez9FfLeMOf-PV7OgJ9Ky_5ecKtfHObol5OR8MtpjQt3lWYqgkempSaljx6vvNfl7Qesz7_AGV6mbM"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Mission & Values Section -->
+<section class="py-20 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-navy-deep dark:text-white text-3xl font-bold mb-4">Our Core Values</h2>
+<p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">The principles that guide every interaction and every product we stock on our shelves.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-slate-800 p-10 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 text-center hover:shadow-lg transition-shadow">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">verified</span>
+</div>
+<h3 class="text-navy-deep dark:text-white text-xl font-bold mb-3">Quality Products</h3>
+<p class="text-slate-600 dark:text-slate-400">We source only professional-grade tools and supplies that are built to last a lifetime.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-10 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 text-center hover:shadow-lg transition-shadow">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">psychology</span>
+</div>
+<h3 class="text-navy-deep dark:text-white text-xl font-bold mb-3">Expert Advice</h3>
+<p class="text-slate-600 dark:text-slate-400">Our staff aren't just clerks; they're specialists with decades of experience in the trades.</p>
+</div>
+<div class="bg-white dark:bg-slate-800 p-10 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 text-center hover:shadow-lg transition-shadow">
+<div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+<span class="material-symbols-outlined text-3xl">groups</span>
+</div>
+<h3 class="text-navy-deep dark:text-white text-xl font-bold mb-3">Community Focus</h3>
+<p class="text-slate-600 dark:text-slate-400">We support local builders, hobbyists, and community projects that make our neighborhood thrive.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Store Photos Section (Masonry-like) -->
+<section class="py-20 bg-white dark:bg-background-dark/50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<h2 class="text-navy-deep dark:text-white text-3xl font-bold mb-12">Inside Our Store</h2>
+<div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+<div class="relative overflow-hidden rounded-xl">
+<img alt="Paint Section" class="w-full hover:scale-105 transition-transform duration-500" data-alt="Aisles of neatly stacked paint cans and supplies" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3ZBe2ze9JztKcipNZmKOf1J5VuxlhCovQiLdfDrAPowwREqTgsjFTdOD_Pf0RAivVL8eYNEnUTr4PXBzUMSZ-NFsdZ_GtmLaxyfcpf2iHf9LyQ5uwww2YRxjw-q9SsCL9IJVgSrAUZFfx6IghfoDxdB2wzFle3ZrrwaUa2Qq32zU3GwP8-rv6YWnppmtFcZI0Lc3TjKP660cr3kTU2SvBZ8A_xt1W5Thsn4AHyaw8-7SHLtJ8KAUMQ12v2j67VramRBhyuvXRuNs"/>
+</div>
+<div class="relative overflow-hidden rounded-xl">
+<img alt="Hardware Details" class="w-full hover:scale-105 transition-transform duration-500" data-alt="Close up of various stainless steel nuts and bolts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWK4l_JMNRQ1_TejvyE6Qp2c6B6dCNegmIF_8SxdGcBkzDwZZSeGTo85pNNUVNITRep16c-Dl9m0LyCIYoXB6DMn4RLfH_YJn9QdH-jUOb9AqcaodWEw2nZuxlWoGIVPFIwEAs_tz3pbnSZliboouacLpKlB2V6ZeHvZEJTK8lSPXkfuyNoqLnZLN6QYNxfDso8XW4h7VxQ4wyp_46-PWwe6TkqIvwZZHSSIEYV7dvRyBeDcwzLuHHop2PBJrVxTYLT42GKT9u6z4"/>
+</div>
+<div class="relative overflow-hidden rounded-xl">
+<img alt="Workshop Space" class="w-full hover:scale-105 transition-transform duration-500" data-alt="Warmly lit workshop space with wooden tools" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbMcMDAF3twHVK8oOtFLS8L86k4GXvZWzbDe_2KjPXVrxDhUHzAsP0CXamdAlVQ8hKM4j8VvDC-R-Be8WfRa2lkIPhSJ0XXhdRUoXxGzpkiDiroBLZjE_5kPKDygyfHQxGdRW2mv0Gz9rplEMEelKOuW1upS7nUg7u8puiT_6Dc87dWWaUYkp3kFDW2-Gb4UhczEL9fLpkN4K8vS_kxI72uuFWZZNz3gQg6DMpV-Hrx8gCPYQ5WS91DIEKlyO2jLwTs7I4w1pRAMQ"/>
+</div>
+<div class="relative overflow-hidden rounded-xl">
+<img alt="Friendly Staff" class="w-full hover:scale-105 transition-transform duration-500" data-alt="A smiling staff member assisting a customer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaekSFUly0-WduJBJdLN_evJLdz1d95ylnlwSqrRDGXC36NDAjhk_2tX-WjtP9JkvAo4iTLysg_ofX_LEOx37U8WU9IG4BuNDpt2JIEDqtw5xr8dJAI8_CWNKXT2yB-MMwvjL0s4qZRW6Tdqq2g9-JsUVRclbHrobsaqdUPhzCcWMnuoHiCnCC3T44p2GISxzb45LMfXFCjtEIKGSE-iss5EfLrAbXhge0dPACKnSN1-i1C_9C7qcUOz-1g2eOBitcp_9gjYFCvw0"/>
+</div>
+<div class="relative overflow-hidden rounded-xl">
+<img alt="Fixture Display" class="w-full hover:scale-105 transition-transform duration-500" data-alt="Industrial style lighting and household fixtures display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBajUW1lyLpku7HeDm-fKz_iXC-5ATqLzmL_bNE4dyTVAijFgnhYGxRE_RmuS2WCbQyRqAGuXhWhYj61pN3ER3QfWKxr88cZ1w2P4k6UX8Ny14BnfbVUflc1o4i-NIsr6i6OHOsDkPSdwwhgNrpxtouaHP1b2D-nK1f45hJM0uavP2cFdqkY3X_bqt4NVVkBri3aXaUmkXaf-s7m8PBCZFB3-Ygkv44dKT9764atEXlG9wzEEzqCuSlQp1rBt2dZbRM2Pxw7_FzTlE"/>
+</div>
+<div class="relative overflow-hidden rounded-xl">
+<img alt="Garden Section" class="w-full hover:scale-105 transition-transform duration-500" data-alt="Outdoor gardening tools and terracotta pots display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkKRC083dEP8Wd1ENhIyjgxE2sKqV8se_71-ag2_MvnxFDylbyP30CjR8jqjSHFf5EIvVA1_wbA8xBkmbLTFdc6t4mq4cEegA1Tqw8rBwTKNWB07k22MLLKnE9j2S_cJSXLk96tRFUCZHsBGV0MGiYXH8se3yr-J_VIviUSEWnNWuP-SqGbXqMNop95ZlCJbZNvc4B5qyrVlUQ3XymZObb9JuphkbhtJ0dACbLFuq_VomneiyfWd0z_RPBeAn0jJJKXJeBsut2Dnc"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section -->
+<section class="py-20 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-navy-deep dark:text-white text-3xl font-bold mb-4">Meet the Founders</h2>
+<p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto">The faces behind the service you've come to trust.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-16">
+<div class="text-center group">
+<div class="relative mb-6">
+<div class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-100 transition duration-500"></div>
+<img alt="Arthur - Founder" class="relative w-40 h-40 rounded-full object-cover mx-auto" data-alt="Portrait of Arthur, the founder, smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJs8WofCnuiFCw-XGA82vD4BZxlhNkSCDR9In6Pfw6Lnk9-iJZdVndoqNT2sbJILsPvkn23wnK7H1BL0TjLKfychGOC5qI_WBj1g4vmu5Wq2QbKxqsdihnIY3X46KssZQvjAi5DvWSaN8kbKQQQkYLimA2VjUFfxNukdnOsfIHdvFoYF-EVorLQ7Q8LlK9KxJZM5SvOMJKDbBv4xR-IbAOj9e2w4-Plu0hMcHBwbOVmZ6mcnoZ0Yo3FD0rAXqasBkt8y214x38cEc"/>
+</div>
+<h4 class="text-navy-deep dark:text-white text-xl font-bold">Arthur Sterling</h4>
+<p class="text-primary font-medium">Founder &amp; Master Carpenter</p>
+</div>
+<div class="text-center group">
+<div class="relative mb-6">
+<div class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-100 transition duration-500"></div>
+<img alt="Elena Sterling - Co-Founder" class="relative w-40 h-40 rounded-full object-cover mx-auto" data-alt="Portrait of Elena, the co-founder, in a professional setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB24J_8F1bIo-ZJFlv05pH4NgZTcu9VK-mQHbc4374sHdgDjyHHE4sDc44yfBclUJJMFk8lGGVXlnUYD9TFmtXTRIXFsl8W8QtLtDhiZoEQVvWJ9A38h3D6lsE7-yYU9hbHe6jxANmGOLVBF0i0aFHH59KVVzuw_7tWY-dCgNpHLEB3QnrEO7MGXxgR9iAwHHDnydEHkqEs0Yk7U24qS3ike0BjcMD1cQxEDcrAn9nSFLngm3g5PPaPrKeN4m0EEZ0fD45lmfiPkMk"/>
+</div>
+<h4 class="text-navy-deep dark:text-white text-xl font-bold">Elena Sterling</h4>
+<p class="text-primary font-medium">Operations &amp; Design Lead</p>
+</div>
+<div class="text-center group">
+<div class="relative mb-6">
+<div class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-100 transition duration-500"></div>
+<img alt="Marcus Chen - Store Manager" class="relative w-40 h-40 rounded-full object-cover mx-auto" data-alt="Portrait of Marcus, the manager, wearing a store apron" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4lXXThSzR6AHvEDCqdwsacoekZO9lNz1ER80I47fX203qg_HMk3VulMKKXKlIKbbIPF_B57mQJwksmryXCn_wWuirv_TeVM7QIReY-gYhEdg4Wjs-0EgTATHtngqIn-r0NZdlOVbAmQyo1N6p4ZZlc44Az0PUIWyoc193BhGT34jQ5WYGp5o5gOK0Ln07FQAH186MQzoAAq5_6dVjDsr5frY0VdPidAMalKtoTqMzFTl9X6uXmlBW-4yForInunHUp2gvJ9cY_Qo"/>
+</div>
+<h4 class="text-navy-deep dark:text-white text-xl font-bold">Marcus Chen</h4>
+<p class="text-primary font-medium">Store Manager</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-primary py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="text-center md:text-left">
+<h2 class="text-navy-deep text-3xl md:text-4xl font-black mb-2">Ready to start your next project?</h2>
+<p class="text-navy-deep/80 text-lg">Explore our curated collection of hardware and home goods.</p>
+</div>
+<a class="bg-navy-deep text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-slate-800 transition-colors shadow-xl" href="#">
+                    Shop Now
+                </a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-navy-deep text-white pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 text-primary mb-6">
+<span class="material-symbols-outlined text-3xl">storefront</span>
+<h2 class="text-white text-xl font-bold tracking-tight">Droguerie</h2>
+</div>
+<p class="text-slate-400 leading-relaxed mb-6">Your local destination for premium hardware, household essentials, and expert craftsmanship advice since 1995.</p>
+<div class="flex gap-4">
+<a class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">share</span>
+</a>
+<a class="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Quick Links</h4>
+<ul class="space-y-4 text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Shop All Products</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">DIY Guides</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">About Our Brand</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Customer Care</h4>
+<ul class="space-y-4 text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Store Locator</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Bulk Orders</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Support</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-lg font-bold mb-6">Contact Info</h4>
+<ul class="space-y-4 text-slate-400">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>123 Artisan Way, Craftsville, NY 10001</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span>+1 (555) 123-4567</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span>hello@droguerie.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-slate-800 pt-8 text-center text-slate-500 text-sm">
+<p>© 2024 Droguerie Household Essentials. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body></html>

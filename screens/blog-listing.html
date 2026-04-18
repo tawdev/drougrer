@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Droguerie Blog - Home Improvement &amp; Care</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee8c2b",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#221910",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md px-6 lg:px-20 py-4 dark:bg-background-dark/90 dark:border-slate-800">
+<div class="mx-auto flex max-w-7xl items-center justify-between gap-8">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Droguerie</h2>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">Products</a>
+<a class="text-sm font-semibold text-primary" href="#">Blog</a>
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">About</a>
+<a class="text-sm font-semibold text-slate-600 hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<!-- Search & Actions -->
+<div class="flex items-center gap-4 flex-1 justify-end max-w-md">
+<div class="relative w-full hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full rounded-lg border-none bg-slate-100 py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary dark:bg-slate-800" placeholder="Search articles..." type="text"/>
+</div>
+<button class="relative p-2 text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="absolute top-0 right-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white">2</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 bg-cover bg-center border-2 border-primary/20" data-alt="User profile avatar close up" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDz6VKkOS0YSwGyDV4tAZjFeMQoyz3kwKu-Dg-jQRGEllex7GU0a8-06oKTejRsJNMquiR50r6mgGM8RRyk2u_uFIZZUsGp2ABbVS6XHFBUls05prDQMpyk0A4dnGCDMVdCNgcVlINdSxqwL8tdc0VwiC8U1XGEqfZ5Mf19oOxgZlUfnHaSQ8thLZ2DNPCAPlidxO6WIFz0js8h8aliemJrfO75pRK5H-0ukCWLfbpbh5DVxjf8EhIehoIsVxrJmrFMlOC8xsWhcyo')"></div>
+</div>
+</div>
+</header>
+<main class="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-6 lg:px-20 py-10">
+<div class="flex flex-col lg:flex-row gap-12">
+<!-- Main Content (Left) -->
+<div class="flex-1 space-y-12">
+<!-- Featured Article -->
+<section class="group relative overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-slate-200 transition-all hover:shadow-md dark:bg-slate-900 dark:ring-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<div class="h-64 w-full md:h-auto overflow-hidden">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Person cleaning a modern bright living room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUUnSzDp20ldIT9BkZLJlUbtlmw-fenTqQMe_nFAZPyAcTjSMSyzAR54SlI8hLH0oeUUWNmvkFMjDxMMJ8hBRSMiUhc4cs7JKsv_RVK6o4bVc79J5b2Odew-t4AEzYrM1YRhehWkxul0Qr5Ha41sejrHNoxgBTNkeR3-iYpBSmGnmiBztYxubGRK-hKqWab0LzWK_Vrt7kb01tnEL-vsGbuasU26n_u9nMYPuEM0hA5fc5sKeEcs5rlNhilZJeA6NUbjDHYrIAkUw')"></div>
+</div>
+<div class="flex flex-col justify-center p-8 lg:p-12">
+<span class="mb-3 inline-block rounded bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">Featured Guide</span>
+<h1 class="mb-4 text-3xl font-bold leading-tight text-slate-900 dark:text-white lg:text-4xl">10 Essential DIY Home Improvement Tips for Spring</h1>
+<p class="mb-8 text-slate-600 dark:text-slate-400">Transform your living space with these simple yet effective tips from our experts. From painting techniques to quick fixes, we've got you covered for the new season.</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-medium text-slate-500 italic">5 min read • March 12, 2024</span>
+<button class="flex items-center gap-2 rounded-lg bg-primary px-6 py-2.5 font-bold text-white shadow-lg shadow-primary/30 transition-all hover:bg-primary/90 hover:shadow-none active:scale-95">
+                                        Read More
+                                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Articles Grid -->
+<section class="space-y-6">
+<div class="flex items-center justify-between border-b border-slate-200 pb-4 dark:border-slate-800">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Latest Articles</h2>
+<div class="flex gap-2">
+<button class="rounded-lg bg-white p-2 text-slate-400 shadow-sm ring-1 ring-slate-200 hover:text-primary dark:bg-slate-900 dark:ring-slate-800">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="rounded-lg bg-white p-2 text-slate-400 shadow-sm ring-1 ring-slate-200 hover:text-primary dark:bg-slate-900 dark:ring-slate-800">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Card 1 -->
+<article class="group flex flex-col gap-4">
+<div class="relative overflow-hidden rounded-xl aspect-[16/10]">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Eco-friendly cleaning supplies with lemon and vinegar" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuClSgn48XIWQ-TIBeYAzGGMb9OPgK3ekhqrcljLNKu1DwBJkAOwTI1uE8c6BDdm5zntAV2WlfixFaE5CtjOyhJwB7nHVvObmWRHCw8WCAx_fWGwWIbOukdet76kyeNMOrhuuxbPFlqpiIqUmK6RCQI5rTsGisxqOgozOmzYeLGrn4MoV3Phb5n-XY3yLzDx67KgtDu9HvXyCS9qR9GXzAKaCRS9gCtrDHxChVAklDoqnqJcVcOF88hesN-y9sSs0MyfpX8t5GXtks0')"></div>
+<div class="absolute top-4 left-4">
+<span class="rounded bg-white/90 backdrop-blur-sm px-2 py-1 text-[10px] font-bold uppercase text-slate-900">Cleaning Tips</span>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white">Natural Cleaning Hacks for Every Room</h3>
+<p class="text-sm text-slate-600 line-clamp-2 dark:text-slate-400">Discover the power of vinegar, baking soda, and essential oils to make your home sparkle without harsh chemicals.</p>
+<a class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline" href="#">
+                                        Read More
+                                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group flex flex-col gap-4">
+<div class="relative overflow-hidden rounded-xl aspect-[16/10]">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Small gardening tools and green sprouts in pots" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuABN28MACB0gmH3wo2REz14RlM_dCKqaUOlyxxu8E5xdgNKm1TJzLwoX67wERHpGZQ7jx9YyFxoYg_PZfeoqWgGSOJAO14R5oRaQRW81md_w8BuqsFp8kultFnqbIP4kcvkpplyEc1JPuUuyCxvEKCMQUwBjHkuokXvw13-QZ4JRayhlHeAHElTQteO3RpfqV2H2K5Uq0BIm-WbZwnLMTqGpBkxJv-HoQQ6NxTEJclXJVrsGfeeOhhO6VhWxMQEGa13RXYmKXMM68U')"></div>
+<div class="absolute top-4 left-4">
+<span class="rounded bg-white/90 backdrop-blur-sm px-2 py-1 text-[10px] font-bold uppercase text-slate-900">Gardening</span>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white">Gardening for Beginners: Start Your Oasis</h3>
+<p class="text-sm text-slate-600 line-clamp-2 dark:text-slate-400">Everything you need to know about soil, light, and watering to keep your first plants thriving all year long.</p>
+<a class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline" href="#">
+                                        Read More
+                                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="group flex flex-col gap-4">
+<div class="relative overflow-hidden rounded-xl aspect-[16/10]">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Wooden shelf organization with jars and labels" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDUS_yvhcKq1ined6YDBohwtkX_USOqlwmf9Y3yvk3dehufFqoQHL4Nm8copnqBaSytujt2IOx_bGfAR2wXpnKQuCwQD6G5tEt6pbLx-RaTcXgKEUjIBS9QHjwSoLQRZzRnvJDwUg7Jia5_I5P-1ZZsTBzix22rOHf_BdZw1tUnFMJuBSYfjYTO7sx8sv5opxikyTZcFxUmSc_eZREAGqqsHbRXOhwp6FvZQELHoFIzDh7JxmSGUsqU0XMs-ZSz6_xXlPLPkhJyIng')"></div>
+<div class="absolute top-4 left-4">
+<span class="rounded bg-white/90 backdrop-blur-sm px-2 py-1 text-[10px] font-bold uppercase text-slate-900">DIY</span>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white">Organizing Your Workshop Like a Pro</h3>
+<p class="text-sm text-slate-600 line-clamp-2 dark:text-slate-400">Tired of searching for that one wrench? Learn the art of pegboards and magnetic strips for tool storage.</p>
+<a class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline" href="#">
+                                        Read More
+                                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="group flex flex-col gap-4">
+<div class="relative overflow-hidden rounded-xl aspect-[16/10]">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Eco-friendly pest control products on a wooden table" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCErZyhul79diBSxxFh4f8XUHmW00_utdx6YWBQtjfNaG4MSf34MsLdBVYFq5C5CvQtxdFoXNWgb_LOnp8xnoTnfAOWpCCysxvk-B7-pJFuxfT7l9Vgs5RKdQGT8waQlnjeqpdUbJS9u11_TkBFYBEg4IpLWoU2goJ_uY76jcX3u3fWpz8JVZtFetzssaeW93R0VhCfpM1hH7sCv1AjBksYjsWwrD3j1eWyuIy46YZjrmgY4P6kza-wIuLHFvr_tgZjb2QPdGJzxps')"></div>
+<div class="absolute top-4 left-4">
+<span class="rounded bg-white/90 backdrop-blur-sm px-2 py-1 text-[10px] font-bold uppercase text-slate-900">Eco-Friendly</span>
+</div>
+</div>
+<div class="space-y-2">
+<h3 class="text-xl font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white">Eco-Friendly Pesticides That Work</h3>
+<p class="text-sm text-slate-600 line-clamp-2 dark:text-slate-400">Keep pests away without harming the environment. Safe, homemade alternatives for indoor and outdoor use.</p>
+<a class="inline-flex items-center gap-1 text-sm font-bold text-primary hover:underline" href="#">
+                                        Read More
+                                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center">
+<nav class="flex items-center gap-2">
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200 text-slate-400 hover:text-primary dark:bg-slate-900 dark:ring-slate-800">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary font-bold text-white shadow-sm">1</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-primary dark:bg-slate-900 dark:ring-slate-800">2</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-primary dark:bg-slate-900 dark:ring-slate-800">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200 text-slate-600 hover:ring-primary dark:bg-slate-900 dark:ring-slate-800">12</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-white ring-1 ring-slate-200 text-slate-400 hover:text-primary dark:bg-slate-900 dark:ring-slate-800">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</nav>
+</div>
+</section>
+</div>
+<!-- Sidebar (Right) -->
+<aside class="w-full lg:w-80 space-y-10">
+<!-- Search Widget -->
+<section class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+<h4 class="mb-4 text-sm font-bold uppercase tracking-widest text-slate-400">Search the Blog</h4>
+<div class="flex gap-2">
+<input class="flex-1 rounded-lg border-none bg-slate-100 px-4 py-2 text-sm focus:ring-2 focus:ring-primary dark:bg-slate-800" placeholder="Keywords..." type="text"/>
+<button class="flex items-center justify-center rounded-lg bg-primary p-2 text-white">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+</section>
+<!-- Categories Widget -->
+<section class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+<h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-slate-400">Categories</h4>
+<ul class="space-y-1">
+<li>
+<a class="group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary/10 hover:text-primary transition-all dark:text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">cleaning_services</span>
+                                        Cleaning Tips
+                                    </div>
+<span class="text-xs font-bold text-slate-400">24</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary/10 hover:text-primary transition-all dark:text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">build</span>
+                                        DIY Projects
+                                    </div>
+<span class="text-xs font-bold text-slate-400">18</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary/10 hover:text-primary transition-all dark:text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">yard</span>
+                                        Gardening
+                                    </div>
+<span class="text-xs font-bold text-slate-400">12</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary/10 hover:text-primary transition-all dark:text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">eco</span>
+                                        Eco-Friendly
+                                    </div>
+<span class="text-xs font-bold text-slate-400">9</span>
+</a>
+</li>
+<li>
+<a class="group flex items-center justify-between rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary/10 hover:text-primary transition-all dark:text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] group-hover:fill-current">home_repair_service</span>
+                                        Maintenance
+                                    </div>
+<span class="text-xs font-bold text-slate-400">15</span>
+</a>
+</li>
+</ul>
+</section>
+<!-- Recent Posts Widget -->
+<section class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+<h4 class="mb-6 text-sm font-bold uppercase tracking-widest text-slate-400">Recent Posts</h4>
+<div class="space-y-6">
+<a class="group flex gap-4" href="#">
+<div class="h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" data-alt="Modern high-quality vacuum cleaner" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA_ChSz-HMajxdgr4BTl5nV0jQJhbWJkFsMh0b7lH284yGWx4xoxMgTnnUKrYnUNxfsmZKrmky4fkpiD7hgifOzuVXZwETItmGNxPkHYOy9guTczPJWF3_70Q-fkgsp5H0uA_K2tdNjwdJ6uW3WddeKJ2w0y49Mp1qt-xS6yK2N_-R-efRsNGFEPhBEGjJ7TfqTNrJJYrBDZifA4dk1b6MU3pb9w5fjlJ7GR3jwkzVqsOshbthdsYSthqqZC0ytm9Y95rNEt9t1XiU')"></div>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="text-sm font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white line-clamp-2">The Best Vacuums for Pet Owners in 2024</h5>
+<span class="text-[10px] font-medium text-slate-400 uppercase">March 10</span>
+</div>
+</a>
+<a class="group flex gap-4" href="#">
+<div class="h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" data-alt="Professional painter painting a white wall" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6KzWBELSUdPXuWMUfiQBjaLdlQz_OysPhMuTe_R073sM2THeN-I1NWDmM6jBGNrb8KaP4pRDHOWg5yMbnepk0DtevtEur6g1-8o-ZzZn54X2CqgxhHG3tvfPdLYL8yI69sBbYEM-uwrFqigQT1MbXqjX5aRqVyPTGhh-_FvC5zcjmj_1vRdevBIkbp2US8f91TOy0mvuP5IPkm6Mua4rqHpQjEw04ArMgR1lHQ0L8S715eXFwIXqAK38Z-RaS_e2EE5X8VBPHSfs')"></div>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="text-sm font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white line-clamp-2">How to Choose the Right Paint Finish</h5>
+<span class="text-[10px] font-medium text-slate-400 uppercase">March 08</span>
+</div>
+</a>
+<a class="group flex gap-4" href="#">
+<div class="h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+<div class="h-full w-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110" data-alt="Lush vegetable garden in a backyard" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDObm8wJwtx2D7QdMFF7Iht8MwedAdHSf1W5iApytZOP635luSNFpHiabYYvhmzsEcW3lS9z6Df0ZLhPLYbIsBW01VIDf9FNcTtkxptEVImInCS-yrE9DDs0TA3Z2AEehK8mpbb-9IeARCmUNzYue36NbXCpBuLGA6iOxLacizCozSTFlFQsy5H4ZOMZAMnM1T2ZV7kwyu3ipYbpCh56RO_LavlSzi78X6L55lG9hYn3Ea86-FZ8BCdTojThRl5FISo5idwO4OBHr4')"></div>
+</div>
+<div class="flex flex-col justify-center">
+<h5 class="text-sm font-bold text-slate-900 transition-colors group-hover:text-primary dark:text-white line-clamp-2">Companion Planting: The Secret Success</h5>
+<span class="text-[10px] font-medium text-slate-400 uppercase">March 05</span>
+</div>
+</a>
+</div>
+</section>
+<!-- Newsletter Sidebar -->
+<section class="rounded-xl bg-slate-900 p-6 shadow-xl dark:bg-primary">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined mb-4 text-4xl text-primary dark:text-slate-900">mail</span>
+<h4 class="mb-2 text-lg font-bold text-white dark:text-slate-900">Weekly Advice</h4>
+<p class="mb-6 text-sm text-slate-400 dark:text-slate-800">Get the best tips delivered to your inbox every Sunday.</p>
+<input class="mb-3 w-full rounded-lg border-none bg-white/10 px-4 py-2 text-sm text-white placeholder-slate-500 focus:ring-2 focus:ring-primary dark:bg-black/10 dark:text-slate-900 dark:placeholder-slate-700" placeholder="Your email" type="email"/>
+<button class="w-full rounded-lg bg-primary py-2 text-sm font-bold text-white transition-all hover:bg-primary/90 dark:bg-slate-900">Subscribe</button>
+</div>
+</section>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-slate-200 bg-white py-12 dark:border-slate-800 dark:bg-background-dark">
+<div class="mx-auto max-w-7xl px-6 lg:px-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1 space-y-4">
+<div class="flex items-center gap-2">
+<div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-white">
+<span class="material-symbols-outlined text-sm">storefront</span>
+</div>
+<h2 class="text-lg font-bold text-slate-900 dark:text-white">Droguerie</h2>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Providing high-quality home care products and DIY inspiration since 1995. Your partner in every project.</p>
+</div>
+<div>
+<h4 class="mb-4 text-sm font-bold text-slate-900 uppercase dark:text-white">Shop</h4>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary" href="#">Cleaning Supplies</a></li>
+<li><a class="hover:text-primary" href="#">Garden Tools</a></li>
+<li><a class="hover:text-primary" href="#">Paint &amp; Supplies</a></li>
+<li><a class="hover:text-primary" href="#">Natural Ingredients</a></li>
+</ul>
+</div>
+<div>
+<h4 class="mb-4 text-sm font-bold text-slate-900 uppercase dark:text-white">Community</h4>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-primary" href="#">Blog Home</a></li>
+<li><a class="hover:text-primary" href="#">Forum</a></li>
+<li><a class="hover:text-primary" href="#">Local Workshops</a></li>
+<li><a class="hover:text-primary" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="mb-4 text-sm font-bold text-slate-900 uppercase dark:text-white">Social</h4>
+<div class="flex gap-4">
+<a class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-primary hover:text-white transition-all dark:bg-slate-800" href="#"><span class="material-symbols-outlined text-xl">share</span></a>
+<a class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-primary hover:text-white transition-all dark:bg-slate-800" href="#"><span class="material-symbols-outlined text-xl">camera</span></a>
+<a class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-primary hover:text-white transition-all dark:bg-slate-800" href="#"><span class="material-symbols-outlined text-xl">video_library</span></a>
+</div>
+</div>
+</div>
+<div class="mt-12 border-t border-slate-100 pt-8 text-center text-xs text-slate-400 dark:border-slate-800">
+                    © 2024 Droguerie Co. All rights reserved. Designed with love for makers.
+                </div>
+</div>
+</footer>
+</div>
+</body></html>
