@@ -174,11 +174,11 @@ export default function ShoppingCartPage() {
 
                                 {/* Image */}
                                 <div className="w-full sm:w-32 h-32 relative bg-slate-50 rounded-2xl overflow-hidden shrink-0 border border-slate-100">
-                                    <Image
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
                                         src={item.imageUrl || '/mol.jpeg'}
                                         alt={item.name}
-                                        fill
-                                        className="object-contain p-2 group-hover:scale-110 transition-transform duration-500"
+                                        className="w-full h-full object-contain p-2 group-hover:scale-110 transition-transform duration-500"
                                     />
                                 </div>
 
