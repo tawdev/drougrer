@@ -638,7 +638,7 @@ export default function AdminProductsPage() {
                     onBlur={(e) => setNewProduct({ ...newProduct, description: e.currentTarget.innerHTML })}
                     dangerouslySetInnerHTML={{ __html: newProduct.description }}
                     className="w-full min-h-[150px] max-h-[300px] overflow-y-auto px-4 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-sm text-slate-800 dark:text-slate-200 [&_h1]:text-lg [&_h1]:font-black [&_h1]:text-slate-900 [&_h1]:dark:text-white [&_h1]:my-2 [&_p]:my-1"
-                    placeholder="Describe the product details, benefits..."
+                    data-placeholder="Describe the product details, benefits..."
                   />
                   <p className="mt-2 text-[10px] text-slate-400 italic">
                     Utilisez les boutons ci-dessus pour basculer entre texte normal et titres.
