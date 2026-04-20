@@ -5,7 +5,7 @@ import { api, type Category } from '../../lib/api';
 import { useNotification } from '../../context/NotificationContext';
 
 function Skeleton({ className }: { className?: string }) {
-    return <div className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`} />;
+    return <div className={`animate-pulse bg-slate-200 rounded ${className}`} />;
 }
 
 
@@ -139,12 +139,12 @@ export default function AdminCategoriesPage() {
     };
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto bg-[#F8FAFC] dark:bg-[#0F172A]">
+        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-[#F8FAFC]">
             <div className="max-w-7xl mx-auto">
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                     <div>
-                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Categories Management</h2>
-                        <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium text-[15px]">Organize and manage your product catalog sections.</p>
+                        <h2 className="text-2xl font-black text-slate-900 tracking-tight">Categories Management</h2>
+                        <p className="text-slate-500 mt-1 font-medium text-[15px]">Organize and manage your product catalog sections.</p>
                     </div>
                     <button
                         onClick={() => {
@@ -163,7 +163,7 @@ export default function AdminCategoriesPage() {
                 <div className="mb-6 relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
                     <input
-                        className="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm placeholder:text-slate-400"
+                        className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm placeholder:text-slate-400"
                         placeholder="Search categories..."
                         type="text"
                         value={searchQuery}
@@ -173,18 +173,18 @@ export default function AdminCategoriesPage() {
 
                 {/* Error */}
                 {error && (
-                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 flex items-center gap-3 text-red-700 dark:text-red-400 mb-6 animate-in slide-in-from-top-2">
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3 text-red-700 mb-6 animate-in slide-in-from-top-2">
                         <span className="material-symbols-outlined">error</span>
                         <p className="text-sm font-medium">{error}</p>
                     </div>
                 )}
 
                 {/* Table */}
-                <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative">
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden relative">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
                             <thead>
-                                <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                <tr className="bg-slate-50/50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
                                     <th className="px-8 py-5">Category Name</th>
                                     <th className="px-8 py-5">Description</th>
                                     <th className="px-8 py-5">Product Count</th>
@@ -193,7 +193,7 @@ export default function AdminCategoriesPage() {
                                     <th className="px-8 py-5 text-right">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                            <tbody className="divide-y divide-slate-50">
                                 {loading && categories.length === 0 ? (
                                     [...Array(5)].map((_, i) => (
                                         <tr key={i} className="animate-pulse">
@@ -207,7 +207,7 @@ export default function AdminCategoriesPage() {
                                     ))
                                 ) : filteredCategories.length === 0 ? (
                                     <tr>
-                                        <td colSpan={6} className="px-8 py-20 text-center text-slate-500 dark:text-slate-400">
+                                        <td colSpan={6} className="px-8 py-20 text-center text-slate-500">
                                             <div className="flex flex-col items-center gap-2">
                                                 <span className="material-symbols-outlined text-5xl opacity-20">category</span>
                                                 <p className="font-semibold text-[15px]">{searchQuery ? 'No categories matching your search.' : 'No categories found.'}</p>
@@ -216,14 +216,14 @@ export default function AdminCategoriesPage() {
                                     </tr>
                                 ) : (
                                     paginatedCategories.map((category) => (
-                                        <tr key={category.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+                                        <tr key={category.id} className="hover:bg-slate-50/50 transition-colors group">
                                             <td className="px-8 py-6">
                                                 <div className="flex items-center gap-2">
                                                     {[...Array(category.depth)].map((_, i) => (
-                                                        <div key={i} className="w-6 border-l-2 border-slate-200 dark:border-slate-800 h-10 -mt-5 ml-2" />
+                                                        <div key={i} className="w-6 border-l-2 border-slate-200 h-10 -mt-5 ml-2" />
                                                     ))}
                                                     <div className="flex flex-col">
-                                                        <span className="text-[15px] font-bold text-slate-900 dark:text-white capitalize">{category.name}</span>
+                                                        <span className="text-[15px] font-bold text-slate-900 capitalize">{category.name}</span>
                                                         {category.parent && (
                                                             <span className="text-[11px] font-medium text-slate-400">Child of {category.parent.name}</span>
                                                         )}
@@ -231,12 +231,12 @@ export default function AdminCategoriesPage() {
                                                 </div>
                                             </td>
                                             <td className="px-8 py-6 max-w-[250px]">
-                                                <p className="text-[14px] text-slate-500 dark:text-slate-400 truncate" title={category.description || ''}>
-                                                    {category.description || <em className="text-slate-300 dark:text-slate-600">No description</em>}
+                                                <p className="text-[14px] text-slate-500 truncate" title={category.description || ''}>
+                                                    {category.description || <em className="text-slate-300">No description</em>}
                                                 </p>
                                             </td>
                                             <td className="px-8 py-6">
-                                                <span className="text-[14px] font-medium text-slate-600 dark:text-slate-400">
+                                                <span className="text-[14px] font-medium text-slate-600">
                                                     {category.products?.length || 0} products
                                                 </span>
                                             </td>
@@ -248,9 +248,9 @@ export default function AdminCategoriesPage() {
                                             <td className="px-8 py-6">
                                                 <div className="flex items-center">
                                                     {category.isActive ? (
-                                                        <span className="px-3 py-1 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 rounded-full text-[11px] font-bold uppercase tracking-tight">Active</span>
+                                                        <span className="px-3 py-1 bg-emerald-50 text-emerald-700 rounded-full text-[11px] font-bold uppercase tracking-tight">Active</span>
                                                     ) : (
-                                                        <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full text-[11px] font-bold uppercase tracking-tight">Inactive</span>
+                                                        <span className="px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[11px] font-bold uppercase tracking-tight">Inactive</span>
                                                     )}
                                                 </div>
                                             </td>
@@ -258,7 +258,7 @@ export default function AdminCategoriesPage() {
                                                 <div className="flex items-center justify-end gap-1">
                                                     <button
                                                         onClick={() => handleEdit(category)}
-                                                        className="p-2.5 text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-all"
+                                                        className="p-2.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all"
                                                         title="Edit"
                                                     >
                                                         <span className="material-symbols-outlined text-[20px]">edit</span>
@@ -271,7 +271,7 @@ export default function AdminCategoriesPage() {
                                                             variant: 'danger',
                                                             onConfirm: () => handleDelete(category.id)
                                                         })}
-                                                        className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg transition-all"
+                                                        className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-all"
                                                         title="Delete"
                                                     >
                                                         <span className="material-symbols-outlined text-[20px]">delete</span>
@@ -295,7 +295,7 @@ export default function AdminCategoriesPage() {
                                 <button
                                     onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                                     disabled={currentPage === 1}
-                                    className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors disabled:opacity-30"
+                                    className="text-slate-400 hover:text-slate-900 transition-colors disabled:opacity-30"
                                 >
                                     <span className="material-symbols-outlined text-[20px]">chevron_left</span>
                                 </button>
@@ -304,7 +304,7 @@ export default function AdminCategoriesPage() {
                                         <button
                                             key={i}
                                             onClick={() => setCurrentPage(page as number)}
-                                            className={`size-8 rounded-lg font-bold text-[13px] transition-all ${currentPage === page ? 'bg-primary text-white shadow-lg shadow-primary/10' : 'text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800'}`}
+                                            className={`size-8 rounded-lg font-bold text-[13px] transition-all ${currentPage === page ? 'bg-primary text-white shadow-lg shadow-primary/10' : 'text-slate-500 hover:bg-slate-100'}`}
                                         >
                                             {page}
                                         </button>
@@ -313,7 +313,7 @@ export default function AdminCategoriesPage() {
                                 <button
                                     onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
                                     disabled={currentPage === totalPages}
-                                    className="text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors disabled:opacity-30"
+                                    className="text-slate-400 hover:text-slate-900 transition-colors disabled:opacity-30"
                                 >
                                     <span className="material-symbols-outlined text-[20px]">chevron_right</span>
                                 </button>
@@ -326,17 +326,17 @@ export default function AdminCategoriesPage() {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
-                        <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
+                        <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between">
                             <div>
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                                <h3 className="text-xl font-bold text-slate-900">
                                     {editingCategory ? 'Edit Category' : 'Add New Category'}
                                 </h3>
                                 <p className="text-sm text-slate-500 mt-1 font-medium">Configure your category details and status.</p>
                             </div>
                             <button
                                 onClick={() => setIsModalOpen(false)}
-                                className="size-10 flex items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                className="size-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors"
                             >
                                 <span className="material-symbols-outlined text-slate-400">close</span>
                             </button>
@@ -349,7 +349,7 @@ export default function AdminCategoriesPage() {
                                         required
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all font-medium text-[14px]"
+                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all font-medium text-[14px]"
                                         placeholder="e.g. Antibiotics"
                                     />
                                 </div>
@@ -359,7 +359,7 @@ export default function AdminCategoriesPage() {
                                         rows={3}
                                         value={formData.description}
                                         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all resize-none font-medium text-[14px]"
+                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all resize-none font-medium text-[14px]"
                                         placeholder="Describe the category..."
                                     />
                                 </div>
@@ -368,7 +368,7 @@ export default function AdminCategoriesPage() {
                                     <select
                                         value={formData.parentId || ''}
                                         onChange={(e) => setFormData({ ...formData, parentId: e.target.value ? Number(e.target.value) : null })}
-                                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all font-medium text-[14px] appearance-none"
+                                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary outline-none transition-all font-medium text-[14px] appearance-none"
                                     >
                                         <option value="">No Parent (Top Level)</option>
                                         {categories
@@ -378,15 +378,15 @@ export default function AdminCategoriesPage() {
                                             ))}
                                     </select>
                                 </div>
-                                <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-xl border border-slate-100 dark:border-slate-800">
+                                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
                                     <div>
-                                        <p className="text-[14px] font-bold text-slate-900 dark:text-white">Active Status</p>
+                                        <p className="text-[14px] font-bold text-slate-900">Active Status</p>
                                         <p className="text-[12px] text-slate-500">Visible on the storefront if active.</p>
                                     </div>
                                     <button
                                         type="button"
                                         onClick={() => setFormData({ ...formData, isActive: !formData.isActive })}
-                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${formData.isActive ? 'bg-emerald-600' : 'bg-slate-200 dark:bg-slate-700'}`}
+                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${formData.isActive ? 'bg-emerald-600' : 'bg-slate-200'}`}
                                     >
                                         <span className={`inline-block size-4 transform rounded-full bg-white transition-transform ${formData.isActive ? 'translate-x-6' : 'translate-x-1'}`} />
                                     </button>
@@ -396,7 +396,7 @@ export default function AdminCategoriesPage() {
                                 <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex-1 px-6 py-3 border border-slate-200 dark:border-slate-700 rounded-xl text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all shadow-sm"
+                                    className="flex-1 px-6 py-3 border border-slate-200 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-50 transition-all shadow-sm"
                                 >Cancel</button>
                                 <button
                                     type="submit"

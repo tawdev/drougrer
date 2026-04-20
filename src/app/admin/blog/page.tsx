@@ -6,7 +6,7 @@ import { Mail, Quote, Tag, FileText, Check, AlertCircle, Plus, Eye, Trash2, Edit
 import { useNotification } from '../../context/NotificationContext';
 
 function Skeleton({ className }: { className?: string }) {
-    return <div className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`} />;
+    return <div className={`animate-pulse bg-slate-200 rounded ${className}`} />;
 }
 
 
@@ -318,12 +318,12 @@ export default function AdminBlogPage() {
     };
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto bg-[#F8FAFC] dark:bg-[#0F172A]">
+        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-[#F8FAFC]">
             <div className="max-w-7xl mx-auto">
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                     <div>
-                        <h2 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Blog Management</h2>
-                        <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium">Create and manage your articles, news, and updates.</p>
+                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Blog Management</h2>
+                        <p className="text-slate-500 mt-1 font-medium">Create and manage your articles, news, and updates.</p>
                     </div>
                     {activeTab === 'articles' && (
                         <button
@@ -368,7 +368,7 @@ export default function AdminBlogPage() {
                 </header>
 
                 {/* Tabs */}
-                <div className="flex items-center gap-1 mb-8 p-1.5 bg-slate-100 dark:bg-slate-800/50 w-fit rounded-2xl border border-slate-200 dark:border-slate-800">
+                <div className="flex items-center gap-1 mb-8 p-1.5 bg-slate-100 w-fit rounded-2xl border border-slate-200">
                     {[
                         { id: 'articles', label: 'Articles', icon: <FileText size={18} /> },
                         { id: 'tips', label: 'Astuces Pro', icon: <Quote size={18} /> },
@@ -379,8 +379,8 @@ export default function AdminBlogPage() {
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id as any)}
                             className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-[13px] font-black uppercase tracking-wider transition-all ${activeTab === tab.id
-                                    ? 'bg-white dark:bg-slate-900 text-primary dark:text-primary shadow-sm'
-                                    : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'
+                                    ? 'bg-white text-primary shadow-sm'
+                                    : 'text-slate-500 hover:text-slate-900'
                                 }`}
                         >
                             {tab.icon}
@@ -396,7 +396,7 @@ export default function AdminBlogPage() {
                             <div className="relative flex-1">
                                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
                                 <input
-                                    className="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm"
+                                    className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm"
                                     placeholder="Search by title or content..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -405,11 +405,11 @@ export default function AdminBlogPage() {
                         </div>
 
                         {/* Table */}
-                        <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden min-h-[400px]">
+                        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-h-[400px]">
                             <div className="overflow-x-auto">
                                 <table className="w-full text-left">
                                     <thead>
-                                        <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                        <tr className="bg-slate-50/50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
                                             <th className="px-8 py-5">Article</th>
                                             <th className="px-8 py-5">Category</th>
                                             <th className="px-8 py-5">Author</th>
@@ -418,7 +418,7 @@ export default function AdminBlogPage() {
                                             <th className="px-8 py-5 text-right">Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                                    <tbody className="divide-y divide-slate-50">
                                         {loading && posts.length === 0 ? (
                                             [...Array(5)].map((_, i) => (
                                                 <tr key={i} className="animate-pulse">
@@ -431,43 +431,43 @@ export default function AdminBlogPage() {
                                             ))
                                         ) : posts.length === 0 ? (
                                             <tr>
-                                                <td colSpan={6} className="px-8 py-20 text-center text-slate-500 dark:text-slate-400">
+                                                <td colSpan={6} className="px-8 py-20 text-center text-slate-500">
                                                     <span className="material-symbols-outlined text-5xl opacity-20">article</span>
                                                     <p className="font-semibold mt-2">No blog posts yet.</p>
                                                 </td>
                                             </tr>
                                         ) : (
                                             posts.map((post) => (
-                                                <tr key={post.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+                                                <tr key={post.id} className="hover:bg-slate-50/50 transition-colors group">
                                                     <td className="px-8 py-6">
                                                         <div className="flex items-center gap-4">
-                                                            <div className="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 overflow-hidden flex-shrink-0 border border-slate-200 dark:border-slate-700">
+                                                            <div className="size-12 rounded-lg bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
                                                                 {post.imageUrl ? <img src={post.imageUrl} className="size-full object-cover" /> : <div className="size-full flex items-center justify-center text-slate-400"><span className="material-symbols-outlined text-[20px]">image</span></div>}
                                                             </div>
                                                             <div className="max-w-[300px]">
-                                                                <p className="text-[14px] font-bold text-slate-900 dark:text-white line-clamp-1" title={post.title}>{post.title}</p>
-                                                                <p className="text-[12px] font-medium text-slate-500 dark:text-slate-400 line-clamp-1 italic">/blog/{post.slug}</p>
+                                                                <p className="text-[14px] font-bold text-slate-900 line-clamp-1" title={post.title}>{post.title}</p>
+                                                                <p className="text-[12px] font-medium text-slate-500 line-clamp-1 italic">/blog/{post.slug}</p>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td className="px-8 py-6">
-                                                        <span className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-md text-[11px] font-bold uppercase tracking-tight">
+                                                        <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-[11px] font-bold uppercase tracking-tight">
                                                             {post.category || 'General'}
                                                         </span>
                                                     </td>
                                                     <td className="px-8 py-6">
                                                         <div className="flex items-center gap-2">
-                                                            <div className="size-6 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center text-[10px] font-bold">A</div>
-                                                            <span className="text-[13px] font-semibold text-slate-700 dark:text-slate-300">{post.author}</span>
+                                                            <div className="size-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold">A</div>
+                                                            <span className="text-[13px] font-semibold text-slate-700">{post.author}</span>
                                                         </div>
                                                     </td>
                                                     <td className="px-8 py-6">
-                                                        <span className={`px-2.5 py-1 ${post.status === 'Published' ? 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'} rounded-full text-[10px] font-bold uppercase tracking-tight`}>
+                                                        <span className={`px-2.5 py-1 ${post.status === 'Published' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'} rounded-full text-[10px] font-bold uppercase tracking-tight`}>
                                                             {post.status}
                                                         </span>
                                                     </td>
                                                     <td className="px-8 py-6">
-                                                        <span className="text-[13px] font-medium text-slate-500 dark:text-slate-400">
+                                                        <span className="text-[13px] font-medium text-slate-500">
                                                             {new Date(post.createdAt).toLocaleDateString()}
                                                         </span>
                                                     </td>
@@ -480,7 +480,7 @@ export default function AdminBlogPage() {
                                                                 confirmText: 'Supprimer',
                                                                 variant: 'danger',
                                                                 onConfirm: () => handleDelete(post.id)
-                                                            })} className="size-8 flex items-center justify-center rounded-lg hover:bg-rose-50 dark:hover:bg-rose-900/20 text-slate-400 hover:text-rose-600 transition-all"><Trash2 size={18} /></button>
+                                                            })} className="size-8 flex items-center justify-center rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-all"><Trash2 size={18} /></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -491,13 +491,13 @@ export default function AdminBlogPage() {
                             </div>
 
                             {/* Pagination */}
-                            <div className="px-8 py-5 border-t border-slate-50 dark:border-slate-800 flex items-center justify-between">
+                            <div className="px-8 py-5 border-t border-slate-50 flex items-center justify-between">
                                 <span className="text-[13px] font-medium text-slate-500">
                                     Showing {(page - 1) * 5 + 1}–{Math.min(page * 5, total)} of {total} posts
                                 </span>
                                 <div className="flex items-center gap-2">
-                                    <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Prev</button>
-                                    <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">Next</button>
+                                    <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 transition-all">Prev</button>
+                                    <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 transition-all">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -505,18 +505,18 @@ export default function AdminBlogPage() {
                 )}
 
                 {activeTab === 'tips' && (
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden min-h-[400px]">
+                    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-h-[400px]">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left">
                                 <thead>
-                                    <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                    <tr className="bg-slate-50/50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
                                         <th className="px-8 py-5">Contenu de l'astuce</th>
                                         <th className="px-8 py-5">Auteur</th>
                                         <th className="px-8 py-5">Statut</th>
                                         <th className="px-8 py-5 text-right">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                                <tbody className="divide-y divide-slate-50">
                                     {loading ? (
                                         [...Array(3)].map((_, i) => (
                                             <tr key={i} className="animate-pulse">
@@ -528,17 +528,17 @@ export default function AdminBlogPage() {
                                         ))
                                     ) : tips.length === 0 ? (
                                         <tr>
-                                            <td colSpan={4} className="px-8 py-20 text-center text-slate-500 dark:text-slate-400">Aucune astuce enregistrée.</td>
+                                            <td colSpan={4} className="px-8 py-20 text-center text-slate-500">Aucune astuce enregistrée.</td>
                                         </tr>
                                     ) : (
                                         tips.map((tip) => (
-                                            <tr key={tip.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
+                                            <tr key={tip.id} className="hover:bg-slate-50/50 transition-colors group">
                                                 <td className="px-8 py-6">
-                                                    <p className="text-[14px] font-medium text-slate-700 dark:text-slate-300 line-clamp-2 italic">"{tip.content}"</p>
+                                                    <p className="text-[14px] font-medium text-slate-700 line-clamp-2 italic">"{tip.content}"</p>
                                                 </td>
                                                 <td className="px-8 py-6">
                                                     <div className="flex flex-col">
-                                                        <span className="text-[14px] font-bold text-slate-900 dark:text-white">{tip.authorName}</span>
+                                                        <span className="text-[14px] font-bold text-slate-900">{tip.authorName}</span>
                                                         <span className="text-[12px] text-slate-500">{tip.authorRole}</span>
                                                     </div>
                                                 </td>
@@ -593,17 +593,17 @@ export default function AdminBlogPage() {
                 )}
 
                 {activeTab === 'newsletter' && (
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden min-h-[400px]">
+                    <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-h-[400px]">
                         <div className="overflow-x-auto">
                             <table className="w-full text-left">
                                 <thead>
-                                    <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
+                                    <tr className="bg-slate-50/50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
                                         <th className="px-8 py-5">Email</th>
                                         <th className="px-8 py-5">Date d'inscription</th>
                                         <th className="px-8 py-5 text-right">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                                <tbody className="divide-y divide-slate-50">
                                     {loading ? (
                                         [...Array(5)].map((_, i) => (
                                             <tr key={i} className="animate-pulse">
@@ -614,12 +614,12 @@ export default function AdminBlogPage() {
                                         ))
                                     ) : subscribers.length === 0 ? (
                                         <tr>
-                                            <td colSpan={3} className="px-8 py-20 text-center text-slate-500 dark:text-slate-400">Aucun abonné pour le moment.</td>
+                                            <td colSpan={3} className="px-8 py-20 text-center text-slate-500">Aucun abonné pour le moment.</td>
                                         </tr>
                                     ) : (
                                         subscribers.map((sub) => (
-                                            <tr key={sub.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors group">
-                                                <td className="px-8 py-6 font-bold text-slate-900 dark:text-white">{sub.email}</td>
+                                            <tr key={sub.id} className="hover:bg-slate-50/50 transition-colors group">
+                                                <td className="px-8 py-6 font-bold text-slate-900">{sub.email}</td>
                                                 <td className="px-8 py-6 text-slate-500 font-medium">{new Date(sub.subscribedAt).toLocaleString()}</td>
                                                 <td className="px-8 py-6 text-right">
                                                     <button
@@ -641,23 +641,23 @@ export default function AdminBlogPage() {
                 {activeTab === 'tags' && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {tagStats.length === 0 ? (
-                            <div className="col-span-full bg-white dark:bg-slate-900 rounded-2xl p-20 text-center border border-slate-200">
+                            <div className="col-span-full bg-white rounded-2xl p-20 text-center border border-slate-200">
                                 <Tag size={48} className="mx-auto text-slate-200 mb-4" />
                                 <p className="text-slate-500 font-medium">Aucun tag utilisé dans les articles publiés.</p>
                             </div>
                         ) : (
                             tagStats.map((tag) => (
-                                <div key={tag.tag} className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between">
+                                <div key={tag.tag} className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between">
                                     <div className="flex items-center gap-4">
                                         <div className="size-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
                                             <Tag size={20} />
                                         </div>
                                         <div>
-                                            <p className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-tight">#{tag.tag}</p>
+                                            <p className="text-[15px] font-black text-slate-900 uppercase tracking-tight">#{tag.tag}</p>
                                             <p className="text-[12px] font-medium text-slate-500">{tag.count} article{tag.count > 1 ? 's' : ''}</p>
                                         </div>
                                     </div>
-                                    <div className="h-2 w-24 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+                                    <div className="h-2 w-24 bg-slate-100 rounded-full overflow-hidden">
                                         <div
                                             className="h-full bg-emerald-500"
                                             style={{ width: `${Math.min(100, (tag.count / Math.max(...tagStats.map(t => t.count))) * 100)}%` }}
@@ -673,28 +673,28 @@ export default function AdminBlogPage() {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-white dark:bg-slate-950 rounded-[32px] shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-6xl max-h-[92vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-300">
+                    <div className="bg-white rounded-[32px] shadow-2xl border border-slate-200 w-full max-w-6xl max-h-[92vh] overflow-hidden flex flex-col animate-in zoom-in-95 duration-300">
                         {/* Modal Header */}
-                        <div className="px-10 py-8 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between bg-white/50 dark:bg-slate-950/50 backdrop-blur-xl">
+                        <div className="px-10 py-8 border-b border-slate-100 flex items-center justify-between bg-white/50 backdrop-blur-xl">
                             <div>
-                                <h3 className="text-2xl font-black text-slate-900 dark:text-white leading-none tracking-tight uppercase italic flex items-center gap-3">
+                                <h3 className="text-2xl font-black text-slate-900 leading-none tracking-tight uppercase italic flex items-center gap-3">
                                     <span className="h-8 w-2 bg-primary rounded-full"></span>
                                     {editingPost ? 'Modifier l\'Article' : 'Nouvel Article'}
                                 </h3>
-                                <p className="text-[13px] text-slate-500 dark:text-slate-400 mt-2 font-medium">Structurez votre contenu pour un impact maximal et un meilleur référencement.</p>
+                                <p className="text-[13px] text-slate-500 mt-2 font-medium">Structurez votre contenu pour un impact maximal et un meilleur référencement.</p>
                             </div>
-                            <button onClick={() => setIsModalOpen(false)} className="size-12 flex items-center justify-center rounded-2xl bg-slate-50 dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all group">
+                            <button onClick={() => setIsModalOpen(false)} className="size-12 flex items-center justify-center rounded-2xl bg-slate-50 hover:bg-slate-100 text-slate-400 hover:text-slate-900 transition-all group">
                                 <span className="material-symbols-outlined transition-transform group-hover:rotate-90">close</span>
                             </button>
                         </div>
 
                         {/* Modal Body (Scrollable) */}
-                        <div className="flex-1 overflow-y-auto p-10 bg-slate-50/30 dark:bg-slate-950/30">
+                        <div className="flex-1 overflow-y-auto p-10 bg-slate-50/30">
                             <form onSubmit={handleSubmit} className="space-y-12 pb-10">
                                 {/* Section 1: Basic Information */}
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 dark:border-slate-800 pb-12">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 pb-12">
                                     <div>
-                                        <h4 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-wider italic mb-2">1. Informations de Base</h4>
+                                        <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-wider italic mb-2">1. Informations de Base</h4>
                                         <p className="text-[13px] text-slate-500 font-medium leading-relaxed">Identifiez votre article avec un titre percutant et une URL optimisée.</p>
                                     </div>
                                     <div className="lg:col-span-2 space-y-6">
@@ -704,7 +704,7 @@ export default function AdminBlogPage() {
                                                 required
                                                 value={form.title}
                                                 onChange={e => handleTitleChange(e.target.value)}
-                                                className="w-full px-6 py-4.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[15px] font-bold transition-all placeholder:text-slate-300 shadow-sm"
+                                                className="w-full px-6 py-4.5 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[15px] font-bold transition-all placeholder:text-slate-300 shadow-sm"
                                                 placeholder="Comment choisir sa perceuse..."
                                             />
                                         </div>
@@ -715,7 +715,7 @@ export default function AdminBlogPage() {
                                                     required
                                                     value={form.slug}
                                                     onChange={e => setForm({ ...form, slug: e.target.value })}
-                                                    className="w-full px-6 py-4.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-medium transition-all font-mono text-slate-500 shadow-sm"
+                                                    className="w-full px-6 py-4.5 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-medium transition-all font-mono text-slate-500 shadow-sm"
                                                 />
                                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
                                                     <span className="material-symbols-outlined text-[18px] text-slate-300">link</span>
@@ -728,7 +728,7 @@ export default function AdminBlogPage() {
                                                 rows={3}
                                                 value={form.excerpt}
                                                 onChange={e => setForm({ ...form, excerpt: e.target.value })}
-                                                className="w-full px-6 py-4.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-medium transition-all resize-none shadow-sm"
+                                                className="w-full px-6 py-4.5 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-medium transition-all resize-none shadow-sm"
                                                 placeholder="Une brève description pour accrocher vos lecteurs..."
                                             />
                                         </div>
@@ -736,19 +736,19 @@ export default function AdminBlogPage() {
                                 </div>
 
                                 {/* Section 2: Content */}
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 dark:border-slate-800 pb-12">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 pb-12">
                                     <div>
-                                        <h4 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-wider italic mb-2">2. Contenu Principal</h4>
+                                        <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-wider italic mb-2">2. Contenu Principal</h4>
                                         <p className="text-[13px] text-slate-500 font-medium leading-relaxed">Rédigez le corps de votre article. Utilisez des balises HTML pour la mise en forme.</p>
                                     </div>
                                     <div className="lg:col-span-2">
-                                        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[32px] overflow-hidden shadow-sm">
-                                            <div className="flex items-center gap-1 border-b border-slate-100 dark:border-slate-800 p-2 bg-slate-50/50 dark:bg-slate-800/50">
-                                                <button type="button" onClick={() => insertTag('b', 'Texte en gras')} className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">format_bold</span></button>
-                                                <button type="button" onClick={() => insertTag('i', 'Texte en italique')} className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">format_italic</span></button>
-                                                <button type="button" onClick={() => insertTag('ul', 'Élément de liste')} className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
-                                                <button type="button" onClick={() => insertTag('a', 'Lien')} className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">link</span></button>
-                                                <button type="button" onClick={() => editorImageInputRef.current?.click()} className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-lg text-slate-500 transition-colors">
+                                        <div className="bg-white border border-slate-200 rounded-[32px] overflow-hidden shadow-sm">
+                                            <div className="flex items-center gap-1 border-b border-slate-100 p-2 bg-slate-50/50">
+                                                <button type="button" onClick={() => insertTag('b', 'Texte en gras')} className="p-2 hover:bg-white rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">format_bold</span></button>
+                                                <button type="button" onClick={() => insertTag('i', 'Texte en italique')} className="p-2 hover:bg-white rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">format_italic</span></button>
+                                                <button type="button" onClick={() => insertTag('ul', 'Élément de liste')} className="p-2 hover:bg-white rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">format_list_bulleted</span></button>
+                                                <button type="button" onClick={() => insertTag('a', 'Lien')} className="p-2 hover:bg-white rounded-lg text-slate-500 transition-colors"><span className="material-symbols-outlined text-[20px]">link</span></button>
+                                                <button type="button" onClick={() => editorImageInputRef.current?.click()} className="p-2 hover:bg-white rounded-lg text-slate-500 transition-colors">
                                                     <span className="material-symbols-outlined text-[20px]">image</span>
                                                 </button>
                                                 <input
@@ -758,13 +758,13 @@ export default function AdminBlogPage() {
                                                     accept="image/*"
                                                     className="hidden"
                                                 />
-                                                <div className="h-6 w-px bg-slate-200 dark:bg-slate-700 mx-2" />
+                                                <div className="h-6 w-px bg-slate-200 mx-2" />
                                                 <button type="button" onClick={() => setShowPreview(!showPreview)} className={`px-3 py-1 rounded-lg text-[11px] font-black uppercase transition-all border ${showPreview ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'text-primary border-primary/20 hover:bg-primary hover:text-white'}`}>
                                                     {showPreview ? 'Éditeur' : 'Aperçu'}
                                                 </button>
                                             </div>
                                             {showPreview ? (
-                                                <div className="w-full px-8 py-8 min-h-[400px] bg-white dark:bg-slate-900 overflow-y-auto prose dark:prose-invert max-w-none">
+                                                <div className="w-full px-8 py-8 min-h-[400px] bg-white overflow-y-auto prose max-w-none">
                                                     <div dangerouslySetInnerHTML={{ __html: form.content || '<p class="text-slate-300 italic">Aucun contenu à prévisualiser...</p>' }} className="blog-content-preview text-[16px] leading-[1.8] font-medium" />
                                                 </div>
                                             ) : (
@@ -783,13 +783,13 @@ export default function AdminBlogPage() {
                                 </div>
 
                                 {/* Section 3: Media */}
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 dark:border-slate-800 pb-12">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 pb-12">
                                     <div>
-                                        <h4 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-wider italic mb-2">3. Média à la Une</h4>
+                                        <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-wider italic mb-2">3. Média à la Une</h4>
                                         <p className="text-[13px] text-slate-500 font-medium leading-relaxed">L'image de couverture qui apparaîtra dans les listes et en haut de l'article.</p>
                                     </div>
                                     <div className="lg:col-span-2">
-                                        <div className="relative group aspect-[16/7] rounded-[32px] bg-white dark:bg-slate-900 border-2 border-dashed border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center overflow-hidden transition-all hover:border-green-500/50 shadow-sm cursor-pointer">
+                                        <div className="relative group aspect-[16/7] rounded-[32px] bg-white border-2 border-dashed border-slate-200 flex flex-col items-center justify-center overflow-hidden transition-all hover:border-green-500/50 shadow-sm cursor-pointer">
                                             {form.imageUrl ? (
                                                 <>
                                                     <img src={form.imageUrl} className="size-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Preview" />
@@ -799,7 +799,7 @@ export default function AdminBlogPage() {
                                                 </>
                                             ) : (
                                                 <div className="text-center p-8">
-                                                    <div className="size-20 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center mx-auto mb-4 border border-slate-100 dark:border-slate-800 shadow-sm group-hover:scale-110 transition-transform">
+                                                    <div className="size-20 rounded-full bg-slate-50 flex items-center justify-center mx-auto mb-4 border border-slate-100 shadow-sm group-hover:scale-110 transition-transform">
                                                         <span className="material-symbols-outlined text-4xl text-slate-300 group-hover:text-green-500">add_photo_alternate</span>
                                                     </div>
                                                     <p className="text-[13px] font-black text-slate-400 uppercase tracking-widest">Cliquez ou glissez pour uploader</p>
@@ -807,7 +807,7 @@ export default function AdminBlogPage() {
                                                 </div>
                                             )}
                                             {isUploading && (
-                                                <div className="absolute inset-0 bg-white/80 dark:bg-slate-950/80 flex flex-col items-center justify-center backdrop-blur-md z-20">
+                                                <div className="absolute inset-0 bg-white/80 flex flex-col items-center justify-center backdrop-blur-md z-20">
                                                     <div className="size-12 border-[3px] border-primary border-t-transparent rounded-full animate-spin mb-4" />
                                                     <p className="text-[12px] font-black uppercase text-primary tracking-widest">Téléchargement...</p>
                                                 </div>
@@ -818,9 +818,9 @@ export default function AdminBlogPage() {
                                 </div>
 
                                 {/* Section 4: Classification */}
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 dark:border-slate-800 pb-12">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 border-b border-slate-100 pb-12">
                                     <div>
-                                        <h4 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-wider italic mb-2">4. Classification</h4>
+                                        <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-wider italic mb-2">4. Classification</h4>
                                         <p className="text-[13px] text-slate-500 font-medium leading-relaxed">Organisez votre contenu pour aider les utilisateurs à le trouver.</p>
                                     </div>
                                     <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -830,7 +830,7 @@ export default function AdminBlogPage() {
                                                 <select
                                                     value={form.category}
                                                     onChange={e => setForm({ ...form, category: e.target.value })}
-                                                    className="w-full px-6 py-4.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none text-[14px] font-bold transition-all appearance-none cursor-pointer shadow-sm"
+                                                    className="w-full px-6 py-4.5 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-primary/10 focus:border-primary outline-none text-[14px] font-bold transition-all appearance-none cursor-pointer shadow-sm"
                                                 >
                                                     <option value="">Sélectionner une catégorie</option>
                                                     {categories.map(cat => (
@@ -854,12 +854,12 @@ export default function AdminBlogPage() {
                                                             }
                                                         }
                                                     }}
-                                                    className="w-full px-6 py-4.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-medium transition-all shadow-sm"
+                                                    className="w-full px-6 py-4.5 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-medium transition-all shadow-sm"
                                                     placeholder="Tapez et appuyez sur Entrée..."
                                                 />
                                                 <div className="flex flex-wrap gap-2">
                                                     {form.tags.map(tag => (
-                                                        <span key={tag} className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-xl text-[12px] font-black uppercase tracking-tight">
+                                                        <span key={tag} className="flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-xl text-[12px] font-black uppercase tracking-tight">
                                                             {tag}
                                                             <button
                                                                 type="button"
@@ -879,7 +879,7 @@ export default function AdminBlogPage() {
                                 {/* Section 6: Publication */}
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
                                     <div>
-                                        <h4 className="text-[15px] font-black text-slate-900 dark:text-white uppercase tracking-wider italic mb-2">6. Publication</h4>
+                                        <h4 className="text-[15px] font-black text-slate-900 uppercase tracking-wider italic mb-2">6. Publication</h4>
                                         <p className="text-[13px] text-slate-500 font-medium leading-relaxed">Définissez les paramètres de sortie de l'article.</p>
                                     </div>
                                     <div className="lg:col-span-2 space-y-8">
@@ -891,17 +891,17 @@ export default function AdminBlogPage() {
                                                         type="date"
                                                         value={form.publishDate}
                                                         onChange={e => setForm({ ...form, publishDate: e.target.value })}
-                                                        className="w-full px-6 py-4.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-bold transition-all shadow-sm"
+                                                        className="w-full px-6 py-4.5 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-green-500/10 focus:border-green-500 outline-none text-[14px] font-bold transition-all shadow-sm"
                                                     />
                                                 </div>
                                             </div>
                                             <div className="space-y-2">
                                                 <label className="text-[11px] font-black uppercase tracking-[0.2em] text-slate-400 ml-1">État de l'article</label>
-                                                <div className="flex bg-slate-100 dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-inner">
+                                                <div className="flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200 shadow-inner">
                                                     <button
                                                         type="button"
                                                         onClick={() => setForm({ ...form, status: 'Draft' })}
-                                                        className={`flex-1 py-3 text-[11px] font-black uppercase tracking-widest rounded-xl transition-all ${form.status === 'Draft' ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm' : 'text-slate-500 hover:text-slate-600'}`}
+                                                        className={`flex-1 py-3 text-[11px] font-black uppercase tracking-widest rounded-xl transition-all ${form.status === 'Draft' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-600'}`}
                                                     >
                                                         Brouillon
                                                     </button>
@@ -921,11 +921,11 @@ export default function AdminBlogPage() {
                         </div>
 
                         {/* Modal Footer */}
-                        <div className="px-10 py-8 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex items-center justify-between gap-6">
+                        <div className="px-10 py-8 border-t border-slate-100 bg-white flex items-center justify-between gap-6">
                             <button
                                 type="button"
                                 onClick={() => setIsModalOpen(false)}
-                                className="px-10 py-4.5 border border-slate-200 dark:border-slate-800 rounded-2xl text-[13px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-900 transition-all active:scale-95"
+                                className="px-10 py-4.5 border border-slate-200 rounded-2xl text-[13px] font-black text-slate-500 uppercase tracking-widest hover:bg-slate-50 transition-all active:scale-95"
                             >
                                 Annuler
                             </button>
@@ -948,13 +948,13 @@ export default function AdminBlogPage() {
             {/* Tip Modal */}
             {isTipModalOpen && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
-                    <div className="bg-white dark:bg-slate-950 rounded-[32px] shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-300">
-                        <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                            <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight italic flex items-center gap-3">
+                    <div className="bg-white rounded-[32px] shadow-2xl border border-slate-200 w-full max-w-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-300">
+                        <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between">
+                            <h3 className="text-xl font-black text-slate-900 uppercase tracking-tight italic flex items-center gap-3">
                                 <Quote size={24} className="text-emerald-600" />
                                 {editingTip ? 'Modifier l\'Astuce' : 'Nouvelle Astuce Expert'}
                             </h3>
-                            <button onClick={() => setIsTipModalOpen(false)} className="size-10 flex items-center justify-center rounded-xl bg-slate-50 dark:bg-slate-900 text-slate-400 hover:text-slate-900 transition-colors">
+                            <button onClick={() => setIsTipModalOpen(false)} className="size-10 flex items-center justify-center rounded-xl bg-slate-50 text-slate-400 hover:text-slate-900 transition-colors">
                                 <span className="material-symbols-outlined">close</span>
                             </button>
                         </div>
@@ -966,7 +966,7 @@ export default function AdminBlogPage() {
                                     rows={4}
                                     value={tipForm.content}
                                     onChange={e => setTipForm({ ...tipForm, content: e.target.value })}
-                                    className="w-full px-6 py-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none text-[15px] font-medium transition-all resize-none shadow-sm"
+                                    className="w-full px-6 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none text-[15px] font-medium transition-all resize-none shadow-sm"
                                     placeholder="Partagez un conseil d'expert..."
                                 />
                             </div>
@@ -977,7 +977,7 @@ export default function AdminBlogPage() {
                                         required
                                         value={tipForm.authorName}
                                         onChange={e => setTipForm({ ...tipForm, authorName: e.target.value })}
-                                        className="w-full px-5 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none text-[14px] font-bold transition-all shadow-sm"
+                                        className="w-full px-5 py-3.5 bg-white border border-slate-200 rounded-xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none text-[14px] font-bold transition-all shadow-sm"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -986,11 +986,11 @@ export default function AdminBlogPage() {
                                         required
                                         value={tipForm.authorRole}
                                         onChange={e => setTipForm({ ...tipForm, authorRole: e.target.value })}
-                                        className="w-full px-5 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none text-[14px] font-bold transition-all shadow-sm"
+                                        className="w-full px-5 py-3.5 bg-white border border-slate-200 rounded-xl focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none text-[14px] font-bold transition-all shadow-sm"
                                     />
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3 p-4 bg-emerald-50/30 dark:bg-emerald-900/10 rounded-2xl border border-emerald-100 dark:border-emerald-900/20">
+                            <div className="flex items-center gap-3 p-4 bg-emerald-50/30 rounded-2xl border border-emerald-100">
                                 <input
                                     type="checkbox"
                                     id="tip-active"
@@ -998,10 +998,10 @@ export default function AdminBlogPage() {
                                     onChange={e => setTipForm({ ...tipForm, isActive: e.target.checked })}
                                     className="size-5 accent-emerald-600 rounded cursor-pointer"
                                 />
-                                <label htmlFor="tip-active" className="text-[13px] font-bold text-slate-700 dark:text-slate-300 cursor-pointer">Activer cette astuce immédiatement (désactive les autres)</label>
+                                <label htmlFor="tip-active" className="text-[13px] font-bold text-slate-700 cursor-pointer">Activer cette astuce immédiatement (désactive les autres)</label>
                             </div>
                             <div className="pt-4 flex gap-4">
-                                <button type="button" onClick={() => setIsTipModalOpen(false)} className="px-8 py-4 border border-slate-200 dark:border-slate-800 rounded-2xl text-[13px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-900 transition-all active:scale-95">Annuler</button>
+                                <button type="button" onClick={() => setIsTipModalOpen(false)} className="px-8 py-4 border border-slate-200 rounded-2xl text-[13px] font-black text-slate-400 uppercase tracking-widest hover:bg-slate-50 transition-all active:scale-95">Annuler</button>
                                 <button disabled={isSubmitting} type="submit" className="flex-1 py-4 bg-emerald-700 text-white rounded-2xl text-[13px] font-black uppercase tracking-[0.2em] shadow-xl shadow-emerald-900/20 hover:bg-emerald-800 active:scale-[0.98] transition-all disabled:opacity-50 flex items-center justify-center gap-2">
                                     {isSubmitting ? (
                                         <div className="size-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

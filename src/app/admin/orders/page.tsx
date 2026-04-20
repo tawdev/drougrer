@@ -26,16 +26,16 @@ import {
 import { useNotification } from '../../context/NotificationContext';
 
 function Skeleton({ className }: { className?: string }) {
-  return <div className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`} />;
+  return <div className={`animate-pulse bg-slate-200 rounded ${className}`} />;
 }
 
 function StatusBadge({ status }: { status: Order['status'] }) {
   const map: Record<Order['status'], { bg: string; text: string; icon: any }> = {
-    pending: { bg: 'bg-amber-50 dark:bg-amber-900/20 ring-amber-600/20', text: 'text-amber-700 dark:text-amber-400', icon: Clock },
-    confirmed: { bg: 'bg-blue-50 dark:bg-blue-900/20 ring-blue-600/20', text: 'text-blue-700 dark:text-blue-400', icon: Package },
-    processing: { bg: 'bg-indigo-50 dark:bg-indigo-900/20 ring-indigo-600/20', text: 'text-indigo-700 dark:text-indigo-400', icon: Package },
-    completed: { bg: 'bg-emerald-50 dark:bg-emerald-900/20 ring-emerald-600/20', text: 'text-emerald-700 dark:text-emerald-400', icon: CheckCircle2 },
-    cancelled: { bg: 'bg-rose-50 dark:bg-rose-900/20 ring-rose-600/20', text: 'text-rose-700 dark:text-rose-400', icon: XCircle },
+    pending: { bg: 'bg-amber-50 ring-amber-600/20', text: 'text-amber-700', icon: Clock },
+    confirmed: { bg: 'bg-blue-50 ring-blue-600/20', text: 'text-blue-700', icon: Package },
+    processing: { bg: 'bg-indigo-50 ring-indigo-600/20', text: 'text-indigo-700', icon: Package },
+    completed: { bg: 'bg-emerald-50 ring-emerald-600/20', text: 'text-emerald-700', icon: CheckCircle2 },
+    cancelled: { bg: 'bg-rose-50 ring-rose-600/20', text: 'text-rose-700', icon: XCircle },
   };
   const s = map[status] || map.pending;
   const Icon = s.icon;
@@ -159,17 +159,17 @@ export default function AdminOrdersPage() {
   };
 
   return (
-    <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-slate-50/50 dark:bg-background-dark">
+    <main className="flex-1 overflow-y-auto no-scrollbar p-4 md:p-8 bg-slate-50/50">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-black text-slate-900 dark:text-slate-100 tracking-tighter uppercase">Gestion des Commandes</h2>
-          <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium italic">Suivez et gérez les flux de ventes de votre droguerie.</p>
+          <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">Gestion des Commandes</h2>
+          <p className="text-slate-500 mt-1 font-medium italic">Suivez et gérez les flux de ventes de votre droguerie.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative hidden sm:block">
             <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
-              className="pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-xs font-bold focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64"
+              className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64"
               placeholder="Chercher client, réf..."
               type="text"
               value={searchQuery}
@@ -178,7 +178,7 @@ export default function AdminOrdersPage() {
           </div>
           <button
             onClick={() => loadData()}
-            className="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-black uppercase tracking-widest text-slate-700 dark:text-slate-300 shadow-sm hover:bg-slate-50 transition-all"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-xl text-xs font-black uppercase tracking-widest text-slate-700 shadow-sm hover:bg-slate-50 transition-all"
           >
             Actualiser
           </button>
@@ -187,9 +187,9 @@ export default function AdminOrdersPage() {
 
       {/* Error */}
       {error && (
-        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-2xl p-4 flex items-center gap-3 text-red-700 dark:text-red-400 mb-6">
+        <div className="bg-red-50 border border-red-200 rounded-2xl p-4 flex items-center gap-3 text-red-700 mb-6 font-bold uppercase tracking-tight">
           <XCircle size={20} />
-          <p className="text-sm font-bold uppercase tracking-tight">{error}</p>
+          <p className="text-sm">{error}</p>
         </div>
       )}
 
@@ -201,21 +201,21 @@ export default function AdminOrdersPage() {
           { label: 'Chiffre d\'Affaires', value: stats ? `${Number(stats.revenue).toFixed(2).replace('.', ',')} MAD` : '—', icon: CheckCircle2, colorClass: 'bg-emerald-50 text-emerald-600' },
           { label: 'Aujourd\'hui', value: stats?.todayCount?.toLocaleString(), icon: MoreHorizontal, colorClass: 'bg-indigo-50 text-indigo-600' },
         ].map(({ label, value, icon: Icon, colorClass }) => (
-          <div key={label} className="bg-white dark:bg-slate-900 p-6 rounded-[24px] border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all">
+          <div key={label} className="bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm hover:shadow-md transition-all">
             <div className="flex justify-between items-start mb-4">
               <div className={`p-3 rounded-xl ${colorClass}`}>
                 <Icon size={20} />
               </div>
             </div>
-            <p className="text-slate-400 dark:text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">{label}</p>
-            {loading ? <Skeleton className="h-8 w-24 mt-2" /> : <p className="text-2xl font-black mt-1 text-slate-900 dark:text-white tracking-tighter">{value ?? '—'}</p>}
+            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">{label}</p>
+            {loading ? <Skeleton className="h-8 w-24 mt-2" /> : <p className="text-2xl font-black mt-1 text-slate-900 tracking-tighter">{value ?? '—'}</p>}
           </div>
         ))}
       </div>
 
       {/* Table Section */}
-      <div className="bg-white dark:bg-slate-900 rounded-[32px] border border-slate-100 dark:border-slate-800 shadow-sm overflow-hidden">
-        <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex flex-wrap gap-2 items-center bg-slate-50/30">
+      <div className="bg-white rounded-[32px] border border-slate-100 shadow-sm overflow-hidden">
+        <div className="p-4 border-b border-slate-100 flex flex-wrap gap-2 items-center bg-slate-50/30">
           {STATUS_FILTERS.map((f) => (
             <button
               key={f.value}
@@ -228,7 +228,7 @@ export default function AdminOrdersPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-slate-100 dark:border-slate-800">
+              <tr className="border-b border-slate-100">
                 <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Réf / Client</th>
                 <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Montant Total</th>
                 <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Statut</th>
@@ -236,7 +236,7 @@ export default function AdminOrdersPage() {
                 <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+            <tbody className="divide-y divide-slate-50">
               {loading && orders.length === 0 ? (
                 [...Array(5)].map((_, i) => (
                   <tr key={i}>
@@ -257,16 +257,16 @@ export default function AdminOrdersPage() {
               ) : (
                 orders.map((order) => (
                   <React.Fragment key={order.id}>
-                    <tr className={`hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-all cursor-pointer ${expandedOrder === order.id ? 'bg-slate-50/50' : ''}`} onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}>
+                    <tr className={`hover:bg-slate-50/50 transition-all cursor-pointer ${expandedOrder === order.id ? 'bg-slate-50/50' : ''}`} onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}>
                       <td className="px-6 py-6">
                         <div className="flex flex-col">
-                          <span className="text-xs font-black text-slate-900 dark:text-white uppercase mb-1">
+                          <span className="text-xs font-black text-slate-900 uppercase mb-1">
                             {order.invoiceReference || `#${String(order.id).padStart(4, '0')}`}
                           </span>
                           <span className="text-sm font-bold text-slate-500">{order.customerName}</span>
                         </div>
                       </td>
-                      <td className="px-6 py-6 text-sm font-black text-slate-900 dark:text-slate-100">
+                      <td className="px-6 py-6 text-sm font-black text-slate-900">
                         {Number(order.totalPrice).toFixed(2).replace('.', ',')} <span className="text-[10px]">MAD</span>
                       </td>
                       <td className="px-6 py-6"><StatusBadge status={order.status} /></td>
@@ -431,12 +431,12 @@ export default function AdminOrdersPage() {
             <button
               onClick={(e) => { e.stopPropagation(); setPage((p) => Math.max(1, p - 1)); }}
               disabled={page === 1 || loading}
-              className="px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 disabled:opacity-50 transition-all"
+              className="px-4 py-2 border border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white text-slate-600 disabled:opacity-50 transition-all"
             >Précédent</button>
             <button
               onClick={(e) => { e.stopPropagation(); setPage((p) => Math.min(totalPages, p + 1)); }}
               disabled={page === totalPages || loading}
-              className="px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 disabled:opacity-50 transition-all"
+              className="px-4 py-2 border border-slate-200 rounded-xl text-[10px] font-black uppercase tracking-widest bg-white text-slate-600 disabled:opacity-50 transition-all"
             >Suivant</button>
           </div>
         </div>

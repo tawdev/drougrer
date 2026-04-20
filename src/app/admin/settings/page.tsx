@@ -108,7 +108,7 @@ export default function AdminSettingsPage() {
 
     if (loading) {
         return (
-            <div className="flex-1 flex items-center justify-center bg-slate-50 dark:bg-slate-950">
+            <div className="flex-1 flex items-center justify-center bg-slate-50">
                 <div className="flex flex-col items-center gap-4">
                     <div className="size-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
                     <p className="text-sm font-bold text-slate-500">Chargement des paramètres...</p>
@@ -118,77 +118,77 @@ export default function AdminSettingsPage() {
     }
 
     return (
-        <main className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950">
+        <main className="flex-1 overflow-y-auto no-scrollbar bg-slate-50">
             {/* Header */}
-            <header className="sticky top-0 z-20 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-10 py-6">
+            <header className="sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-slate-200 px-10 py-6">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Store Settings</h1>
+                    <h1 className="text-3xl font-black text-slate-900 tracking-tight">Store Settings</h1>
                 </div>
             </header>
 
             <div className="p-10 max-w-5xl mx-auto pb-32">
                 <div className="space-y-6 animate-in fade-in duration-500">
                     {/* Store Information Card */}
-                    <div className="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                        <h3 className="text-[18px] font-black text-slate-800 dark:text-white mb-6">Store Information</h3>
+                    <div className="bg-white p-8 rounded-xl border border-slate-200 shadow-sm">
+                        <h3 className="text-[18px] font-black text-slate-800 mb-6">Store Information</h3>
 
                         <div className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[13px] font-bold text-slate-600 dark:text-slate-400">Store Name</label>
+                                    <label className="text-[13px] font-bold text-slate-600">Store Name</label>
                                     <input
                                         type="text"
                                         value={settings.storeName}
                                         onChange={(e) => setSettings({ ...settings, storeName: e.target.value })}
-                                        className="w-full h-11 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[14px] font-medium text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all"
+                                        className="w-full h-11 px-4 rounded-xl bg-white border border-slate-200 text-[14px] font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all"
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[13px] font-bold text-slate-600 dark:text-slate-400">Support Email</label>
+                                    <label className="text-[13px] font-bold text-slate-600">Support Email</label>
                                     <input
                                         type="email"
                                         value={settings.supportEmail}
                                         onChange={(e) => setSettings({ ...settings, supportEmail: e.target.value })}
-                                        className="w-full h-11 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[14px] font-medium text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all"
+                                        className="w-full h-11 px-4 rounded-xl bg-white border border-slate-200 text-[14px] font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[13px] font-bold text-slate-600 dark:text-slate-400">Phone Number</label>
+                                    <label className="text-[13px] font-bold text-slate-600">Phone Number</label>
                                     <input
                                         type="tel"
                                         value={settings.phoneNumber}
                                         onChange={(e) => setSettings({ ...settings, phoneNumber: e.target.value })}
-                                        className="w-full h-11 px-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[14px] font-medium text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all"
+                                        className="w-full h-11 px-4 rounded-xl bg-white border border-slate-200 text-[14px] font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all"
                                     />
                                 </div>
                             </div>
 
                             <div className="space-y-2 pt-2">
-                                <label className="text-[13px] font-bold text-slate-600 dark:text-slate-400">Address</label>
+                                <label className="text-[13px] font-bold text-slate-600">Address</label>
                                 <textarea
                                     value={settings.address}
                                     onChange={(e) => setSettings({ ...settings, address: e.target.value })}
                                     rows={3}
-                                    className="w-full p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[14px] font-medium text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                                    className="w-full p-4 rounded-xl bg-white border border-slate-200 text-[14px] font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all resize-none"
                                 />
                             </div>
 
                             <div className="space-y-2 pt-2">
-                                <label className="text-[13px] font-bold text-slate-600 dark:text-slate-400">Store Description (Footer)</label>
+                                <label className="text-[13px] font-bold text-slate-600">Store Description (Footer)</label>
                                 <textarea
                                     value={settings.description || ''}
                                     onChange={(e) => setSettings({ ...settings, description: e.target.value })}
                                     rows={4}
                                     placeholder="Enter a brief description of your store for the footer..."
-                                    className="w-full p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[14px] font-medium text-slate-800 dark:text-white focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all resize-none"
+                                    className="w-full p-4 rounded-xl bg-white border border-slate-200 text-[14px] font-medium text-slate-800 focus:outline-none focus:ring-1 focus:ring-primary/20 focus:border-primary transition-all resize-none"
                                 />
                             </div>
 
-                            <div className="pt-8 mb-4 border-t border-slate-100 dark:border-slate-800">
-                                <h4 className="text-[13px] font-bold text-slate-600 dark:text-slate-400 mb-4">Store Logo</h4>
+                            <div className="pt-8 mb-4 border-t border-slate-100">
+                                <h4 className="text-[13px] font-bold text-slate-600 mb-4">Store Logo</h4>
                                 <div className="flex items-start gap-4">
                                     {/* Logo Preview */}
                                     <div className="size-[88px] rounded-xl bg-[#2a303c] flex items-center justify-center border border-slate-800 overflow-hidden shrink-0 mt-1 relative group">
@@ -229,7 +229,7 @@ export default function AdminSettingsPage() {
                                                 <button 
                                                     onClick={handleRemoveLogo}
                                                     disabled={isUploading}
-                                                    className="h-9 px-6 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-white text-[13px] font-bold transition-colors disabled:opacity-50"
+                                                    className="h-9 px-6 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-[13px] font-bold transition-colors disabled:opacity-50"
                                                 >
                                                     Remove
                                                 </button>
@@ -246,10 +246,10 @@ export default function AdminSettingsPage() {
 
             {/* Bottom Sticky Footer - Only shown if changes exist */}
             {isDirty && (
-                <div className="fixed bottom-0 left-0 right-0 md:left-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 p-4 md:px-10 z-30 flex items-center justify-end gap-4 shadow-[0_-10px_40px_-20px_rgba(0,0,0,0.1)] animate-in slide-in-from-bottom-5 duration-300">
+                <div className="fixed bottom-0 left-0 right-0 md:left-64 bg-white/80 backdrop-blur-xl border-t border-slate-200 p-4 md:px-10 z-30 flex items-center justify-end gap-4 shadow-[0_-10px_40px_-20px_rgba(0,0,0,0.1)] animate-in slide-in-from-bottom-5 duration-300">
                     <button 
                         onClick={handleDiscard}
-                        className="h-12 px-6 rounded-xl font-black text-[14px] text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors"
+                        className="h-12 px-6 rounded-xl font-black text-[14px] text-slate-500 hover:text-slate-900 transition-colors"
                     >
                         Discard Changes
                     </button>

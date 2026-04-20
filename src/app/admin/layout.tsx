@@ -32,11 +32,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         : 'AD';
 
     return (
-        <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased min-h-screen" style={{ '--primary': '#BF1737', '--background-light': '#f8fafc', '--background-dark': '#0f172a' } as React.CSSProperties}>
+        <div className="bg-background-light text-slate-900 antialiased min-h-screen" style={{ '--primary': '#BF1737', '--background-light': '#f8fafc' } as React.CSSProperties}>
             <div className="flex h-screen overflow-hidden">
                 {/* Fixed Sidebar */}
-                <aside className="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col h-full z-30">
-                    <div className="p-6 border-b border-slate-100 dark:border-slate-800">
+                <aside className="w-64 flex-shrink-0 bg-white border-r border-slate-200 flex flex-col h-full z-30">
+                    <div className="p-6 border-b border-slate-100">
                         <Link href="/admin" className="flex items-center gap-3 group">
                             <div className="relative shrink-0" style={{ width: 130, height: 52 }}>
                                 <img
@@ -47,10 +47,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 />
                             </div>
                         </Link>
-                        <p className="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1 pl-1">Management Portal</p>
+                        <p className="text-slate-500 text-xs font-medium mt-1 pl-1">Management Portal</p>
                     </div>
 
-                    <nav className="flex-1 px-4 space-y-1 overflow-y-auto scrollbar-hide py-2">
+                    <nav className="flex-1 px-4 space-y-1 overflow-y-auto no-scrollbar py-2">
                         {navItems.map((item) => {
                             const isActive = pathname === item.href;
                             return (
@@ -59,7 +59,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                     href={item.href}
                                     className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group ${isActive
                                         ? 'bg-primary/10 text-primary'
-                                        : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-primary dark:hover:text-primary'
+                                        : 'text-slate-600 hover:bg-slate-50 hover:text-primary'
                                         }`}
                                 >
                                     <span className={`material-symbols-outlined text-[22px] transition-colors ${isActive ? 'fill-1' : 'group-hover:text-primary'}`}>
@@ -76,13 +76,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                         })}
                     </nav>
 
-                    <div className="p-4 mt-auto border-t border-slate-100 dark:border-slate-800">
-                        <div className="bg-slate-50 dark:bg-slate-800/50 rounded-xl p-3 flex items-center gap-3">
+                    <div className="p-4 mt-auto border-t border-slate-100">
+                        <div className="bg-slate-50 rounded-xl p-3 flex items-center gap-3">
                             <div className="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs uppercase">
                                 {initials}
                             </div>
                             <div className="flex flex-col overflow-hidden max-w-[100px]">
-                                <span className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                                <span className="text-xs font-bold text-slate-900 truncate">
                                     {user?.fullName || 'Admin User'}
                                 </span>
                                 <span className="text-[10px] text-slate-500 truncate lowercase">

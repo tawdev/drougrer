@@ -24,7 +24,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({ search, setSearch }) => {
       {/* Background with Image and Red Grid Overlay */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-60 mix-blend-luminosity"
-        style={{ backgroundImage: "url('/blog-hero-bg.png')" }}
+        style={ { backgroundImage: "url('/blog-hero-bg.png')" }}
       />
       <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#BF1737]/40 to-transparent mix-blend-multiply" />
       

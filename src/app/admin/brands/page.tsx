@@ -100,7 +100,7 @@ export default function AdminBrandsPage() {
     };
 
     return (
-        <div className="flex-1 h-full min-h-0 flex flex-col overflow-y-auto p-8 bg-slate-50/30">
+        <div className="flex-1 h-full min-h-0 flex flex-col overflow-y-auto no-scrollbar p-8 bg-slate-50/30">
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
                 <div>
