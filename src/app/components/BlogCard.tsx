@@ -26,11 +26,11 @@ export default function BlogCard({ post, priority = false, layout = 'grid' }: Bl
                 ease: [0.16, 1, 0.3, 1],
                 opacity: { duration: 0.4 }
             }}
-            className="w-full h-full"
+            className="w-full"
         >
             <Link
                 href={`/blog/post/${post.slug}`}
-                className={`group bg-white rounded-[40px] blog-card-shadow border border-slate-200 flex flex-col overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-[#BF1737]/5 hover:-translate-y-2 hover:border-[#BF1737]/10 h-full ${
+                className={`group bg-white rounded-[40px] blog-card-shadow border border-slate-200 flex flex-col overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-[#BF1737]/5 hover:-translate-y-2 hover:border-[#BF1737]/10 ${
                     layout === 'list' ? 'md:flex-row min-h-[340px]' : ''
                 }`}
             >
@@ -65,7 +65,7 @@ export default function BlogCard({ post, priority = false, layout = 'grid' }: Bl
                 layout === 'list' ? 'p-8 md:p-12 justify-center' : 'p-8'
             }`}>
                 {/* HashTags Row */}
-                <div className={`flex flex-wrap gap-2 mb-5 ${layout === 'grid' ? 'min-h-[32px]' : ''}`}>
+                <div className={`flex flex-wrap gap-2 mb-5 ${layout === 'grid' ? 'min-h-[28px]' : ''}`}>
                     {post.tags && post.tags.length > 0 && post.tags.slice(0, 3).map((tag, i) => (
                         <span key={i} className="px-3.5 py-1.5 rounded-xl bg-slate-50 text-slate-500 text-[10px] font-black uppercase tracking-wider border border-slate-100/50">
                             #{tag}

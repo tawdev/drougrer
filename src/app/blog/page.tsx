@@ -158,7 +158,7 @@ export default function BlogListingPage() {
         transition={{ duration: 0.6, delay: 0.2 }}
         className="bg-white border-b border-slate-100 transition-all duration-300"
       >
-          <div className="mx-auto max-w-[1600px] px-8 lg:px-24 h-16 flex items-center justify-between">
+          <div className="mx-auto max-w-[1600px] px-6 lg:px-12 h-16 flex items-center justify-between">
               {/* Categories */}
               <div className="flex items-center gap-2 overflow-x-auto custom-scrollbar scroll-smooth pb-1 -mb-1">
                   {dynamicCategories.map((cat) => (
@@ -220,7 +220,7 @@ export default function BlogListingPage() {
           </div>
       </motion.section>
       
-      <main className="mx-auto w-full max-w-[1600px] px-8 lg:px-24 py-20 pb-40">
+      <main className="mx-auto w-full max-w-[1400px] px-6 lg:px-12 py-20 pb-40">
         {/* Header Section */}
         <motion.div 
           initial={{ opacity: 0, x: -30 }}
