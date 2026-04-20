@@ -93,7 +93,7 @@ export default function AdminDashboardPage() {
   }, [searchQuery]);
 
   return (
-    <main className="flex-1 flex flex-col overflow-y-auto no-scrollbar" onClick={() => setShowResults(false)}>
+    <main className="flex-1 flex flex-col overflow-y-auto no-scrollbar bg-white" onClick={() => setShowResults(false)}>
       <header className="h-16 flex items-center justify-between px-8 bg-white border-b border-slate-200 sticky top-0 z-40 shrink-0">
         <div className="flex items-center gap-2">
           <h2 className="text-slate-900 text-lg font-bold">Dashboard Overview</h2>

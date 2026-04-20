@@ -108,7 +108,7 @@ export default function AdminInventoryPage() {
     };
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-[#F8FAFC]">
+        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-white">
             <div className="max-w-7xl mx-auto">
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                     <div>

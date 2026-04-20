@@ -159,7 +159,7 @@ export default function AdminOrdersPage() {
   };
 
   return (
-    <main className="flex-1 overflow-y-auto no-scrollbar p-4 md:p-8 bg-slate-50/50">
+    <main className="flex-1 overflow-y-auto no-scrollbar p-4 md:p-8 bg-white">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">Gestion des Commandes</h2>

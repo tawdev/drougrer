@@ -102,7 +102,7 @@ export default function AdminAnalyticsPage() {
     }, [data]);
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-slate-50">
+        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-white">
             <div className="max-w-7xl mx-auto space-y-8 pb-12">
                 {/* Header */}
                 <header className="flex flex-col xl:flex-row xl:items-center justify-between gap-6">

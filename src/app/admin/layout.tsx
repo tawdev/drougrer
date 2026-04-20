@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 const navItems = [
     { label: 'Dashboard', href: '/admin', icon: 'dashboard' },
@@ -31,8 +32,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         ? user.fullName.split(' ').map(n => n[0]).join('').toUpperCase()
         : 'AD';
 
+    // Force light mode on mount/pathname change
+    useEffect(() => {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    }, [pathname]);
+
     return (
-        <div className="bg-background-light text-slate-900 antialiased min-h-screen" style={{ '--primary': '#BF1737', '--background-light': '#f8fafc' } as React.CSSProperties}>
+        <div className="light bg-[#F8FAFC] text-slate-900 antialiased min-h-screen" style={{ '--primary': '#BF1737' } as React.CSSProperties}>
             <div className="flex h-screen overflow-hidden">
                 {/* Fixed Sidebar */}
                 <aside className="w-64 flex-shrink-0 bg-white border-r border-slate-200 flex flex-col h-full z-30">

@@ -215,7 +215,7 @@ export default function AdminProductsPage() {
   };
 
   return (
-    <main className="flex-1 p-8 overflow-y-auto no-scrollbar">
+    <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-white">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Products Inventory</h2>
