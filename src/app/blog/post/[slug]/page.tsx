@@ -250,14 +250,18 @@ export default function BlogPostDetailsPage({ params }: { params: Promise<{ slug
                         </div>
                     </div>
 
-                    <BlogSidebar 
-                        author={postAuthor} 
-                        tags={articleTags} 
-                        toc={toc} 
-                        onTagClick={handleTagClick} 
-                        hideTip={true} 
-                        variant="dark"
-                    />
+                    <aside className="lg:w-[400px] shrink-0">
+                        <div className="sticky top-32 self-start space-y-8">
+                            <BlogSidebar 
+                                author={postAuthor} 
+                                tags={articleTags} 
+                                toc={toc} 
+                                onTagClick={handleTagClick} 
+                                hideTip={true} 
+                                variant="dark"
+                            />
+                        </div>
+                    </aside>
                 </motion.div>
             </main>
 

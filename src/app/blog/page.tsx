@@ -26,6 +26,20 @@ export default function BlogListingPage() {
   const [selectedCategory, setSelectedCategory] = useState('Tous');
   const [dynamicCategories, setDynamicCategories] = useState<string[]>(['Tous']);
   const [sortBy, setSortBy] = useState<'recent' | 'oldest'>('recent');
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const categories = await api.getUniqueCategories();
+        if (categories && categories.length > 0) {
+          setDynamicCategories(['Tous', ...categories]);
+        }
+      } catch (error) {
+        console.error('Failed to fetch blog categories', error);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   const [isSortOpen, setIsSortOpen] = useState(false);
 
   useEffect(() => {
@@ -282,7 +296,7 @@ export default function BlogListingPage() {
             ) : (
               <div className={`grid gap-7 ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'}`}>
                 {posts.map((post: BlogPost, idx) => (
-                  <BlogCard key={post.id} post={post} priority={idx < 3} />
+                  <BlogCard key={post.id} post={post} priority={idx < 3} layout={viewMode} />
                 ))}
               </div>
             )}
@@ -291,12 +305,16 @@ export default function BlogListingPage() {
           </div>
 
           {/* Right: Sidebar */}
-          <BlogListingSidebar 
-            recentPosts={recentPosts} 
-            activeTag={selectedTag}
-            onTagClick={(tag: string) => setSelectedTag(tag === selectedTag ? null : tag)}
-            hideTip={false}
-          />
+          <aside className="lg:w-[380px] shrink-0">
+            <div className="sticky top-32 self-start space-y-8">
+              <BlogListingSidebar 
+                recentPosts={recentPosts} 
+                activeTag={selectedTag}
+                onTagClick={(tag: string) => setSelectedTag(tag === selectedTag ? null : tag)}
+                hideTip={false}
+              />
+            </div>
+          </aside>
         </div>
       </main>
     </div>
