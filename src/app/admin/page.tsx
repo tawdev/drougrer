@@ -7,17 +7,17 @@ import { api, type Order, type ProductStats, type OrderStats, type Product } fro
 
 // ─── Loading skeleton ─────────────────────────────────────────────────────────
 function Skeleton({ className }: { className?: string }) {
-  return <div className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`} />;
+  return <div className={`animate-pulse bg-slate-200 rounded ${className}`} />;
 }
 
 // ─── Status badge ─────────────────────────────────────────────────────────────
 function StatusBadge({ status }: { status: Order['status'] }) {
   const styles: Record<Order['status'], string> = {
-    pending: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-    confirmed: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-400',
-    processing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400',
-    completed: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400',
-    cancelled: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400',
+    pending: 'bg-amber-100 text-amber-700',
+    confirmed: 'bg-indigo-100 text-indigo-700',
+    processing: 'bg-blue-100 text-blue-700',
+    completed: 'bg-green-100 text-green-700',
+    cancelled: 'bg-slate-100 text-slate-600',
   };
   return (
     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold ${styles[status]}`}>
@@ -94,15 +94,15 @@ export default function AdminDashboardPage() {
 
   return (
     <main className="flex-1 flex flex-col overflow-y-auto" onClick={() => setShowResults(false)}>
-      <header className="h-16 flex items-center justify-between px-8 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40 shrink-0">
+      <header className="h-16 flex items-center justify-between px-8 bg-white border-b border-slate-200 sticky top-0 z-40 shrink-0">
         <div className="flex items-center gap-2">
-          <h2 className="text-slate-900 dark:text-slate-100 text-lg font-bold">Dashboard Overview</h2>
+          <h2 className="text-slate-900 text-lg font-bold">Dashboard Overview</h2>
         </div>
         <div className="flex items-center gap-6">
           <div className="relative w-80" onClick={(e) => e.stopPropagation()}>
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
             <input 
-              className="w-full h-10 pl-10 pr-10 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-sm placeholder:text-slate-400 transition-all" 
+              className="w-full h-10 pl-10 pr-10 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-sm placeholder:text-slate-400 transition-all" 
               placeholder="Search orders, products..." 
               type="text" 
               value={searchQuery}
@@ -117,7 +117,7 @@ export default function AdminDashboardPage() {
 
             {/* Search Results Dropdown */}
             {showResults && searchResults && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-slate-200 rounded-xl shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200 z-50">
                 <div className="max-h-[min(70vh,500px)] overflow-y-auto p-2 scrollbar-hide">
                   
                   {/* Orders Section */}
@@ -134,16 +134,16 @@ export default function AdminDashboardPage() {
                           <Link 
                             key={order.id} 
                             href={`/admin/orders?search=${encodeURIComponent(order.customerName)}`}
-                            className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group"
+                            className="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 transition-colors group"
                           >
-                            <div className="size-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                            <div className="size-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600">
                               <span className="material-symbols-outlined text-[18px]">shopping_bag</span>
                             </div>
                             <div className="flex-1 min-w-0">
-                              <p className="text-xs font-bold text-slate-900 dark:text-white truncate">{order.customerName}</p>
+                              <p className="text-xs font-bold text-slate-900 truncate">{order.customerName}</p>
                               <p className="text-[10px] text-slate-500 truncate">#{String(order.id).padStart(4, '0')} • €{Number(order.totalPrice).toFixed(2)}</p>
                             </div>
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-primary group-hover:text-white transition-colors uppercase">
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-500 group-hover:bg-primary group-hover:text-white transition-colors uppercase">
                               {order.status}
                             </span>
                           </Link>
@@ -202,7 +202,7 @@ export default function AdminDashboardPage() {
       <div className="p-8 space-y-8">
         {/* Error state */}
         {error && (
-          <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 flex items-center gap-3 text-red-700 dark:text-red-400">
+          <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3 text-red-700">
             <span className="material-symbols-outlined">error</span>
             <p className="text-sm font-medium">{error}</p>
           </div>
@@ -244,21 +244,21 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Revenue */}
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col gap-3">
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-3">
             <div className="flex justify-between items-start">
               <div className="p-2 bg-primary/10 rounded-lg text-primary"><span className="material-symbols-outlined">payments</span></div>
             </div>
             <div>
-              <p className="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Revenue</p>
-              {loading ? <Skeleton className="h-8 w-20 mt-1" /> : <p className="text-slate-900 dark:text-slate-100 text-2xl font-bold mt-1">€{orderStats ? orderStats.revenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—'}</p>}
+              <p className="text-slate-500 text-sm font-medium">Total Revenue</p>
+              {loading ? <Skeleton className="h-8 w-20 mt-1" /> : <p className="text-slate-900 text-2xl font-bold mt-1">€{orderStats ? orderStats.revenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—'}</p>}
             </div>
           </div>
         </div>
 
         {/* Recent Orders table */}
-        <div className="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
-          <div className="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
-            <h3 className="text-slate-900 dark:text-slate-100 text-lg font-bold">Recent Orders</h3>
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="p-6 border-b border-slate-200 flex items-center justify-between">
+            <h3 className="text-slate-900 text-lg font-bold">Recent Orders</h3>
             <Link href="/admin/orders" className="text-primary text-sm font-semibold hover:underline">View All Orders</Link>
           </div>
 

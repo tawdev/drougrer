@@ -36,7 +36,7 @@ const BlogHero: React.FC<BlogHeroProps> = ({ search, setSearch }) => {
         }} 
       />
 
-      <div className="relative z-30 mx-auto max-w-[1400px] px-6 lg:px-12 pt-12 pb-24">
+      <div className="relative z-30 mx-auto max-w-[1600px] px-8 lg:px-24 pt-12 pb-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
           
           {/* Left Content */}

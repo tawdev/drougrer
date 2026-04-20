@@ -6,14 +6,14 @@ import { api, type Product, type ProductStats, type Brand, type Category } from 
 import { useNotification } from '../../context/NotificationContext';
 
 function Skeleton({ className }: { className?: string }) {
-  return <div className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`} />;
+  return <div className={`animate-pulse bg-slate-200 rounded ${className}`} />;
 }
 
 function StockBar({ stock }: { stock: number }) {
   if (stock === 0) {
     return (
       <div className="flex items-center gap-2">
-        <div className="h-1.5 w-24 bg-slate-200 dark:bg-slate-700 rounded-full" />
+        <div className="h-1.5 w-24 bg-slate-200 rounded-full" />
         <span className="text-xs font-medium text-rose-600">Out of Stock</span>
       </div>
     );
@@ -23,7 +23,7 @@ function StockBar({ stock }: { stock: number }) {
   const textColor = stock <= 10 ? 'text-amber-600' : 'text-emerald-600';
   return (
     <div className="flex-1 flex flex-col flex items-center gap-2">
-      <div className="h-1.5 w-24 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+      <div className="h-1.5 w-24 bg-slate-200 rounded-full overflow-hidden">
         <div className={`${color} h-full rounded-full`} style={{ width: `${pct}%` }} />
       </div>
       <span className={`text-xs font-medium ${textColor}`}>{stock} in stock</span>
@@ -218,14 +218,14 @@ export default function AdminProductsPage() {
     <main className="flex-1 p-8 overflow-y-auto">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">Products Inventory</h2>
-          <p className="text-slate-500 dark:text-slate-400 mt-1">Manage your catalog, prices, and stock levels effortlessly.</p>
+          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Products Inventory</h2>
+          <p className="text-slate-500 mt-1">Manage your catalog, prices, and stock levels effortlessly.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative hidden sm:block">
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
             <input
-              className="pl-10 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64"
+              className="pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all w-64"
               placeholder="Search products..."
               type="text"
               value={searchQuery}
@@ -258,12 +258,12 @@ export default function AdminProductsPage() {
       {/* Stat cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         {[
-          { label: 'Total Products', value: stats?.total, icon: 'inventory', colorClass: 'bg-blue-50 dark:bg-blue-900/20 text-blue-600' },
-          { label: 'Low Stock', value: stats?.lowStock, icon: 'warning', colorClass: 'bg-amber-50 dark:bg-amber-900/20 text-amber-600' },
-          { label: 'Active Items', value: stats?.active, icon: 'check_circle', colorClass: 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600' },
-          { label: 'Out of Stock', value: stats?.outOfStock, icon: 'block', colorClass: 'bg-rose-50 dark:bg-rose-900/20 text-rose-600' },
+          { label: 'Total Products', value: stats?.total, icon: 'inventory', colorClass: 'bg-blue-50 text-blue-600' },
+          { label: 'Low Stock', value: stats?.lowStock, icon: 'warning', colorClass: 'bg-amber-50 text-amber-600' },
+          { label: 'Active Items', value: stats?.active, icon: 'check_circle', colorClass: 'bg-emerald-50 text-emerald-600' },
+          { label: 'Out of Stock', value: stats?.outOfStock, icon: 'block', colorClass: 'bg-rose-50 text-rose-600' },
         ].map(({ label, value, icon, colorClass }) => (
-          <div key={label} className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div key={label} className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
             <div className="flex items-center gap-4">
               <div className={`size-12 rounded-full flex items-center justify-center ${colorClass}`}>
                 <span className="material-symbols-outlined">{icon}</span>
@@ -278,12 +278,12 @@ export default function AdminProductsPage() {
       </div>
 
       {/* Products table */}
-      <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative">
+      <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden relative">
         {loading && stats && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 dark:bg-slate-900/40 backdrop-blur-[2px] animate-in fade-in duration-300">
-            <div className="flex flex-col items-center gap-3 bg-white dark:bg-slate-800 p-6 rounded-xl shadow-xl border border-slate-100 dark:border-slate-700">
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/40 backdrop-blur-[2px] animate-in fade-in duration-300">
+            <div className="flex flex-col items-center gap-3 bg-white p-6 rounded-xl shadow-xl border border-slate-100">
               <div className="size-10 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-              <p className="text-sm font-bold text-slate-600 dark:text-slate-300">Fetching products...</p>
+              <p className="text-sm font-bold text-slate-600">Fetching products...</p>
             </div>
           </div>
         )}
@@ -291,7 +291,7 @@ export default function AdminProductsPage() {
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-slate-50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+              <tr className="bg-slate-50 border-b border-slate-200">
                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Image</th>
                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Product Name</th>
                 <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Category</th>
@@ -450,8 +450,8 @@ export default function AdminProductsPage() {
       {/* Add Product Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
-            <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between shrink-0">
+          <div className="bg-white rounded-xl shadow-2xl border border-slate-200 w-full max-w-xl max-h-[90vh] flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between shrink-0">
               <div>
                 <h3 className="text-xl font-bold text-slate-900 dark:text-white">
                   {editingProduct ? 'Edit Product' : 'Add New Product'}

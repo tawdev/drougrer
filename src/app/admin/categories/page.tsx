@@ -5,7 +5,7 @@ import { api, type Category } from '../../lib/api';
 import { useNotification } from '../../context/NotificationContext';
 
 function Skeleton({ className }: { className?: string }) {
-    return <div className={`animate-pulse bg-slate-200 dark:bg-slate-700 rounded ${className}`} />;
+    return <div className={`animate-pulse bg-slate-200 rounded ${className}`} />;
 }
 
 
@@ -139,12 +139,12 @@ export default function AdminCategoriesPage() {
     };
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto bg-[#F8FAFC] dark:bg-[#0F172A]">
+        <main className="flex-1 p-8 overflow-y-auto bg-[#F8FAFC]">
             <div className="max-w-7xl mx-auto">
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                     <div>
-                        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Categories Management</h2>
-                        <p className="text-slate-500 dark:text-slate-400 mt-1 font-medium text-[15px]">Organize and manage your product catalog sections.</p>
+                        <h2 className="text-2xl font-black text-slate-900 tracking-tight">Categories Management</h2>
+                        <p className="text-slate-500 mt-1 font-medium text-[15px]">Organize and manage your product catalog sections.</p>
                     </div>
                     <button
                         onClick={() => {
@@ -163,7 +163,7 @@ export default function AdminCategoriesPage() {
                 <div className="mb-6 relative">
                     <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
                     <input
-                        className="w-full pl-12 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm placeholder:text-slate-400"
+                        className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm placeholder:text-slate-400"
                         placeholder="Search categories..."
                         type="text"
                         value={searchQuery}
@@ -173,18 +173,18 @@ export default function AdminCategoriesPage() {
 
                 {/* Error */}
                 {error && (
-                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-4 flex items-center gap-3 text-red-700 dark:text-red-400 mb-6 animate-in slide-in-from-top-2">
+                    <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3 text-red-700 mb-6 animate-in slide-in-from-top-2">
                         <span className="material-symbols-outlined">error</span>
                         <p className="text-sm font-medium">{error}</p>
                     </div>
                 )}
 
                 {/* Table */}
-                <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden relative">
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden relative">
                     <div className="overflow-x-auto">
                         <table className="w-full text-left">
                             <thead>
-                                <tr className="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                                <tr className="bg-slate-50/50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
                                     <th className="px-8 py-5">Category Name</th>
                                     <th className="px-8 py-5">Description</th>
                                     <th className="px-8 py-5">Product Count</th>
@@ -326,10 +326,10 @@ export default function AdminCategoriesPage() {
             {/* Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200">
-                    <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-200">
-                        <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-lg overflow-hidden animate-in zoom-in-95 duration-200">
+                        <div className="px-8 py-6 border-b border-slate-100 flex items-center justify-between">
                             <div>
-                                <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                                <h3 className="text-xl font-bold text-slate-900">
                                     {editingCategory ? 'Edit Category' : 'Add New Category'}
                                 </h3>
                                 <p className="text-sm text-slate-500 mt-1 font-medium">Configure your category details and status.</p>
