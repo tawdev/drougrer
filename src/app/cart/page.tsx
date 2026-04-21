@@ -22,6 +22,11 @@ export default function ShoppingCartPage() {
         phone: '',
         address: ''
     });
+    const [settings, setSettings] = useState<any>(null);
+
+    useEffect(() => {
+        api.getSettings().then(setSettings).catch(console.error);
+    }, []);
 
     const handleCheckout = async () => {
         setIsLoading(true);
@@ -72,7 +77,7 @@ export default function ShoppingCartPage() {
                 items: orderPayload.items,
                 totalPrice: orderPayload.totalPrice,
                 customerInfo,
-            });
+            }, settings?.phoneNumber);
 
             // 3. Small delay for UX transition
             setTimeout(() => {

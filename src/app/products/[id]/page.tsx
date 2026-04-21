@@ -30,6 +30,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
     const [reviewRating, setReviewRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(0);
     const [reviews, setReviews] = useState<Review[]>([]);
+    const [settings, setSettings] = useState<any>(null);
     const { toggleWishlist, isInWishlist } = useWishlist();
     const { toggleCompare, isInCompare } = useCompare();
     const { addToCart } = useCart();
@@ -51,6 +52,10 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
                 // Load approved reviews from API
                 const approvedReviews = await api.getProductReviews(id);
                 setReviews(approvedReviews);
+
+                // Load Settings for WhatsApp ordering
+                const storeSettings = await api.getSettings();
+                setSettings(storeSettings);
 
             } catch (err) {
                 console.error('Failed to load product or reviews:', err);
@@ -358,7 +363,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
                                 const whatsappLink = generateWhatsAppLink({
                                     items: [{ name: product.name, quantity, price: product.price }],
                                     totalPrice: product.price * quantity
-                                });
+                                }, settings?.phoneNumber);
                                 window.open(whatsappLink, '_blank');
                             }}
                             className="w-full h-[52px] bg-[#1a1a2e] text-white rounded-[20px] hover:bg-[#111122] transition-all flex items-center justify-center relative overflow-hidden group mb-10 shadow-xl shadow-slate-200"

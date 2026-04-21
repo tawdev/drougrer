@@ -26,10 +26,16 @@ export class ProductsService {
         onSale?: boolean,
         ecoFriendly?: boolean,
         sort?: string,
+        activeOnly = false,
     ): Promise<{ data: Product[]; total: number; page: number; totalPages: number }> {
-        const qb = this.productRepository.createQueryBuilder('product')
-            .leftJoinAndSelect('product.category', 'category')
-            .leftJoinAndSelect('product.brand', 'brand');
+        const qb = this.productRepository.createQueryBuilder('product');
+
+        if (activeOnly) {
+            qb.innerJoinAndSelect('product.category', 'category', 'category.isActive = :catIsActive', { catIsActive: true });
+        } else {
+            qb.leftJoinAndSelect('product.category', 'category');
+        }
+        qb.leftJoinAndSelect('product.brand', 'brand');
 
         if (search) {
             qb.andWhere('(product.name LIKE :search OR product.sku LIKE :search)', { search: `%${search}%` });

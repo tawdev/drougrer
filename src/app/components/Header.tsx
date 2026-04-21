@@ -32,7 +32,7 @@ export default function Header() {
 
     useEffect(() => {
         setMounted(true);
-        api.getCategories().then(setCategories).catch(console.error);
+        api.getCategories(true).then(setCategories).catch(console.error);
     }, []);
 
     // Flatten categories for the dropdown

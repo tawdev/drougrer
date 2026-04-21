@@ -46,7 +46,7 @@ export default function Navbar() {
     }, []);
 
     useEffect(() => {
-        api.getCategories().then(setCategories).catch(console.error);
+        api.getCategories(true).then(setCategories).catch(console.error);
     }, []);
 
     const categoryTree = useMemo(() => {

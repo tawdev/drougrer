@@ -274,7 +274,7 @@ async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> 
 
 export const api = {
     // Products
-    getProducts: (query: ProductQuery = {}) => {
+    getProducts: (query: ProductQuery & { active?: boolean } = {}) => {
         const params = new URLSearchParams();
         Object.entries(query).forEach(([key, value]) => {
             if (value !== undefined && value !== null && value !== '') {
@@ -375,7 +375,10 @@ export const api = {
     }),
 
     // Categories
-    getCategories: () => apiFetch<Category[]>('/categories'),
+    getCategories: (activeOnly = false) => {
+        const query = activeOnly ? '?active=true' : '';
+        return apiFetch<Category[]>(`/categories${query}`);
+    },
     getUniqueCategories: () => apiFetch<string[]>('/blog/categories/unique'),
     createCategory: (data: { name: string; description?: string; isActive?: boolean; parentId?: number | null }) =>
         fetch(`${API_BASE}/categories`, {

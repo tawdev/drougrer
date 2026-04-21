@@ -1,5 +1,21 @@
 import * as dotenv from 'dotenv';
-dotenv.config();
+import * as path from 'path';
+import * as fs from 'fs';
+
+// Try multiple locations for .env
+const envPaths = [
+    path.resolve(process.cwd(), '.env'),
+    path.resolve(process.cwd(), 'backend/droguerie-backend/.env'),
+    path.resolve(__dirname, '../../../.env'),
+    path.resolve(__dirname, '../../.env'),
+];
+
+for (const envPath of envPaths) {
+    if (fs.existsSync(envPath)) {
+        dotenv.config({ path: envPath });
+        break;
+    }
+}
 
 import { ValueTransformer } from 'typeorm';
 import * as crypto from 'crypto';
@@ -25,7 +41,7 @@ export class EncryptionTransformer implements ValueTransformer {
   private getKey(): Buffer | null {
     const rawKey = process.env.ENCRYPTION_KEY;
     if (!rawKey || rawKey.length !== 64) {
-      console.error('CRITICAL: ENCRYPTION_KEY is missing or invalid (must be 64 characters hex). Encryption skipped.');
+      console.warn(`[Encryption] ENCRYPTION_KEY is ${!rawKey ? 'MISSING' : 'INVALID (length ' + rawKey.length + ')'}. Decryption will be skipped.`);
       return null;
     }
     return Buffer.from(rawKey, 'hex');
@@ -68,13 +84,11 @@ export class EncryptionTransformer implements ValueTransformer {
       const encryptedText = parts[1];
       
       const decipher = crypto.createDecipheriv(this.algorithm, key, iv);
-      let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
-      decrypted += decipher.final('utf8');
-      
+      const decrypted = decipher.update(encryptedText, 'hex', 'utf8') + decipher.final('utf8');
+      console.log(`[Encryption] Successfully decrypted value starting with ${value.substring(0, 10)}... -> ${decrypted.substring(0, 5)}...`);
       return decrypted;
     } catch (error) {
-      // If decryption fails (e.g. wrong key), return the raw value
-      console.error('Decryption failed. Database key may have changed or data is corrupted.');
+      console.error(`[Encryption] Decryption failed for value starting with ${value.substring(0, 10)}... Possible key mismatch.`);
       return value;
     }
   }

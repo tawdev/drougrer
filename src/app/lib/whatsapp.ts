@@ -16,9 +16,32 @@ export interface OrderDetails {
     };
 }
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER as string;
+const DEFAULT_WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '';
 
-export function generateWhatsAppLink(order: OrderDetails): string {
+/**
+ * Sanitizes a phone number for use in a wa.me link.
+ * Removes all non-digit characters.
+ * If number starts with '00', replaces with empty string (country code should be handled outside or via 212).
+ * For Morocco: if it starts with '06' or '07', we assume it needs the 212 prefix if not present.
+ */
+function sanitizePhoneNumber(phone: string): string {
+    // Remove all non-digits (including + and spaces)
+    let cleaned = phone.replace(/\D/g, '');
+    
+    // If it starts with 06 or 07 and has 10 digits, it's likely a Moroccan number without country code
+    if (cleaned.length === 10 && (cleaned.startsWith('06') || cleaned.startsWith('07'))) {
+        cleaned = '212' + cleaned.substring(1);
+    }
+    
+    // If it starts with 00, remove it
+    if (cleaned.startsWith('00')) {
+        cleaned = cleaned.substring(2);
+    }
+    
+    return cleaned;
+}
+
+export function generateWhatsAppLink(order: OrderDetails, customNumber?: string): string {
     const header = "🛒 *NOUVELLE COMMANDE - DROGUERIEAPP*\n\n";
 
     const itemsList = order.items
@@ -38,5 +61,7 @@ export function generateWhatsAppLink(order: OrderDetails): string {
     const fullMessage = `${header}${itemsList}${footer}${customerSection}\n\n_Commande générée via DroguerieApp_`;
 
     const encodedMessage = encodeURIComponent(fullMessage);
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    const finalNumber = sanitizePhoneNumber(customNumber || DEFAULT_WHATSAPP_NUMBER);
+    
+    return `https://wa.me/${finalNumber}?text=${encodedMessage}`;
 }

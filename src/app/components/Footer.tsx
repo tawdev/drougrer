@@ -13,9 +13,10 @@ export default function Footer() {
     const [tags, setTags] = useState<string[]>([]);
 
     useEffect(() => {
-        api.getCategories().then(res => {
+        api.getCategories(true).then(res => {
             const prioritizedNames = ['Peinture', 'Outillage', 'Plomberie', 'Quincaillerie', 'Électricité', 'Matériaux'];
             const filtered = res.filter(c =>
+                c.parentId === null &&
                 prioritizedNames.some(name => c.name.toLowerCase().includes(name.toLowerCase()))
             ).sort((a, b) => {
                 const indexA = prioritizedNames.findIndex(name => a.name.toLowerCase().includes(name.toLowerCase()));
@@ -37,9 +38,16 @@ export default function Footer() {
         'Outillage Maroc', 'Peinture Maroc', 'Perceuse Bosch',
         'Perceuse Visseuse', 'Quincaillerie Maroc', 'Robinetterie', 'Visserie'
     ];
-    const allAvailableTags = (tags.length > 0 ? tags : defaultTags).map(cleanTag).filter((t: string) => t.length > 0);
-    // Fixed slice to keep height consistent with other footer columns
-    const displayTags = allAvailableTags.slice(0, 8);
+
+    // Filter and clean tags, ensuring uniqueness
+    const allAvailableTags = Array.from(new Set(
+        (tags.length > 0 ? tags : defaultTags)
+            .map(cleanTag)
+            .filter((t: string) => t.length > 1) // Remove single-char noise if any
+    ));
+    
+    // Limit to 10 tags for balance with other columns
+    const displayTags = allAvailableTags.slice(0, 10);
 
     return (
         <footer className="border-t border-slate-200 bg-white pt-10 sm:pt-20 pb-10 mt-auto">

@@ -83,7 +83,7 @@ export default function ProductCard({ product, className = '', imageClassName = 
         href={`/products/${product.id}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`group/card flex transition-all hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] relative h-full bg-white border border-slate-200 rounded-[8px] p-3 sm:p-4 overflow-hidden ${isList
+        className={`group/card flex transition-all hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] relative h-full bg-white border border-slate-200 rounded-[8px] p-3 sm:p-4 ${isList
           ? 'flex-row w-full gap-4 sm:gap-6 items-start'
           : 'flex-col w-full max-w-[280px]'
           }`}

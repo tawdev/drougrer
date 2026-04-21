@@ -141,7 +141,7 @@ function ProductListingContent() {
 
   // Load Categories & Brands
   useEffect(() => {
-    api.getCategories().then(setCategories).catch(console.error);
+    api.getCategories(true).then(setCategories).catch(console.error);
     api.getActiveBrands().then(setBrands).catch(console.error);
   }, []);
 
@@ -161,13 +161,14 @@ function ProductListingContent() {
         onSale: onSale || undefined,
         ecoFriendly: ecoFriendly || undefined,
         sort: sort || undefined,
+        active: true,
       });
       setProducts(res.data);
       setTotal(res.total);
       setTotalPages(res.totalPages || Math.ceil(res.total / limit));
 
       // Fetch categories with products count logic (handled via caching in a real app, but fetched here)
-      const cachedCategories = await api.getCategories();
+      const cachedCategories = await api.getCategories(true);
       setCategories(cachedCategories);
 
     } catch (err) {

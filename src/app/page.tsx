@@ -160,7 +160,7 @@ export default function HomePage() {
 
   // Initial Fetch: Categories and first set of products
   useEffect(() => {
-    api.getCategories().then(res => {
+    api.getCategories(true).then(res => {
       const active = res.filter(c => c.isActive);
       setCategories(active);
 
@@ -174,7 +174,7 @@ export default function HomePage() {
       }
     }).catch(console.error);
 
-    api.getProducts({ limit: 18 }).then(res => setFeaturedProducts(res.data)).catch(console.error);
+    api.getProducts({ limit: 18, active: true }).then(res => setFeaturedProducts(res.data)).catch(console.error);
 
     api.getBrands().then(res => setBrands(res.filter(b => b.isActive))).catch(console.error);
   }, []);
@@ -188,6 +188,7 @@ export default function HomePage() {
     if (activeTab === 'Promotions') query.onSale = true;
     if (activeTab === 'Nouveautés' || activeTab === 'Derniers Ajouts') query.sort = 'createdAt';
 
+    query.active = true;
     api.getProducts(query)
       .then(res => {
         setFeaturedProducts(res.data);
@@ -210,7 +211,7 @@ export default function HomePage() {
     if (activeCategoryId) {
       setIsLoadingProducts(true);
       setActiveCategoryPage(0); // Reset page on category change
-      api.getProducts({ categoryId: activeCategoryId, limit: 18 })
+      api.getProducts({ categoryId: activeCategoryId, limit: 18, active: true })
         .then(res => {
           setCategoryProducts(res.data);
           setIsLoadingProducts(false);
@@ -301,6 +302,7 @@ export default function HomePage() {
       if (activeIncontournableTab === 'En Promo') query.onSale = true;
       if (activeIncontournableTab === 'Meilleures Ventes') query.sort = 'popularity';
 
+      query.active = true;
       api.getProducts(query)
         .then(res => {
           setIncontournableProducts(res.data);
@@ -670,7 +672,7 @@ export default function HomePage() {
                   }
                 }
               }}
-              className="flex items-center pl-2 gap-3 overflow-x-auto custom-scrollbar pb-4 pt-4 lg:pb-4 w-full lg:w-auto"
+              className="flex items-center pl-2 gap-3 overflow-x-auto custom-scrollbar pb-12 pt-4 lg:pb-12 w-full lg:w-auto"
             >
               {(categories.length > 0) ? (
                 categories
@@ -723,7 +725,7 @@ export default function HomePage() {
           <div
             ref={categoryScrollRef}
             onScroll={handleCategoryScroll}
-            className={`mt-6 pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pb-4 transition-all duration-500 ${isLoadingProducts ? 'opacity-50' : 'opacity-100'}`}
+            className={`mt-6 pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pb-12 transition-all duration-500 ${isLoadingProducts ? 'opacity-50' : 'opacity-100'}`}
           >
             {categoryProducts.map((product) => (
               <ProductCard 
@@ -810,7 +812,7 @@ export default function HomePage() {
           <div
             ref={featuredScrollRef}
             onScroll={handleFeaturedScroll}
-            className={`pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pb-4 transition-opacity duration-300 ${isLoadingFeatured ? 'opacity-50' : 'opacity-100'}`}
+            className={`pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pb-12 transition-opacity duration-300 ${isLoadingFeatured ? 'opacity-50' : 'opacity-100'}`}
           >
             {featuredProducts.map((product, idx) => (
               <ProductCard 
@@ -1002,7 +1004,7 @@ export default function HomePage() {
             <div
               ref={incontournableScrollRef}
               onScroll={handleIncontournableScroll}
-              className={`flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pt-8 pb-4 transition-opacity duration-300 ${isLoadingIncontournable ? 'opacity-50' : 'opacity-100'}`}
+              className={`flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pt-8 pb-12 transition-opacity duration-300 ${isLoadingIncontournable ? 'opacity-50' : 'opacity-100'}`}
             >
               {incontournableProducts.length > 0 ? incontournableProducts.map((product, idx) => (
                 <ProductCard
