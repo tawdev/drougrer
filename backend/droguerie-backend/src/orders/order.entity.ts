@@ -14,7 +14,7 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({ type: 'text', transformer: encryptionTransformer })
+    @Column({ type: 'text' })
     customerName: string;
 
     @Column({ type: 'text', transformer: encryptionTransformer })

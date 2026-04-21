@@ -10,8 +10,10 @@ export class CategoriesService {
         private readonly categoryRepository: Repository<Category>,
     ) { }
 
-    findAll(): Promise<Category[]> {
+    findAll(activeOnly = false): Promise<Category[]> {
+        const where = activeOnly ? { isActive: true } : {};
         return this.categoryRepository.find({
+            where,
             relations: ['products', 'children', 'parent'],
             order: { name: 'ASC' }
         });

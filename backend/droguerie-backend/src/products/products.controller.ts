@@ -19,6 +19,7 @@ export class ProductsController {
         @Query('onSale') onSale?: string,
         @Query('ecoFriendly') ecoFriendly?: string,
         @Query('sort') sort?: string,
+        @Query('active') active?: string,
     ) {
         return this.productsService.findAll(
             Number(page),
@@ -31,7 +32,8 @@ export class ProductsController {
             inStock === 'true',
             onSale === 'true',
             ecoFriendly === 'true',
-            sort
+            sort,
+            active === 'true'
         );
     }
 

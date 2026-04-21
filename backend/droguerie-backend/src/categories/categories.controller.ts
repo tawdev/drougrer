@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Patch, Delete, Body, Param, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Delete, Body, Param, ParseIntPipe, Query } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 
 @Controller('categories')
@@ -6,8 +6,9 @@ export class CategoriesController {
     constructor(private readonly categoriesService: CategoriesService) { }
 
     @Get()
-    findAll() {
-        return this.categoriesService.findAll();
+    findAll(@Query('active') active?: string) {
+        const activeOnly = active === 'true';
+        return this.categoriesService.findAll(activeOnly);
     }
 
     @Get('count')
