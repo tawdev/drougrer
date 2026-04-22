@@ -25,6 +25,8 @@ const DEFAULT_WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '';
  * For Morocco: if it starts with '06' or '07', we assume it needs the 212 prefix if not present.
  */
 function sanitizePhoneNumber(phone: string): string {
+    if (!phone) return '';
+    
     // Remove all non-digits (including + and spaces)
     let cleaned = phone.replace(/\D/g, '');
     
@@ -45,10 +47,10 @@ export function generateWhatsAppLink(order: OrderDetails, customNumber?: string)
     const header = "🛒 *NOUVELLE COMMANDE - DROGUERIEAPP*\n\n";
 
     const itemsList = order.items
-        .map(item => `• *${item.name}*\n  Quantité: ${item.quantity}\n  Prix: ${item.price.toFixed(2)} MAD`)
+        .map(item => `• *${item.name}*\n  Quantité: ${item.quantity}\n  Prix: ${Number(item.price).toFixed(2)} MAD`)
         .join("\n\n");
 
-    const footer = `\n\n💰 *TOTAL: ${order.totalPrice.toFixed(2)} MAD*`;
+    const footer = `\n\n💰 *TOTAL: ${Number(order.totalPrice).toFixed(2)} MAD*`;
 
     let customerSection = "";
     if (order.customerInfo && (order.customerInfo.name || order.customerInfo.phone || order.customerInfo.address)) {

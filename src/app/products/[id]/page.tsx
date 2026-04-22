@@ -360,9 +360,13 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
                         {/* WhatsApp Ordering Button (Direct) */}
                         <button
                             onClick={() => {
+                                if (!settings?.phoneNumber && !process.env.NEXT_PUBLIC_WHATSAPP_NUMBER) {
+                                    showToast('Numéro WhatsApp non configuré.', 'error');
+                                    return;
+                                }
                                 const whatsappLink = generateWhatsAppLink({
-                                    items: [{ name: product.name, quantity, price: product.price }],
-                                    totalPrice: product.price * quantity
+                                    items: [{ name: product.name, quantity, price: Number(product.price) }],
+                                    totalPrice: Number(product.price) * quantity
                                 }, settings?.phoneNumber);
                                 window.open(whatsappLink, '_blank');
                             }}

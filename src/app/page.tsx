@@ -672,7 +672,7 @@ export default function HomePage() {
                   }
                 }
               }}
-              className="flex items-center pl-2 gap-3 overflow-x-auto custom-scrollbar pb-12 pt-4 lg:pb-12 w-full lg:w-auto"
+              className="flex items-center px-4 gap-3 overflow-x-auto custom-scrollbar pb-12 pt-4 lg:pb-12 w-full lg:w-auto"
             >
               {(categories.length > 0) ? (
                 categories

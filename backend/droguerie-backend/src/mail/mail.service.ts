@@ -23,7 +23,7 @@ export class MailService implements OnModuleInit {
         const pass = this.configService.get<string>('SMTP_PASS');
 
         if (!user || !pass) {
-            this.logger.error('CRITICAL: SMTP_USER or SMTP_PASS missing in .env. Emails disabled.');
+            this.logger.error('❌ CRITICAL: SMTP_USER or SMTP_PASS missing in environment variables. Email services are disabled.');
             return;
         }
 
@@ -131,7 +131,7 @@ export class MailService implements OnModuleInit {
                         </div>
 
                         <div style="margin-top: 40px; text-align: center;">
-                            <a href="http://localhost:3000/invoice?orderId=${order.id}" style="display: inline-block; padding: 16px 32px; background: #BF1737; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 14px; text-transform: uppercase;">Voir la facture complète</a>
+                            <a href="${this.configService.get('FRONTEND_URL', 'http://localhost:3000')}/invoice?orderId=${order.id}" style="display: inline-block; padding: 16px 32px; background: #BF1737; color: #ffffff; text-decoration: none; border-radius: 12px; font-weight: bold; font-size: 14px; text-transform: uppercase;">Voir la facture complète</a>
                         </div>
                     </div>
                     <div class="footer">
@@ -169,7 +169,7 @@ export class MailService implements OnModuleInit {
         if (!recipients.length || !this.transporter) return;
 
         const senderEmail = this.configService.get<string>('SMTP_USER');
-        const baseUrl = 'http://localhost:3000'; // Should be in env
+        const baseUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000';
         const link = content.type === 'ARTICLE'
             ? `${baseUrl}/blog/post/${content.slug}`
             : `${baseUrl}/blog`; // Tips show on the listing page
@@ -273,7 +273,7 @@ export class MailService implements OnModuleInit {
                     </div>
                     <p>Un rapport détaillé au format PDF a été généré et joint à cet e-mail pour votre gestion administrative.</p>
                     <div style="margin-top: 32px; text-align: center;">
-                        <a href="http://localhost:3000/admin/orders" class="button">Gérer dans le Tableau de Bord</a>
+                        <a href="${this.configService.get('FRONTEND_URL', 'http://localhost:3000')}/admin/orders" class="button">Gérer dans le Tableau de Bord</a>
                     </div>
                 </div>
             </body>
@@ -296,6 +296,61 @@ export class MailService implements OnModuleInit {
             this.logger.log(`✅ Notification Admin envoyée pour la commande ${order.id}`);
         } catch (error) {
             this.logger.error(`❌ Échec de la notification Admin pour la commande ${order.id}:`, error.message);
+        }
+    }
+
+    /**
+     * Sends a welcome email to new newsletter subscribers.
+     */
+    async sendWelcomeEmail(email: string) {
+        if (!this.transporter) return;
+
+        const senderEmail = this.configService.get<string>('SMTP_USER');
+        const baseUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000';
+
+        const htmlContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; line-height: 1.6; color: #2d3748; margin: 0; padding: 0; background-color: #f7fafc; }
+                    .container { max-width: 600px; margin: 40px auto; background: #ffffff; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+                    .header { background: #0D0D0D; padding: 50px 20px; text-align: center; color: #ffffff; }
+                    .content { padding: 40px; text-align: center; }
+                    .footer { background: #f7fafc; padding: 25px; text-align: center; font-size: 12px; color: #a0aec0; border-top: 1px solid #edf2f7; }
+                    h2 { margin: 0; font-size: 28px; font-weight: 900; color: #1a202c; line-height: 1.2; text-transform: uppercase; }
+                    .welcome-text { margin: 24px 0 32px; color: #718096; font-size: 16px; line-height: 1.6; }
+                    .button { display: inline-block; padding: 18px 40px; background: #BF1737; color: #ffffff; text-decoration: none; border-radius: 14px; font-weight: 900; font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h2>Bienvenue !</h2>
+                    </div>
+                    <div class="content">
+                        <p class="welcome-text">Merci de vous être abonné à la Newsletter de <strong>Droguerie Maroc</strong>. Vous recevrez désormais nos meilleures astuces et articles en avant-première.</p>
+                        <a href="${baseUrl}/blog" class="button">Découvrir le Blog</a>
+                    </div>
+                    <div class="footer">
+                        <p>Vous recevez cet email car vous venez de vous abonner à notre Newsletter.</p>
+                        <p>© ${new Date().getFullYear()} Droguerie Maroc - Casablanca</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `;
+
+        try {
+            await this.transporter.sendMail({
+                from: `"Droguerie Maroc" <${senderEmail}>`,
+                to: email,
+                subject: '🚀 Bienvenue dans notre Newsletter !',
+                html: htmlContent,
+            });
+            this.logger.log(`✅ Welcome email sent to ${email}`);
+        } catch (error) {
+            this.logger.error(`❌ Failed to send welcome email to ${email}:`, error.message);
         }
     }
 }

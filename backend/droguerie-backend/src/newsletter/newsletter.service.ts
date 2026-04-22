@@ -3,12 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NewsletterSubscriber } from './newsletter-subscriber.entity';
 import * as crypto from 'crypto';
+import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class NewsletterService {
     constructor(
         @InjectRepository(NewsletterSubscriber)
         private subscriberRepo: Repository<NewsletterSubscriber>,
+        private mailService: MailService,
     ) {}
 
     /**
@@ -36,7 +38,14 @@ export class NewsletterService {
             email,
             emailHash 
         });
-        return this.subscriberRepo.save(subscriber);
+        const saved = await this.subscriberRepo.save(subscriber);
+
+        // Send welcome email (asynchronous, don't wait for it to block the response)
+        this.mailService.sendWelcomeEmail(email).catch(err => {
+            console.error('📢 Failed to send welcome newsletter email:', err.message);
+        });
+
+        return saved;
     }
 
     async findAll(): Promise<NewsletterSubscriber[]> {
