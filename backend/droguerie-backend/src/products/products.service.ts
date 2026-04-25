@@ -5,13 +5,19 @@ import { Product } from './product.entity';
 import { Category } from '../categories/category.entity';
 import { CategoriesService } from '../categories/categories.service';
 import { CreateProductDto, UpdateProductDto } from './dto/create-product.dto';
+import { NewsletterService } from '../newsletter/newsletter.service';
+import { MailService } from '../mail/mail.service';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class ProductsService {
+    private readonly logger = new Logger(ProductsService.name);
     constructor(
         @InjectRepository(Product)
         private readonly productRepository: Repository<Product>,
         private readonly categoriesService: CategoriesService,
+        private readonly newsletterService: NewsletterService,
+        private readonly mailService: MailService,
     ) { }
 
     async findAll(
@@ -115,7 +121,32 @@ export class ProductsService {
 
     async create(data: CreateProductDto): Promise<Product> {
         const product = this.productRepository.create(data);
-        return this.productRepository.save(product);
+        const savedProduct = await this.productRepository.save(product);
+
+        // Notify subscribers about the new product
+        this.notifySubscribers(savedProduct);
+
+        return savedProduct;
+    }
+
+    private async notifySubscribers(product: Product) {
+        try {
+            const emails = await this.newsletterService.findAllEmails();
+            this.logger.log(`📢 Broadcasting new product "${product.name}" to ${emails.length} subscribers...`);
+            if (emails.length > 0) {
+                await this.mailService.sendNewsletterNotification(emails, {
+                    title: product.name,
+                    excerpt: product.description || `Découvrez notre nouveau produit : ${product.name}. Prix : ${product.price} MAD.`,
+                    type: 'PRODUCT',
+                    slug: `${product.id}`
+                });
+                this.logger.log(`✅ Product newsletter broadcast completed successfully`);
+            } else {
+                this.logger.warn('⚠️ No valid subscriber emails found — newsletter was NOT sent.');
+            }
+        } catch (error) {
+            this.logger.error(`❌ Failed to broadcast newsletter for new product: ${error.message}`, error.stack);
+        }
     }
 
     async findOne(id: number): Promise<Product | null> {

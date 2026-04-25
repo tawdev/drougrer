@@ -165,17 +165,21 @@ export class MailService implements OnModuleInit {
      * @param recipients Array of decrypted subscriber emails
      * @param content Data about the new article or tip
      */
-    async sendNewsletterNotification(recipients: string[], content: { title: string; excerpt: string; type: 'ARTICLE' | 'TIP'; slug?: string }) {
+    async sendNewsletterNotification(recipients: string[], content: { title: string; excerpt: string; type: 'ARTICLE' | 'TIP' | 'PRODUCT'; slug?: string }) {
         if (!recipients.length || !this.transporter) return;
 
         const senderEmail = this.configService.get<string>('SMTP_USER');
         const baseUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000';
         const link = content.type === 'ARTICLE'
             ? `${baseUrl}/blog/post/${content.slug}`
+            : content.type === 'PRODUCT'
+            ? `${baseUrl}/products/${content.slug}`
             : `${baseUrl}/blog`; // Tips show on the listing page
 
         const subject = content.type === 'ARTICLE'
             ? `🆕 Nouvel Article : ${content.title}`
+            : content.type === 'PRODUCT'
+            ? `📦 Nouveau Produit : ${content.title}`
             : `💡 Astuce du Moment : ${content.title}`;
 
         const htmlContent = `
@@ -197,12 +201,16 @@ export class MailService implements OnModuleInit {
             <body>
                 <div class="container">
                     <div class="header">
-                        <div class="badge">${content.type === 'ARTICLE' ? 'NOUVEAUTÉ BLOG' : 'ASTUCE D\'EXPERT'}</div>
+                        <div class="badge">
+                            ${content.type === 'ARTICLE' ? 'NOUVEAUTÉ BLOG' : content.type === 'PRODUCT' ? 'NOUVEAU PRODUIT' : 'ASTUCE D\'EXPERT'}
+                        </div>
                         <h2>${content.title}</h2>
                     </div>
                     <div class="content">
                         <p class="excerpt">${content.excerpt}</p>
-                        <a href="${link}" class="button">${content.type === 'ARTICLE' ? 'Lire l\'article Complet' : 'Découvrir l\'Astuce'}</a>
+                        <a href="${link}" class="button">
+                            ${content.type === 'ARTICLE' ? 'Lire l\'article Complet' : content.type === 'PRODUCT' ? 'Voir le Produit' : 'Découvrir l\'Astuce'}
+                        </a>
                     </div>
                     <div class="footer">
                         <p>Vous recevez cet email car vous êtes abonné à la Newsletter Pro de <strong>Droguerie Maroc</strong>.</p>
