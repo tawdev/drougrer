@@ -170,6 +170,8 @@ export class MailService implements OnModuleInit {
 
         const senderEmail = this.configService.get<string>('SMTP_USER');
         const baseUrl = this.configService.get<string>('FRONTEND_URL') || 'http://localhost:3000';
+        
+        this.logger.log(`📧 Starting newsletter broadcast to ${recipients.length} recipients for: ${content.title}`);
         const link = content.type === 'ARTICLE'
             ? `${baseUrl}/blog/post/${content.slug}`
             : content.type === 'PRODUCT'
@@ -233,6 +235,10 @@ export class MailService implements OnModuleInit {
                         to: email,
                         subject: subject,
                         html: htmlContent,
+                    }).then(() => {
+                        this.logger.log(`✅ Email sent to ${email}`);
+                    }).catch(err => {
+                        this.logger.error(`❌ Failed to send to ${email}: ${err.message}`);
                     })
                 ));
                 this.logger.log(`📢 Newsletter broadcast: Sent batch ${Math.floor(i / batchSize) + 1} (${batch.length} recipients)`);
