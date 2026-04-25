@@ -5,6 +5,7 @@ import {
     ManyToOne,
     JoinColumn,
     CreateDateColumn,
+    UpdateDateColumn,
 } from 'typeorm';
 import { Category } from '../categories/category.entity';
 import { Brand } from '../brands/brand.entity';
@@ -25,6 +26,9 @@ export class Product {
 
     @Column('decimal', { precision: 10, scale: 2, nullable: true })
     oldPrice: number;
+
+    @Column({ default: 0 })
+    salesCount: number;
 
     @Column({ default: 0 })
     stock: number;
@@ -63,4 +67,7 @@ export class Product {
 
     @CreateDateColumn()
     createdAt: Date;
+
+    @UpdateDateColumn()
+    updatedAt: Date;
 }

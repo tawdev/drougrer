@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import {
   ArrowRight,
   ChevronRight,
+  ChevronLeft,
   Star,
   ShieldCheck,
   Zap,
@@ -27,6 +28,7 @@ import {
   Droplets,
   Nut,
   Package,
+  HardHat,
   Quote
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -70,6 +72,10 @@ export default function HomePage() {
   const [activeCategoryPage, setActiveCategoryPage] = useState(0);
   const productsPerPage = 6;
   const [brands, setBrands] = useState<Brand[]>([]);
+
+  // Dynamic category link helpers — filter to parent categories only to avoid matching sub-categories
+  const quincaillerieCategory = useMemo(() => categories.find(c => c.parentId === null && c.name.toLowerCase().includes('quincaillerie')), [categories]);
+  const peintureCategory = useMemo(() => categories.find(c => c.parentId === null && c.name.toLowerCase().includes('peinture')), [categories]);
 
   const [activeTab, setActiveTab] = useState('Populaires');
   const [activeIncontournableTab, setActiveIncontournableTab] = useState('Derniers Produits');
@@ -186,7 +192,8 @@ export default function HomePage() {
 
     if (activeTab === 'Populaires') query.sort = 'popularity';
     if (activeTab === 'Promotions') query.onSale = true;
-    if (activeTab === 'Nouveautés' || activeTab === 'Derniers Ajouts') query.sort = 'createdAt';
+    if (activeTab === 'Nouveautés') query.sort = 'createdAt';
+    if (activeTab === 'Derniers Ajouts') query.sort = 'updatedAt';
 
     query.active = true;
     api.getProducts(query)
@@ -204,7 +211,75 @@ export default function HomePage() {
   // Reset page when tab changes
   useEffect(() => {
     setFeaturedPage(1);
+    // Explicitly reset scroll position to start
+    if (featuredScrollRef.current) {
+        featuredScrollRef.current.scrollTo({ left: 0, behavior: 'auto' });
+    }
   }, [activeTab]);
+
+  // Fetch incontournables
+  useEffect(() => {
+    setIsLoadingIncontournable(true);
+    let query: any = { page: 1, limit: 12, active: true };
+    
+    if (activeIncontournableTab === 'Derniers Produits') query.sort = 'createdAt';
+    if (activeIncontournableTab === 'En Promo') query.onSale = true;
+    if (activeIncontournableTab === 'Meilleures Ventes') query.sort = 'popularity';
+
+    if (activeIncontournableTab === 'Vus Récemment') {
+      // Handle local storage recently viewed
+      try {
+        const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
+        if (recentlyViewed.length > 0) {
+            // Because our current API does not support exact ID matching array, 
+            // we will fetch general products but preferably we would filter by IDs.
+            // For MVP, we'll fetch them individually if needed, or just sort by newest as fallback.
+            // A better way is to rely on frontend filtering if required, but let's just fetch latest 15.
+        }
+      } catch(e){}
+    }
+
+    api.getProducts(query)
+      .then(res => {
+        // Special logic for "Vus Récemment" since it relies on localStorage IDs
+        if (activeIncontournableTab === 'Vus Récemment') {
+            try {
+                const recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
+                if (recentlyViewed.length > 0) {
+                    // Fetch each product individually since api.getProducts might not support 'ids' array
+                    Promise.all(recentlyViewed.map((id: number) => api.getProductById(id)))
+                        .then(products => {
+                            const validProducts = products.filter(Boolean) as Product[];
+                            setIncontournableProducts(validProducts);
+                            setIsLoadingIncontournable(false);
+                        });
+                    return;
+                } else {
+                    setIncontournableProducts([]);
+                    setIsLoadingIncontournable(false);
+                    return;
+                }
+            } catch(e){
+                console.error(e);
+            }
+        }
+
+        setIncontournableProducts(res.data);
+        setIncontournableTotalPages(res.totalPages);
+        setIsLoadingIncontournable(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setIsLoadingIncontournable(false);
+      });
+  }, [activeIncontournableTab, incontournablePage]);
+
+  useEffect(() => {
+    setIncontournablePage(1);
+    if (incontournableScrollRef.current) {
+        incontournableScrollRef.current.scrollTo({ left: 0, behavior: 'auto' });
+    }
+  }, [activeIncontournableTab]);
 
   // Fetch products when category changes
   useEffect(() => {
@@ -357,13 +432,14 @@ export default function HomePage() {
 
   // Helper to get icon for category (fallback to Package)
   const getCategoryIcon = (name: string) => {
-    const lower = name.toLowerCase();
+    // Normalize string to ignore accents (e.g., é -> e)
+    const lower = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     if (lower.includes('peinture')) return Paintbrush;
     if (lower.includes('outil')) return Hammer;
     if (lower.includes('plomb')) return Droplets;
-    if (lower.includes('quinc')) return Nut;
+    if (lower.includes('quinc')) return Wrench;
     if (lower.includes('elec') || lower.includes('appareill')) return Zap;
-    if (lower.includes('mater')) return Package;
+    if (lower.includes('mater')) return HardHat;
     return Package;
   };
 
@@ -722,42 +798,52 @@ export default function HomePage() {
           </div>
 
           {/* Product Carousel - Swipable with fingers */}
-          <div
-            ref={categoryScrollRef}
-            onScroll={handleCategoryScroll}
-            className={`mt-6 pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pb-12 transition-all duration-500 ${isLoadingProducts ? 'opacity-50' : 'opacity-100'}`}
-          >
-            {categoryProducts.map((product) => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                className="w-[180px] sm:w-[200px] lg:w-[220px] xl:w-[calc((100%-80px)/6)] shrink-0 snap-start"
-              />
-            ))}
+          <div className="relative group/carousel">
+            {/* Navigation Arrows - Desktop Only */}
+            <button 
+              onClick={() => {
+                if (categoryScrollRef.current) {
+                  categoryScrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+                }
+              }}
+              className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#BF1737]/10 text-[#BF1737] flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-[#BF1737]/20 border border-[#BF1737]/10 hidden lg:flex"
+            >
+              <ChevronLeft size={24} strokeWidth={2} />
+            </button>
 
-            {/* Loading Placeholder or Empty State */}
-            {!isLoadingProducts && categoryProducts.length === 0 && (
-              <div className="flex-1 py-20 text-center">
-                <p className="text-slate-400">Aucun produit trouvé dans cette catégorie.</p>
-              </div>
-            )}
-          </div>
-
-          {/* Pagination Dots - Standardized style */}
-          {categoryProducts.length > 0 && (
-            <div className="flex justify-center items-center gap-3 mt-12">
-              {Array.from({ length: getDotsCount(categoryScrollRef, categoryProducts.length) }).map((_, idx) => (
-                <button
-                  key={`cat-dot-${idx}`}
-                  onClick={() => scrollToPage(categoryScrollRef, idx)}
-                  className={`h-2 rounded-full transition-all duration-500 ${activeCategoryPage === idx
-                    ? 'bg-[#BF1737] w-8'
-                    : 'bg-slate-200 hover:bg-slate-300 w-2 h-2 opacity-60'
-                    }`}
+            <div
+              ref={categoryScrollRef}
+              onScroll={handleCategoryScroll}
+              className={`mt-6 pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth transition-all duration-500 ${isLoadingProducts ? 'opacity-50' : 'opacity-100'}`}
+            >
+              {categoryProducts.map((product) => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  className="w-[180px] sm:w-[200px] lg:w-[220px] xl:w-[calc((100%-80px)/6)] shrink-0 snap-start"
                 />
               ))}
+
+              {/* Loading Placeholder or Empty State */}
+              {!isLoadingProducts && categoryProducts.length === 0 && (
+                <div className="flex-1 py-20 text-center">
+                  <p className="text-slate-400">Aucun produit trouvé dans cette catégorie.</p>
+                </div>
+              )}
             </div>
-          )}
+
+            <button 
+              onClick={() => {
+                if (categoryScrollRef.current) {
+                  categoryScrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+                }
+              }}
+              className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#BF1737]/10 text-[#BF1737] flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 transition-all duration-300 hover:bg-[#BF1737]/20 border border-[#BF1737]/10 hidden lg:flex"
+            >
+              <ChevronRight size={24} strokeWidth={2} />
+            </button>
+          </div>
+
         </div>
       </section>
 
@@ -787,33 +873,27 @@ export default function HomePage() {
               })}
             </div>
 
-            {/* Navigation Controls */}
-            <div className="flex items-center gap-3 shrink-0 pb-5">
-              <button
-                onClick={() => setFeaturedPage(p => Math.max(1, p - 1))}
-                disabled={featuredPage === 1 || isLoadingFeatured}
-                className={`text-[12px] font-black uppercase tracking-widest transition-colors ${featuredPage === 1 ? 'text-slate-200 cursor-not-allowed' : 'text-slate-400 hover:text-slate-700'
-                  }`}
-              >
-                Précédent
-              </button>
-              <button
-                onClick={() => setFeaturedPage(p => Math.min(featuredTotalPages, p + 1))}
-                disabled={featuredPage === featuredTotalPages || isLoadingFeatured}
-                className={`text-[12px] font-black uppercase tracking-widest transition-colors flex items-center gap-1 ${featuredPage === featuredTotalPages ? 'text-slate-200 cursor-not-allowed' : 'text-slate-400 hover:text-slate-700'
-                  }`}
-              >
-                Suivant <ChevronRight size={14} strokeWidth={3} />
-              </button>
-            </div>
+
           </div>
 
-          {/* Product Carousel - Swipable with fingers */}
-          <div
-            ref={featuredScrollRef}
-            onScroll={handleFeaturedScroll}
-            className={`pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pb-12 transition-opacity duration-300 ${isLoadingFeatured ? 'opacity-50' : 'opacity-100'}`}
-          >
+          <div className="relative group/featured">
+            {/* Navigation Arrows - Desktop Only */}
+            <button 
+              onClick={() => {
+                if (featuredScrollRef.current) {
+                  featuredScrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+                }
+              }}
+              className="absolute left-[-20px] top-[45%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#BF1737]/10 text-[#BF1737] flex items-center justify-center opacity-0 group-hover/featured:opacity-100 transition-all duration-300 hover:bg-[#BF1737]/20 border border-[#BF1737]/10 hidden lg:flex"
+            >
+              <ChevronLeft size={24} strokeWidth={2} />
+            </button>
+
+            <div
+              ref={featuredScrollRef}
+              onScroll={handleFeaturedScroll}
+              className={`pt-8 flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth transition-opacity duration-300 ${isLoadingFeatured ? 'opacity-50' : 'opacity-100'}`}
+            >
             {featuredProducts.map((product, idx) => (
               <ProductCard 
                 key={`featured-${product.id}-${idx}`} 
@@ -837,7 +917,18 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Pagination Indicators Removed */}
+          <button 
+            onClick={() => {
+              if (featuredScrollRef.current) {
+                featuredScrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+              }
+            }}
+            className="absolute right-[-20px] top-[45%] -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#BF1737]/10 text-[#BF1737] flex items-center justify-center opacity-0 group-hover/featured:opacity-100 transition-all duration-300 hover:bg-[#BF1737]/20 border border-[#BF1737]/10 hidden lg:flex"
+          >
+            <ChevronRight size={24} strokeWidth={2} />
+          </button>
+        </div>
+
         </div>
       </section>
 
@@ -886,7 +977,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
             {/* Card 1: Sécurité - Industrial Premium */}
-            <Link href="/products?search=curit" className="group relative h-[300px] rounded-2xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-700 bg-black">
+            <Link href={quincaillerieCategory ? `/products?categoryId=${quincaillerieCategory.id}` : '/products'} className="group relative h-[300px] rounded-2xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-700 bg-black">
               <div className="flex h-full">
                 {/* Image Part - 65% width */}
                 <div className="w-[65%] h-full relative overflow-hidden">
@@ -925,7 +1016,7 @@ export default function HomePage() {
             </Link>
 
             {/* Card 2: Finitions - Industrial Premium */}
-            <Link href="/products?search=peinture" className="group relative h-[300px] rounded-2xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-700 bg-black">
+            <Link href={peintureCategory ? `/products?categoryId=${peintureCategory.id}` : '/products'} className="group relative h-[300px] rounded-2xl overflow-hidden border border-slate-200 shadow-xl hover:shadow-2xl transition-all duration-700 bg-black">
               <div className="flex h-full direction-reverse">
                  {/* Text Part - 40% width */}
                  <div className="w-[40%] h-full bg-[#0d0d0d] flex flex-col items-end justify-center px-8 relative z-20 border-r border-white/5 text-right">
@@ -1000,11 +1091,23 @@ export default function HomePage() {
           </div>
 
           {/* Carousel Grid */}
-          <div className="relative">
+          <div className="relative group/inc">
+            {/* Navigation Arrows - Desktop Only */}
+            <button 
+              onClick={() => {
+                if (incontournableScrollRef.current) {
+                  incontournableScrollRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+                }
+              }}
+              className="absolute left-[-20px] top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#BF1737]/10 text-[#BF1737] flex items-center justify-center opacity-0 group-hover/inc:opacity-100 transition-all duration-300 hover:bg-[#BF1737]/20 border border-[#BF1737]/10 hidden lg:flex"
+            >
+              <ChevronLeft size={24} strokeWidth={2} />
+            </button>
+
             <div
               ref={incontournableScrollRef}
               onScroll={handleIncontournableScroll}
-              className={`flex gap-4 overflow-x-auto snap-x snap-mandatory [&::-webkit-scrollbar]:hidden scroll-smooth pt-8 pb-12 transition-opacity duration-300 ${isLoadingIncontournable ? 'opacity-50' : 'opacity-100'}`}
+              className={`flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar [&::-webkit-scrollbar]:hidden scroll-smooth pt-8 transition-opacity duration-300 ${isLoadingIncontournable ? 'opacity-50' : 'opacity-100'}`}
             >
               {incontournableProducts.length > 0 ? incontournableProducts.map((product, idx) => (
                 <ProductCard
@@ -1018,9 +1121,19 @@ export default function HomePage() {
                 </div>
               )}
             </div>
+
+            <button 
+              onClick={() => {
+                if (incontournableScrollRef.current) {
+                  incontournableScrollRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+                }
+              }}
+              className="absolute right-[-20px] top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-[#BF1737]/10 text-[#BF1737] flex items-center justify-center opacity-0 group-hover/inc:opacity-100 transition-all duration-300 hover:bg-[#BF1737]/20 border border-[#BF1737]/10 hidden lg:flex"
+            >
+              <ChevronRight size={24} strokeWidth={2} />
+            </button>
           </div>
 
-          {/* Pagination Indicators Removed */}
         </div>
       </section>
 
@@ -1095,10 +1208,10 @@ export default function HomePage() {
             <p className="text-white/60 text-xs md:text-sm max-w-md leading-relaxed font-medium">
               Profitez de la livraison offerte sur toutes vos commandes supérieures à 299 MAD partout au Maroc. Commandez maintenant !
             </p>
-            <button className="px-8 py-4 bg-[#BF1737] hover:bg-[#A3142F] text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-xl shadow-[#BF1737]/20 transition-all flex items-center gap-3 group mx-auto lg:mx-0">
+            <Link href="/products" className="w-fit inline-flex px-8 py-4 bg-[#BF1737] hover:bg-[#A3142F] text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-xl shadow-[#BF1737]/20 transition-all items-center gap-3 group mx-auto lg:mx-0">
               COMMANDER MAINTENANT
               <div className="w-2 h-2 rounded-full bg-white opacity-40 group-hover:scale-150 transition-all" />
-            </button>
+            </Link>
           </div>
 
           <div className="flex-1 space-y-3 w-full max-w-sm">

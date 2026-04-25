@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
+import { api } from '../lib/api';
 
 interface ProductRatingProps {
     productId: number;
@@ -19,21 +20,34 @@ export default function ProductRating({
     const [stats, setStats] = useState({ avg: 0, count: 0 });
 
     useEffect(() => {
-        const loadStats = () => {
+        let isMounted = true;
+
+        const loadStats = async () => {
             try {
+                // Quick initial load from localStorage
                 const saved = localStorage.getItem(`reviews_${productId}`);
                 if (saved) {
                     const reviews = JSON.parse(saved);
                     if (Array.isArray(reviews) && reviews.length > 0) {
                         const avg = reviews.reduce((acc: number, r: any) => acc + (r.rating || 0), 0) / reviews.length;
-                        setStats({ avg, count: reviews.length });
-                        return;
+                        if (isMounted) setStats({ avg, count: reviews.length });
                     }
                 }
-                setStats({ avg: 0, count: 0 });
+
+                // Fetch real data from API
+                const realReviews = await api.getProductReviews(productId);
+                if (isMounted) {
+                    if (Array.isArray(realReviews) && realReviews.length > 0) {
+                        const avg = realReviews.reduce((acc: number, r: any) => acc + (r.rating || 0), 0) / realReviews.length;
+                        setStats({ avg, count: realReviews.length });
+                        // Update local cache
+                        localStorage.setItem(`reviews_${productId}`, JSON.stringify(realReviews));
+                    } else {
+                        setStats({ avg: 0, count: 0 });
+                    }
+                }
             } catch (err) {
-                console.error('Error loading review stats:', err);
-                setStats({ avg: 0, count: 0 });
+                console.error(`Error loading review stats for product ${productId}:`, err);
             }
         };
 
@@ -49,6 +63,7 @@ export default function ProductRating({
         });
 
         return () => {
+            isMounted = false;
             window.removeEventListener('reviewsUpdated', handleReviewUpdate);
             window.removeEventListener('storage', loadStats);
         };

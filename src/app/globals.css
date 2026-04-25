@@ -87,6 +87,31 @@
   body {
     @apply font-display bg-white text-slate-900;
   }
+
+  /* Global Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #F1F5F9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #BF1737;
+    border-radius: 10px;
+    border: 3px solid #F1F5F9;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #99122C;
+  }
+
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #BF1737 #F1F5F9;
+  }
 }
 
 @layer utilities {
@@ -178,8 +203,8 @@
 
   /* Custom modern scrollbar - Brand Red (#BF1737) */
   .custom-scrollbar::-webkit-scrollbar {
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
@@ -187,18 +212,17 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(191, 23, 55, 0.2);
+    background: rgba(191, 23, 55, 0.3);
     border-radius: 99px;
-    transition: background 0.3s ease;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: rgba(191, 23, 55, 0.5);
+    background: #BF1737;
   }
 
   .custom-scrollbar {
     scrollbar-width: thin;
-    scrollbar-color: rgba(191, 23, 55, 0.2) transparent;
+    scrollbar-color: rgba(191, 23, 55, 0.3) transparent;
   }
 
   .blog-card-shadow {

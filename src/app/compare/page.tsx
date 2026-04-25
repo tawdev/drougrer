@@ -144,7 +144,7 @@ export default function ComparePage() {
 
                                                     {/* Price */}
                                                     <div className="text-[17px] font-black text-[#BF1737] mb-6">
-                                                        {Number(product.price).toFixed(2).replace('.', ',')} €
+                                                        {Number(product.price).toFixed(2).replace('.', ',')} MAD
                                                     </div>
 
                                                     {/* Add to Cart */}

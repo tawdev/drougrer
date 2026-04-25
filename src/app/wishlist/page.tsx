@@ -4,10 +4,14 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api, type Product } from '../lib/api';
 import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
+import { useNotification } from '../context/NotificationContext';
 import { X, Share2, ShoppingCart, Heart, RefreshCw, Star } from 'lucide-react';
 
 export default function WishlistPage() {
     const { wishlistIds, removeFromWishlist } = useWishlist();
+    const { addToCart } = useCart();
+    const { showToast } = useNotification();
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [recentlyViewed, setRecentlyViewed] = useState<Product[]>([]);
@@ -42,6 +46,50 @@ export default function WishlistPage() {
         return { text: 'En Stock', color: 'text-[#2E7D32]' };
     };
 
+    const handleShareList = async () => {
+        if (products.length === 0) {
+            showToast('Votre liste est vide', 'error');
+            return;
+        }
+        const text = `Découvrez ma liste de souhaits sur Droguerie :\n` +
+            products.map(p => `- ${p.name}`).join('\n') + `\n\nVisitez-nous sur : ${typeof window !== 'undefined' ? window.location.origin : ''}`;
+            
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'Ma Liste de Souhaits',
+                    text: text,
+                });
+            } catch (err) {
+                console.error('Share failed:', err);
+            }
+        } else {
+            navigator.clipboard.writeText(text);
+            showToast('Liste de souhaits copiée dans le presse-papiers !', 'success');
+        }
+    };
+
+    const handleAddAllToCart = () => {
+        if (products.length === 0) return;
+        let addedCount = 0;
+        products.forEach(product => {
+            if (product.stock > 0) {
+                addToCart({
+                    productId: Number(product.id),
+                    name: product.name,
+                    price: product.price,
+                    imageUrl: product.imageUrl
+                }, 1);
+                addedCount++;
+            }
+        });
+        if (addedCount > 0) {
+            showToast(`${addedCount} article(s) ajouté(s) au panier !`, 'success');
+        } else {
+            showToast('Aucun article en stock à ajouter.', 'error');
+        }
+    };
+
     return (
         <div className="flex-1 flex flex-col bg-[#F7F8FA]">
             <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-10">
@@ -55,11 +103,11 @@ export default function WishlistPage() {
                         </p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-5 py-2.5 border border-slate-200 rounded-lg text-[13px] font-bold text-slate-600 bg-white hover:bg-slate-50 transition-colors shadow-sm">
+                        <button onClick={handleShareList} className="flex items-center gap-2 px-5 py-2.5 border border-slate-200 rounded-lg text-[13px] font-bold text-slate-600 bg-white hover:bg-slate-50 transition-colors shadow-sm">
                             <Share2 size={15} strokeWidth={2.5} />
                             Partager la liste
                         </button>
-                        <button className="flex items-center gap-2 px-5 py-2.5 bg-[#BF1737] text-white rounded-lg text-[13px] font-bold hover:bg-[#9B122D] transition-colors shadow-sm">
+                        <button onClick={handleAddAllToCart} className="flex items-center gap-2 px-5 py-2.5 bg-[#BF1737] text-white rounded-lg text-[13px] font-bold hover:bg-[#9B122D] transition-colors shadow-sm">
                             <ShoppingCart size={15} strokeWidth={2.5} />
                             Tout ajouter au panier
                         </button>

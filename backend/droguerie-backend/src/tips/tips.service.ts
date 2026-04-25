@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Tip } from './tip.entity';
@@ -7,6 +7,7 @@ import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class TipsService {
+    private readonly logger = new Logger(TipsService.name);
     constructor(
         @InjectRepository(Tip)
         private tipRepo: Repository<Tip>,
@@ -60,15 +61,19 @@ export class TipsService {
     private async notifySubscribers(tip: Tip) {
         try {
             const emails = await this.newsletterService.findAllEmails();
+            this.logger.log(`📢 Broadcasting tip "${tip.authorName}" to ${emails.length} subscribers...`);
             if (emails.length > 0) {
-                this.mailService.sendNewsletterNotification(emails, {
+                await this.mailService.sendNewsletterNotification(emails, {
                     title: `Astuce de ${tip.authorName}`,
                     excerpt: tip.content.substring(0, 150) + '...',
                     type: 'TIP',
                 });
+                this.logger.log(`✅ Tip newsletter broadcast completed successfully`);
+            } else {
+                this.logger.warn('⚠️ No valid subscriber emails found — newsletter was NOT sent. Check ENCRYPTION_KEY on this server.');
             }
         } catch (error) {
-            console.error('📢 Failed to broadcast newsletter for new tip:', error.message);
+            this.logger.error(`❌ Failed to broadcast newsletter for new tip: ${error.message}`, error.stack);
         }
     }
 

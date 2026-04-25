@@ -99,7 +99,7 @@ export default function AdminDashboardPage() {
           <h2 className="text-slate-900 text-lg font-bold">Dashboard Overview</h2>
         </div>
         <div className="flex items-center gap-6">
-          <div className="relative w-80" onClick={(e) => e.stopPropagation()}>
+          <div className="relative w-64 lg:w-80 hidden md:block" onClick={(e) => e.stopPropagation()}>
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
             <input 
               className="w-full h-10 pl-10 pr-10 bg-slate-100 border-none rounded-lg focus:ring-2 focus:ring-primary/20 text-sm placeholder:text-slate-400 transition-all" 
@@ -199,7 +199,7 @@ export default function AdminDashboardPage() {
         </div>
       </header>
 
-      <div className="p-8 space-y-8">
+      <div className="p-4 sm:p-8 space-y-6 sm:space-y-8">
         {/* Error state */}
         {error && (
           <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3 text-red-700">
@@ -209,7 +209,7 @@ export default function AdminDashboardPage() {
         )}
 
         {/* Stat cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {/* Total Products */}
           <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 flex flex-col gap-3">
             <div className="flex justify-between items-start">

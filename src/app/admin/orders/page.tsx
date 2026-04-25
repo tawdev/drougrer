@@ -159,7 +159,7 @@ export default function AdminOrdersPage() {
   };
 
   return (
-    <main className="flex-1 overflow-y-auto no-scrollbar p-4 md:p-8 bg-white">
+    <main className="flex-1 overflow-y-auto no-scrollbar p-2 sm:p-4 md:p-8 bg-white">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
           <h2 className="text-3xl font-black text-slate-900 tracking-tighter uppercase">Gestion des Commandes</h2>
@@ -193,7 +193,6 @@ export default function AdminOrdersPage() {
         </div>
       )}
 
-      {/* Stat cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
           { label: 'Total Commandes', value: stats?.total?.toLocaleString(), icon: Package, colorClass: 'bg-blue-50 text-blue-600' },
@@ -201,14 +200,14 @@ export default function AdminOrdersPage() {
           { label: 'Chiffre d\'Affaires', value: stats ? `${Number(stats.revenue).toFixed(2).replace('.', ',')} MAD` : '—', icon: CheckCircle2, colorClass: 'bg-emerald-50 text-emerald-600' },
           { label: 'Aujourd\'hui', value: stats?.todayCount?.toLocaleString(), icon: MoreHorizontal, colorClass: 'bg-indigo-50 text-indigo-600' },
         ].map(({ label, value, icon: Icon, colorClass }) => (
-          <div key={label} className="bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm hover:shadow-md transition-all">
-            <div className="flex justify-between items-start mb-4">
-              <div className={`p-3 rounded-xl ${colorClass}`}>
-                <Icon size={20} />
+          <div key={label} className="bg-white p-5 sm:p-6 rounded-[24px] border border-slate-100 shadow-sm hover:shadow-md transition-all">
+            <div className="flex justify-between items-start mb-3 sm:mb-4">
+              <div className={`p-2.5 sm:p-3 rounded-xl ${colorClass}`}>
+                <Icon size={18} />
               </div>
             </div>
-            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">{label}</p>
-            {loading ? <Skeleton className="h-8 w-24 mt-2" /> : <p className="text-2xl font-black mt-1 text-slate-900 tracking-tighter">{value ?? '—'}</p>}
+            <p className="text-slate-400 text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em]">{label}</p>
+            {loading ? <Skeleton className="h-8 w-24 mt-2" /> : <p className="text-xl sm:text-2xl font-black mt-1 text-slate-900 tracking-tighter">{value ?? '—'}</p>}
           </div>
         ))}
       </div>
@@ -230,9 +229,9 @@ export default function AdminOrdersPage() {
             <thead>
               <tr className="border-b border-slate-100">
                 <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Réf / Client</th>
-                <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Montant Total</th>
-                <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Statut</th>
-                <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Date</th>
+                <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Montant</th>
+                <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] hidden sm:table-cell">Statut</th>
+                <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] hidden md:table-cell">Date</th>
                 <th className="px-6 py-5 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] text-right">Actions</th>
               </tr>
             </thead>
@@ -268,9 +267,13 @@ export default function AdminOrdersPage() {
                       </td>
                       <td className="px-6 py-6 text-sm font-black text-slate-900">
                         {Number(order.totalPrice).toFixed(2).replace('.', ',')} <span className="text-[10px]">MAD</span>
+                        {/* Status visible on mobile only below price */}
+                        <div className="mt-1 sm:hidden">
+                           <StatusBadge status={order.status} />
+                        </div>
                       </td>
-                      <td className="px-6 py-6"><StatusBadge status={order.status} /></td>
-                      <td className="px-6 py-6 text-[11px] font-bold text-slate-400 uppercase">
+                      <td className="px-6 py-6 hidden sm:table-cell"><StatusBadge status={order.status} /></td>
+                      <td className="px-6 py-6 text-[11px] font-bold text-slate-400 uppercase hidden md:table-cell">
                         {new Date(order.createdAt).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       </td>
                       <td className="px-6 py-6 text-right">

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Like } from 'typeorm';
 import { BlogPost } from './blog-post.entity';
@@ -7,6 +7,7 @@ import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class BlogService {
+    private readonly logger = new Logger(BlogService.name);
     constructor(
         @InjectRepository(BlogPost)
         private blogRepository: Repository<BlogPost>,
@@ -101,17 +102,20 @@ export class BlogService {
     private async notifySubscribers(post: BlogPost) {
         try {
             const emails = await this.newsletterService.findAllEmails();
+            this.logger.log(`📢 Broadcasting blog post "${post.title}" to ${emails.length} subscribers...`);
             if (emails.length > 0) {
-                // Fire and forget or handle error properly
-                this.mailService.sendNewsletterNotification(emails, {
+                await this.mailService.sendNewsletterNotification(emails, {
                     title: post.title,
                     excerpt: post.excerpt || (post.content ? post.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...' : ''),
                     type: 'ARTICLE',
                     slug: post.slug,
                 });
+                this.logger.log(`✅ Blog newsletter broadcast completed successfully`);
+            } else {
+                this.logger.warn('⚠️ No valid subscriber emails found — newsletter was NOT sent. Check ENCRYPTION_KEY on this server.');
             }
         } catch (error) {
-            console.error('📢 Failed to broadcast newsletter for new post:', error.message);
+            this.logger.error(`❌ Failed to broadcast newsletter for new post: ${error.message}`, error.stack);
         }
     }
 

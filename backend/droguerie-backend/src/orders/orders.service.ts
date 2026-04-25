@@ -5,12 +5,15 @@ import { Order, OrderStatus } from './order.entity';
 import { MailService } from '../mail/mail.service';
 import { PdfService } from './pdf.service';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { Product } from '../products/product.entity';
 
 @Injectable()
 export class OrdersService {
     constructor(
         @InjectRepository(Order)
         private readonly orderRepository: Repository<Order>,
+        @InjectRepository(Product)
+        private readonly productRepository: Repository<Product>,
         private readonly mailService: MailService,
         private readonly pdfService: PdfService,
     ) { }
@@ -97,6 +100,25 @@ export class OrdersService {
         }
 
         const savedOrder = await this.orderRepository.save(order);
+
+        // Update product inventory and sales count
+        if (orderData.items && orderData.items.length > 0) {
+            for (const item of orderData.items) {
+                if (item.id) {
+                    const product = await this.productRepository.findOne({ where: { id: item.id } });
+                    if (product) {
+                        const quantity = item.quantity ? Number(item.quantity) : 1;
+                        product.salesCount = (product.salesCount || 0) + quantity;
+                        if (product.stock >= quantity) {
+                            product.stock -= quantity;
+                        } else {
+                            product.stock = 0;
+                        }
+                        await this.productRepository.save(product);
+                    }
+                }
+            }
+        }
 
         // TRIGGER ADMIN NOTIFICATION WITH PDF
         try {

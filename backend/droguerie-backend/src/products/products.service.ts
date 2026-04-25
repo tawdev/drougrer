@@ -57,7 +57,7 @@ export class ProductsService {
             qb.andWhere('product.stock > 0');
         }
         if (onSale) {
-            qb.andWhere('product.onSale = :onSale', { onSale: true });
+            qb.andWhere('(product.onSale = :onSale OR product.oldPrice > product.price)', { onSale: true });
         }
         if (ecoFriendly) {
             qb.andWhere('product.ecoFriendly = :ecoFriendly', { ecoFriendly: true });
@@ -68,9 +68,26 @@ export class ProductsService {
         } else if (sort === 'priceDesc') {
             qb.orderBy('product.price', 'DESC');
         } else if (sort === 'popularity') {
-            qb.orderBy('product.stock', 'ASC'); // proxy for popularity
+            const avgSubQuery = qb.subQuery()
+                .select('COALESCE(AVG(review.rating), 0)')
+                .from('reviews', 'review')
+                .where('review.productId = product.id')
+                .andWhere('review.status = :status')
+                .getQuery();
+
+            qb.setParameter('status', 'approved')
+              .addSelect(`((product.salesCount * 0.7) + ((${avgSubQuery}) * 0.3))`, 'popularityScore')
+              .orderBy('popularityScore', 'DESC');
+            
+            // Limit to top 6 products specifically for the popular tab 
+            // if page is 1 (to not break native pagination completely if reused, though UI only shows first page)
+            if (page === 1) {
+                limit = 6;
+            }
+        } else if (sort === 'updatedAt') {
+            qb.orderBy('product.updatedAt', 'DESC'); // most recently added/updated inventory
         } else {
-            qb.orderBy('product.createdAt', 'DESC'); // newest
+            qb.orderBy('product.createdAt', 'DESC'); // newest by creation date
         }
 
         qb.skip((page - 1) * limit).take(limit);

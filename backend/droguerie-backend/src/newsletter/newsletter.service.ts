@@ -1,4 +1,4 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NewsletterSubscriber } from './newsletter-subscriber.entity';
@@ -7,6 +7,8 @@ import { MailService } from '../mail/mail.service';
 
 @Injectable()
 export class NewsletterService {
+    private readonly logger = new Logger(NewsletterService.name);
+
     constructor(
         @InjectRepository(NewsletterSubscriber)
         private subscriberRepo: Repository<NewsletterSubscriber>,
@@ -23,6 +25,13 @@ export class NewsletterService {
             .createHmac('sha256', secret)
             .update(email.toLowerCase().trim())
             .digest('hex');
+    }
+
+    /**
+     * Simple email format validation to detect un-decrypted or corrupted emails.
+     */
+    private isValidEmail(email: string): boolean {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
     async subscribe(email: string): Promise<NewsletterSubscriber> {
@@ -42,7 +51,7 @@ export class NewsletterService {
 
         // Send welcome email (asynchronous, don't wait for it to block the response)
         this.mailService.sendWelcomeEmail(email).catch(err => {
-            console.error('📢 Failed to send welcome newsletter email:', err.message);
+            this.logger.error('📢 Failed to send welcome newsletter email:', err.message);
         });
 
         return saved;
@@ -54,7 +63,32 @@ export class NewsletterService {
 
     async findAllEmails(): Promise<string[]> {
         const subscribers = await this.subscriberRepo.find();
-        return subscribers.map(s => s.email);
+        
+        const validEmails: string[] = [];
+        let skippedCount = 0;
+
+        for (const s of subscribers) {
+            if (this.isValidEmail(s.email)) {
+                validEmails.push(s.email);
+            } else {
+                skippedCount++;
+                this.logger.warn(
+                    `⚠️ Skipping subscriber #${s.id}: email could not be decrypted (got "${s.email?.substring(0, 15)}..."). ` +
+                    `Check that ENCRYPTION_KEY matches the one used when this email was stored.`
+                );
+            }
+        }
+
+        if (skippedCount > 0) {
+            this.logger.error(
+                `❌ ${skippedCount}/${subscribers.length} subscriber emails could NOT be decrypted. ` +
+                `ENCRYPTION_KEY mismatch between local and production? ` +
+                `Current key starts with: ${(process.env.ENCRYPTION_KEY || 'MISSING').substring(0, 8)}...`
+            );
+        }
+
+        this.logger.log(`📧 Found ${validEmails.length} valid emails out of ${subscribers.length} subscribers`);
+        return validEmails;
     }
 
     async getStats(): Promise<{ count: number }> {

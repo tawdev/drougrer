@@ -318,12 +318,12 @@ export default function AdminBlogPage() {
     };
 
     return (
-        <main className="flex-1 p-8 overflow-y-auto no-scrollbar bg-white">
+        <main className="flex-1 p-4 sm:p-8 overflow-y-auto no-scrollbar bg-white">
             <div className="max-w-7xl mx-auto">
                 <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10">
                     <div>
-                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Blog Management</h2>
-                        <p className="text-slate-500 mt-1 font-medium">Create and manage your articles, news, and updates.</p>
+                        <h2 className="text-3xl font-black text-slate-900 tracking-tight">Gestion du Blog</h2>
+                        <p className="text-slate-500 mt-1 font-medium">Créez et gérez vos articles, actualités et mises à jour.</p>
                     </div>
                     {activeTab === 'articles' && (
                         <button
@@ -349,7 +349,7 @@ export default function AdminBlogPage() {
                             className="bg-primary hover:opacity-90 text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-xl shadow-primary/10 transition-all active:scale-95"
                         >
                             <Plus size={18} />
-                            Write New Post
+                            Nouvel Article
                         </button>
                     )}
                     {activeTab === 'tips' && (
@@ -359,32 +359,32 @@ export default function AdminBlogPage() {
                                 setTipForm({ content: '', authorName: '', authorRole: 'Expert Outillage', isActive: true });
                                 setIsTipModalOpen(true);
                             }}
-                            className="bg-[#14532D] hover:bg-[#166534] text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-xl shadow-green-900/10 transition-all active:scale-95"
+                            className="bg-primary hover:opacity-90 text-white px-6 py-3 rounded-xl font-bold text-sm flex items-center gap-2 shadow-xl shadow-primary/10 transition-all active:scale-95"
                         >
                             <Plus size={18} />
-                            New Expert Tip
+                            Nouvelle Astuce Expert
                         </button>
                     )}
                 </header>
 
                 {/* Tabs */}
-                <div className="flex items-center gap-1 mb-8 p-1.5 bg-slate-100 w-fit rounded-2xl border border-slate-200">
+                <div className="flex items-center gap-1 mb-8 p-1.5 bg-slate-100 w-full lg:w-fit rounded-2xl border border-slate-200 overflow-x-auto scrollbar-hide">
                     {[
-                        { id: 'articles', label: 'Articles', icon: <FileText size={18} /> },
-                        { id: 'tips', label: 'Astuces Pro', icon: <Quote size={18} /> },
-                        { id: 'newsletter', label: 'Newsletter', icon: <Mail size={18} /> },
-                        { id: 'tags', label: 'Tags Stats', icon: <Tag size={18} /> },
+                        { id: 'articles', label: 'Articles', icon: <FileText size={16} /> },
+                        { id: 'tips', label: 'Astuces Pro', icon: <Quote size={16} /> },
+                        { id: 'newsletter', label: 'Newsletter', icon: <Mail size={16} /> },
+                        { id: 'tags', label: 'Tags Stats', icon: <Tag size={16} /> },
                     ].map((tab) => (
                         <button
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id as any)}
-                            className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-[13px] font-black uppercase tracking-wider transition-all ${activeTab === tab.id
+                            className={`flex-shrink-0 flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-[12px] sm:text-[13px] font-black uppercase tracking-wider transition-all ${activeTab === tab.id
                                     ? 'bg-white text-primary shadow-sm'
                                     : 'text-slate-500 hover:text-slate-900'
                                 }`}
                         >
                             {tab.icon}
-                            {tab.label}
+                            <span className="whitespace-nowrap">{tab.label}</span>
                         </button>
                     ))}
                 </div>
@@ -397,7 +397,7 @@ export default function AdminBlogPage() {
                                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
                                 <input
                                     className="w-full pl-12 pr-4 py-3 bg-white border border-slate-200 rounded-xl text-[14px] font-medium focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm"
-                                    placeholder="Search by title or content..."
+                                    placeholder="Rechercher par titre ou contenu..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
@@ -410,12 +410,12 @@ export default function AdminBlogPage() {
                                 <table className="w-full text-left">
                                     <thead>
                                         <tr className="bg-slate-50/50 border-b border-slate-100 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
-                                            <th className="px-8 py-5">Article</th>
-                                            <th className="px-8 py-5">Category</th>
-                                            <th className="px-8 py-5">Author</th>
-                                            <th className="px-8 py-5">Status</th>
-                                            <th className="px-8 py-5">Date</th>
-                                            <th className="px-8 py-5 text-right">Actions</th>
+                                            <th className="px-5 sm:px-8 py-5">Article</th>
+                                            <th className="px-8 py-5 hidden sm:table-cell">Catégorie</th>
+                                            <th className="px-8 py-5 hidden lg:table-cell">Auteur</th>
+                                            <th className="px-8 py-5 hidden sm:table-cell">Statut</th>
+                                            <th className="px-8 py-5 hidden md:table-cell">Date</th>
+                                            <th className="px-5 sm:px-8 py-5 text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-slate-50">
@@ -433,54 +433,54 @@ export default function AdminBlogPage() {
                                             <tr>
                                                 <td colSpan={6} className="px-8 py-20 text-center text-slate-500">
                                                     <span className="material-symbols-outlined text-5xl opacity-20">article</span>
-                                                    <p className="font-semibold mt-2">No blog posts yet.</p>
+                                                    <p className="font-semibold mt-2">Aucun article pour le moment.</p>
                                                 </td>
                                             </tr>
                                         ) : (
                                             posts.map((post) => (
                                                 <tr key={post.id} className="hover:bg-slate-50/50 transition-colors group">
-                                                    <td className="px-8 py-6">
-                                                        <div className="flex items-center gap-4">
-                                                            <div className="size-12 rounded-lg bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
-                                                                {post.imageUrl ? <img src={post.imageUrl} className="size-full object-cover" /> : <div className="size-full flex items-center justify-center text-slate-400"><span className="material-symbols-outlined text-[20px]">image</span></div>}
+                                                    <td className="px-5 sm:px-8 py-4 sm:py-6">
+                                                        <div className="flex items-center gap-3 sm:gap-4">
+                                                            <div className="size-10 sm:size-12 rounded-lg bg-slate-100 overflow-hidden flex-shrink-0 border border-slate-200">
+                                                                {post.imageUrl ? <img src={post.imageUrl} className="size-full object-cover" /> : <div className="size-full flex items-center justify-center text-slate-400"><span className="material-symbols-outlined text-[18px] sm:text-[20px]">image</span></div>}
                                                             </div>
-                                                            <div className="max-w-[300px]">
-                                                                <p className="text-[14px] font-bold text-slate-900 line-clamp-1" title={post.title}>{post.title}</p>
-                                                                <p className="text-[12px] font-medium text-slate-500 line-clamp-1 italic">/blog/{post.slug}</p>
+                                                            <div className="max-w-[150px] sm:max-w-[300px]">
+                                                                <p className="text-[13px] sm:text-[14px] font-bold text-slate-900 line-clamp-1" title={post.title}>{post.title}</p>
+                                                                <p className="text-[10px] sm:text-[12px] font-medium text-slate-500 line-clamp-1 italic">/blog/{post.slug}</p>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td className="px-8 py-6">
+                                                    <td className="px-8 py-6 hidden sm:table-cell">
                                                         <span className="px-2.5 py-1 bg-slate-100 text-slate-600 rounded-md text-[11px] font-bold uppercase tracking-tight">
                                                             {post.category || 'General'}
                                                         </span>
                                                     </td>
-                                                    <td className="px-8 py-6">
+                                                    <td className="px-8 py-6 hidden lg:table-cell">
                                                         <div className="flex items-center gap-2">
                                                             <div className="size-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-[10px] font-bold">A</div>
                                                             <span className="text-[13px] font-semibold text-slate-700">{post.author}</span>
                                                         </div>
                                                     </td>
-                                                    <td className="px-8 py-6">
+                                                    <td className="px-8 py-6 hidden sm:table-cell">
                                                         <span className={`px-2.5 py-1 ${post.status === 'Published' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'} rounded-full text-[10px] font-bold uppercase tracking-tight`}>
                                                             {post.status}
                                                         </span>
                                                     </td>
-                                                    <td className="px-8 py-6">
+                                                    <td className="px-8 py-6 hidden md:table-cell">
                                                         <span className="text-[13px] font-medium text-slate-500">
                                                             {new Date(post.createdAt).toLocaleDateString()}
                                                         </span>
                                                     </td>
-                                                    <td className="px-8 py-6 text-right">
-                                                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                            <button onClick={() => handleEdit(post)} className="size-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-slate-400 hover:text-primary transition-all"><Edit size={18} /></button>
+                                                    <td className="px-5 sm:px-8 py-6 text-right">
+                                                        <div className="flex items-center justify-end gap-1 sm:gap-2">
+                                                            <button onClick={() => handleEdit(post)} className="size-8 flex items-center justify-center rounded-lg hover:bg-primary/10 text-slate-400 hover:text-primary transition-all"><Edit size={16} /></button>
                                                             <button onClick={() => showConfirm({
                                                                 title: 'Supprimer l\'article',
                                                                 message: 'Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.',
                                                                 confirmText: 'Supprimer',
                                                                 variant: 'danger',
                                                                 onConfirm: () => handleDelete(post.id)
-                                                            })} className="size-8 flex items-center justify-center rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-all"><Trash2 size={18} /></button>
+                                                            })} className="size-8 flex items-center justify-center rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-600 transition-all"><Trash2 size={16} /></button>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -493,11 +493,11 @@ export default function AdminBlogPage() {
                             {/* Pagination */}
                             <div className="px-8 py-5 border-t border-slate-50 flex items-center justify-between">
                                 <span className="text-[13px] font-medium text-slate-500">
-                                    Showing {(page - 1) * 5 + 1}–{Math.min(page * 5, total)} of {total} posts
+                                    Affichage de {(page - 1) * 5 + 1}–{Math.min(page * 5, total)} sur {total} articles
                                 </span>
                                 <div className="flex items-center gap-2">
-                                    <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 transition-all">Prev</button>
-                                    <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 transition-all">Next</button>
+                                    <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 transition-all">Précédent</button>
+                                    <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-4 py-2 border border-slate-200 rounded-lg text-sm font-bold disabled:opacity-30 hover:bg-slate-50 transition-all">Suivant</button>
                                 </div>
                             </div>
                         </div>

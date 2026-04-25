@@ -84,6 +84,7 @@ export default function ShoppingCartPage() {
                 window.open(whatsappLink, '_blank');
                 setIsLoading(false);
                 setIsConfirmed(true);
+                clearCart();
             }, 1000);
 
         } catch (error: any) {
@@ -178,7 +179,7 @@ export default function ShoppingCartPage() {
                                 </button>
 
                                 {/* Image */}
-                                <div className="w-full sm:w-32 h-32 relative bg-slate-50 rounded-2xl overflow-hidden shrink-0 border border-slate-100">
+                                <div className="w-full sm:w-32 h-32 relative bg-white rounded-2xl overflow-hidden shrink-0 border border-slate-100">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={item.imageUrl || '/mol.jpeg'}

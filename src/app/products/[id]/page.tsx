@@ -11,7 +11,7 @@ import {
     Heart, ShoppingCart, Star, Truck, ShieldCheck, CreditCard,
     HelpCircle, Headphones, ChevronRight, Minus, Plus, Share2,
     Facebook, Linkedin, MessageCircleWarning, Copy as CopyIcon,
-    GitCompare, MessageCircle
+    GitCompare, MessageCircle, X, MapPin, User, Phone, CheckCircle2, FileText
 } from 'lucide-react';
 import { useNotification } from '../../context/NotificationContext';
 import ProductImageZoom from '../../components/ProductImageZoom';
@@ -33,7 +33,80 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
     const [settings, setSettings] = useState<any>(null);
     const { toggleWishlist, isInWishlist } = useWishlist();
     const { toggleCompare, isInCompare } = useCompare();
-    const { addToCart } = useCart();
+    const { addToCart, clearCart } = useCart();
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
+    const [isConfirmed, setIsConfirmed] = useState(false);
+    const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+    const [customerInfo, setCustomerInfo] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        address: ''
+    });
+
+    const handleCheckout = async () => {
+        if (!product) return;
+        setIsCheckoutLoading(true);
+
+        try {
+            // Generate unique invoice number
+            const now = new Date();
+            const datePart = now.toISOString().slice(0, 10).replace(/-/g, '');
+            const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase();
+            const invoiceNumber = `FAC-${datePart}-${randomPart}`;
+
+            const orderPayload = {
+                invoiceNumber,
+                date: now.toISOString(),
+                items: [{
+                    name: product.name,
+                    quantity,
+                    price: Number(product.price),
+                    imageUrl: product.imageUrl,
+                }],
+                totalPrice: Number(product.price) * quantity,
+                customerInfo,
+            };
+
+            const backendOrderData = {
+                customerName: customerInfo.name || 'Client WhatsApp',
+                email: customerInfo.email,
+                phone: customerInfo.phone,
+                address: customerInfo.address,
+                invoiceReference: invoiceNumber,
+                totalPrice: orderPayload.totalPrice,
+                items: orderPayload.items
+            };
+
+            await api.createOrder(backendOrderData as any);
+
+            try {
+                localStorage.setItem('droguerie_last_order', JSON.stringify(orderPayload));
+            } catch (e) {
+                console.error('Could not save order to localStorage', e);
+            }
+
+            const whatsappLink = generateWhatsAppLink({
+                items: orderPayload.items,
+                totalPrice: orderPayload.totalPrice,
+                customerInfo,
+            }, settings?.phoneNumber);
+
+            setTimeout(() => {
+                window.open(whatsappLink, '_blank');
+                setIsCheckoutLoading(false);
+                setIsCheckingOut(false);
+                setIsConfirmed(true);
+                clearCart();
+            }, 1000);
+
+        } catch (error: any) {
+            console.error('Order creation failed:', error);
+            const errorMsg = error.message || 'Une erreur est survenue lors de la création de la commande.';
+            showToast(`${errorMsg} Veuillez réessayer.`, 'error');
+            setIsCheckoutLoading(false);
+        }
+    };
 
     useEffect(() => {
         async function loadData() {
@@ -126,6 +199,44 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
 
     const inWishlist = isInWishlist(product.id);
 
+    if (isConfirmed) {
+        return (
+            <div className="flex-1 flex flex-col items-center justify-center p-6 bg-white min-h-[70vh]">
+                <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-6 animate-in zoom-in duration-500">
+                    <CheckCircle2 size={48} className="text-green-500" />
+                </div>
+                <h1 className="text-3xl font-black text-slate-900 mb-3 uppercase tracking-tighter text-center">Commande Envoyée !</h1>
+                <p className="text-slate-500 mb-2 max-w-md text-center font-medium">
+                    Votre commande a été envoyée sur WhatsApp. Nous vous contacterons très prochainement.
+                </p>
+                <p className="text-[#BF1737] font-bold text-sm mb-8 text-center">
+                    Votre facture a été générée automatiquement.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-sm">
+                    <Link
+                        href="/invoice"
+                        className="flex items-center justify-center gap-2 bg-[#BF1737] text-white px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-[#a01430] transition-colors shadow-lg shadow-[#BF1737]/20 flex-1"
+                    >
+                        <FileText size={16} />
+                        Voir ma Facture
+                    </Link>
+                    <button
+                        onClick={() => { setIsConfirmed(false); setQuantity(1); }}
+                        className="flex items-center justify-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-slate-800 transition-colors flex-1"
+                    >
+                        Continuer
+                    </button>
+                </div>
+                <Link
+                    href="/"
+                    className="mt-4 text-xs font-bold uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-colors"
+                >
+                    Retour à l'accueil
+                </Link>
+            </div>
+        );
+    }
+
     const handleShare = (platform: string) => {
         const url = typeof window !== 'undefined' ? window.location.href : '';
         const text = product.name;
@@ -183,7 +294,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
                                     <button
                                         key={idx}
                                         onClick={() => setActiveImage(img)}
-                                        className={`w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] flex-shrink-0 rounded-xl border-2 transition-all p-1 bg-white overflow-hidden hover:shadow-md ${
+                                        className={`w-[60px] h-[60px] sm:w-[70px] sm:h-[70px] flex-shrink-0 rounded-md border-2 transition-all p-1 bg-white overflow-hidden hover:shadow-md ${
                                             activeImage === img 
                                                 ? 'border-[#BF1737] shadow-lg shadow-[#BF1737]/10' 
                                                 : 'border-slate-100 hover:border-slate-300'
@@ -198,7 +309,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
                         {/* If only one image (backwards compatibility or simple products) */}
                         {(!product.imageUrls || product.imageUrls.length <= 1) && product.imageUrl && (
                              <div className="flex gap-2 mt-4">
-                                <div className="w-[70px] h-[70px] border-2 border-[#BF1737] rounded-xl overflow-hidden p-1 bg-white shadow-lg shadow-[#BF1737]/10">
+                                <div className="w-[70px] h-[70px] border-2 border-[#BF1737] rounded-md overflow-hidden p-1 bg-white shadow-lg shadow-[#BF1737]/10">
                                     <img src={product.imageUrl} alt="" className="w-full h-full object-contain" />
                                 </div>
                             </div>
@@ -364,11 +475,7 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
                                     showToast('Numéro WhatsApp non configuré.', 'error');
                                     return;
                                 }
-                                const whatsappLink = generateWhatsAppLink({
-                                    items: [{ name: product.name, quantity, price: Number(product.price) }],
-                                    totalPrice: Number(product.price) * quantity
-                                }, settings?.phoneNumber);
-                                window.open(whatsappLink, '_blank');
+                                setIsCheckingOut(true);
                             }}
                             className="w-full h-[52px] bg-[#1a1a2e] text-white rounded-[20px] hover:bg-[#111122] transition-all flex items-center justify-center relative overflow-hidden group mb-10 shadow-xl shadow-slate-200"
                         >
@@ -688,6 +795,118 @@ export default function ProductDetailsPage({ params }: { params: Promise<{ id: s
 
                 <RelatedProducts categoryId={product.categoryId} currentProductId={Number(product.id)} />
             </div>
+
+            {/* Checkout Modal */}
+            {isCheckingOut && (
+                <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6">
+                    {/* Backdrop */}
+                    <div
+                        className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm animate-in fade-in duration-300"
+                        onClick={() => !isCheckoutLoading && setIsCheckingOut(false)}
+                    />
+
+                    {/* Modal Content */}
+                    <div className="bg-white w-full max-w-lg rounded-[32px] overflow-hidden relative z-10 shadow-2xl animate-in zoom-in-95 fade-in duration-300">
+                        <div className="bg-[#BF1737] p-8 text-white relative">
+                            <button
+                                onClick={() => setIsCheckingOut(false)}
+                                className="absolute top-6 right-6 text-white/60 hover:text-white transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+                            <div className="flex items-center gap-3 mb-2">
+                                <MessageCircle size={24} />
+                                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/60">Finalisation</span>
+                            </div>
+                            <h2 className="text-3xl font-black uppercase tracking-tighter">Infos Livraison</h2>
+                            <p className="text-white/60 text-xs font-medium mt-2">Dernière étape pour envoyer votre commande sur WhatsApp.</p>
+                        </div>
+
+                        <div className="p-8 space-y-6">
+                            <div className="space-y-4">
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block px-1">Nom Complet (Optionnel)</label>
+                                    <div className="relative">
+                                        <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                        <input
+                                            type="text"
+                                            placeholder="Votre nom complet"
+                                            className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 pl-12 pr-4 text-slate-900 font-bold focus:ring-2 focus:ring-[#BF1737]/20 focus:border-[#BF1737] transition-all outline-none"
+                                            value={customerInfo.name}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block px-1">Email (Obligatoire pour la facture)</label>
+                                    <div className="relative">
+                                        <FileText className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                        <input
+                                            type="email"
+                                            placeholder="votre@email.com"
+                                            required
+                                            className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 pl-12 pr-4 text-slate-900 font-bold focus:ring-2 focus:ring-[#BF1737]/20 focus:border-[#BF1737] transition-all outline-none"
+                                            value={customerInfo.email}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, email: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block px-1">Téléphone (Optionnel)</label>
+                                    <div className="relative">
+                                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                        <input
+                                            type="text"
+                                            placeholder="Votre numéro de téléphone"
+                                            className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 pl-12 pr-4 text-slate-900 font-bold focus:ring-2 focus:ring-[#BF1737]/20 focus:border-[#BF1737] transition-all outline-none"
+                                            value={customerInfo.phone}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1.5">
+                                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 block px-1">Adresse (Optionnel)</label>
+                                    <div className="relative">
+                                        <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
+                                        <input
+                                            type="text"
+                                            placeholder="Ville, Quartier..."
+                                            className="w-full bg-slate-50 border border-slate-100 rounded-xl py-4 pl-12 pr-4 text-slate-900 font-bold focus:ring-2 focus:ring-[#BF1737]/20 focus:border-[#BF1737] transition-all outline-none"
+                                            value={customerInfo.address}
+                                            onChange={(e) => setCustomerInfo({ ...customerInfo, address: e.target.value })}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button
+                                onClick={() => {
+                                    if (!customerInfo.email || !customerInfo.email.includes('@')) {
+                                        showToast('Veuillez entrer une adresse email valide pour recevoir votre facture.', 'error');
+                                        return;
+                                    }
+                                    handleCheckout();
+                                }}
+                                disabled={isCheckoutLoading}
+                                className="w-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 text-white py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] transition-all flex items-center justify-center gap-3 mt-4"
+                            >
+                                {isCheckoutLoading ? (
+                                    <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                                ) : (
+                                    <>Confirmer & Envoyer</>
+                                )}
+                            </button>
+
+                            <p className="text-center text-[10px] text-slate-400 font-medium italic">
+                                Note : Les informations saisies aideront à traiter votre commande plus rapidement once sur WhatsApp.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

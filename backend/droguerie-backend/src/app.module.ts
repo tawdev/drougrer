@@ -49,7 +49,7 @@ import { ReviewsModule } from './reviews/reviews.module';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         entities: [Category, Product, Order, User, BlogPost, Brand, NewsletterSubscriber, Tip, Setting, Review],
-        synchronize: true,
+        synchronize: true, // WARNING: Set to false in production once you have real data & migrations!
 
       }),
       inject: [ConfigService],
